@@ -1,5 +1,7 @@
 package com.game.controller;
 
-class Game {
+
+
+public class Game {
 
 }
