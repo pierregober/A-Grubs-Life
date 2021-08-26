@@ -1,11 +1,38 @@
 package com.game.controller;
 
 
-import com.game.model.KeyWordIdentifier;
-import com.game.model.LogicEngine;
-import com.game.model.Prompter;
-import com.game.model.TextParser;
 
 public class Game {
 
+
+
+    public Game() {
+    }
+
+    public void start(){
+        //Welcome Screen goes here.
+        welcome();
+        createPlayer();
+        while (true){
+            // logic will go here. To loop through.
+            break;
+        }
+        quit();
+
+    }
+
+    private void welcome(){
+
+        System.out.println("Welcome!! \n");
+        System.out.println("How to Play: " +
+                "\n1. Instructions.\n" );
+
+    }
+    private void quit(){
+        System.out.println("You are leaving the game. Good Bye.");
+        System.exit(0);
+    }
+
+    private void createPlayer(){
+    }
 }
