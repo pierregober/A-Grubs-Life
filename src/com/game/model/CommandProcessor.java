@@ -1,13 +1,14 @@
 package com.game.model;
 
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 public class CommandProcessor {
     private Caterpillar caterpillar;
-    public CommandProcessor(Caterpillar caterpillar){
+    private HashMap<String,Location> locations;
+    public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations){
         this.caterpillar = caterpillar;
+        this.locations = locations;
     }
     public String decipherVerbs() {
 
@@ -79,7 +80,13 @@ public class CommandProcessor {
     }
 
     public void executeCommand(ArrayList<String> strings) {
-
+        String action = strings.get(0).toUpperCase(Locale.ROOT);
+        String focus = strings.get(1).toUpperCase(Locale.ROOT);
+        String deadEnd = "DEAD_END";
+        if(action.equalsIgnoreCase("go") && focus.equalsIgnoreCase("north") &&
+            !caterpillar.getCurrentLocation().getNorth().equalsIgnoreCase(deadEnd)){
+            caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getNorth()));
+        }
     }
 
 }
