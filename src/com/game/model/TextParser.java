@@ -1,4 +1,12 @@
 package com.game.model;
 
-class TextParser {
+public class TextParser {
+    private String[] command;
+    public TextParser(){
+         super();
+    }
+
+    public void setCommand(String unParsedCommand){
+
+    }
 }

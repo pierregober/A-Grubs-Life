@@ -1,5 +1,6 @@
 package com.game.model;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -73,4 +74,5 @@ public class LogicEngine {
         }
         return output;
     }
+
 }
