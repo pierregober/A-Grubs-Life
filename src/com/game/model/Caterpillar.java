@@ -1,5 +1,6 @@
 package com.game.model;
 
+
 import org.jetbrains.annotations.NotNull;
 
 class Caterpillar {
@@ -88,4 +89,5 @@ class Caterpillar {
     public void setLevel(int level) {
         this.level = level;
     }
+
 }

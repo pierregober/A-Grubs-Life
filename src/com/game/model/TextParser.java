@@ -1,26 +1,47 @@
 package com.game.model;
-//This class should validate a verb and a noun given by the user has come
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Locale;
 
 public class TextParser {
-    private String verb;
-    private String noun;
-    private Scanner scanner;
-
+    private HashSet<String> verbs;
+    private HashSet<String> nouns;
     public TextParser(){
-        scanner = new Scanner(System.in);
-        this.verb = scanner.next();
-        this.noun = scanner.next();
-        scanner.close();
+         super();
+         populateVerbs();
+         populateNouns();
+
     }
 
-    public String getNoun() {
-        return this.noun;
+    private void populateNouns() {
+        this.nouns = new HashSet();
+        nouns.add("NORTH");
+
     }
 
-    public  String getVerb() {
-        return this.verb;
+    private void populateVerbs() {
+        this.verbs = new HashSet();
+        verbs.add("GO");
     }
 
+
+    //If we dont get a viable verb and noun then we will pass null.
+    public ArrayList<String> parseInput(String unParsedCommand) {
+        String[] result = new String[unParsedCommand.length()];
+        result = unParsedCommand.toUpperCase(Locale.ROOT).split(" ");
+        System.out.println(Arrays.toString(result));
+        ArrayList<String> list = new ArrayList<>();
+
+        for(String str : result){
+            if(verbs.contains(str.toUpperCase(Locale.ROOT)) || nouns.contains(str.toUpperCase(Locale.ROOT))){
+                list.add(str);
+                if(list.size() == 2){
+                    return list;
+                }
+            }
+        }
+        return null;
+    }
 }
