@@ -3,33 +3,27 @@ package com.game.controller;
 
 import com.game.model.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Game {
-
-
-
     public Game() {
+
     }
 
     public void start(){
         //instantiate model objects
-        Location loc = new Location("GENESIS","THIS IS YOUR BIRTHPLACE", "WOODS", "DEAD_END", "DEAD_END", "DEAD_END");
-        Location loc2 = new Location("WOODS", "THE WOODS","DEAD_END","GENESIS","DEAD_END","DEAD_END");
-        HashMap<String, Location> locations = new HashMap<>();
-        locations.put(loc.getName(),loc);
-        locations.put(loc2.getName(),loc2);
-
-
+        HashMap<String, Location> locations = populateLocations();
         Caterpillar caterpillar = new Caterpillar(100,0,0);
-        caterpillar.setCurrentLocation(loc);
         Prompter prompter = new Prompter();
         TextParser parser = new TextParser();
         KeyWordIdentifier kwi = new KeyWordIdentifier();
         CommandProcessor commandProcessor = new CommandProcessor(caterpillar,locations);
+        caterpillar.setCurrentLocation(populateLocations().get("GENESIS"));
 
 
         //Welcome Screen goes here.
@@ -37,16 +31,10 @@ public class Game {
        // createPlayer();
         while (true){
             // logic will go here. To loop through.
-            System.out.println(caterpillar.getCurrentLocation().getName());
             String userInput = prompter.getInput();
             ArrayList parsedInput = parser.parseInput(userInput);
             ArrayList command = kwi.identifyKewWords(parsedInput);
             commandProcessor.executeCommand(command);// << updates caterpillar
-            System.out.println(caterpillar.getCurrentLocation().getName());
-
-
-
-
             break;
         }
         quit();
@@ -54,18 +42,33 @@ public class Game {
     }
 
     private void welcome(){
-
         System.out.println("Welcome!! \n");
         System.out.println("How to Play: " +
                 "\n1. Instructions.\n" );
-
     }
     private void quit(){
         System.out.println("You are leaving the game. Good Bye.");
         System.exit(0);
     }
-
     private void createPlayer(){
 
+    }
+
+    private HashMap<String,Location> populateLocations(){
+
+        HashMap<String,Location> locations = new HashMap<>();
+        String[] locationFields = new String[6];
+        try{
+            File file = new File("locations.txt");
+            Scanner myReader = new Scanner(file);
+            while(myReader.hasNextLine()){
+                locationFields = myReader.nextLine().split(",");
+                Location loc = new Location(locationFields[0],locationFields[ 1], locationFields[ 2], locationFields[ 3], locationFields[4],locationFields[ 5] );
+                locations.put(locationFields[0], loc);
+            }
+        }catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+            }
+        return locations;
     }
 }
