@@ -6,5 +6,7 @@ import com.game.model.TextParser;
 public class Client {
     public static void main(String[] args) {
 
+        Game game = new Game();
+        game.start();
     }
 }

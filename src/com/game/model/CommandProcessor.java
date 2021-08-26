@@ -4,8 +4,11 @@ package com.game.model;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class LogicEngine {
-
+public class CommandProcessor {
+    private Caterpillar caterpillar;
+    public CommandProcessor(Caterpillar caterpillar){
+        this.caterpillar = caterpillar;
+    }
     public String decipherVerbs() {
 
         String verb = "";
@@ -73,6 +76,10 @@ public class LogicEngine {
             }
         }
         return output;
+    }
+
+    public void executeCommand(ArrayList<String> strings) {
+
     }
 
 }
