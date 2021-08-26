@@ -1,4 +1,5 @@
 package com.game.model;
 
-class Caterpillar {
+public class Caterpillar {
+
 }
