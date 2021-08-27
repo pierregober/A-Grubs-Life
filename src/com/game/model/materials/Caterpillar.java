@@ -1,7 +1,4 @@
-package com.game.model;
-
-
-
+package com.game.model.materials;
 
 public class Caterpillar {
     private int health;

@@ -1,12 +1,17 @@
 package com.game.controller;
 
 
-import com.game.model.*;
+import com.game.model.engine.CommandProcessor;
+import com.game.model.engine.KeyWordIdentifier;
+import com.game.model.engine.Prompter;
+import com.game.model.engine.TextParser;
+import com.game.model.materials.Caterpillar;
+import com.game.model.materials.Location;
+import com.game.view.View;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -16,6 +21,9 @@ public class Game {
     }
 
     public void start(){
+        //instantiate view
+        View view = new View();
+
         //instantiate model objects
         boolean running = true;
         HashMap<String, Location> locations = populateLocations();
@@ -27,36 +35,30 @@ public class Game {
         caterpillar.setCurrentLocation(locations.get("GENESIS"));
 
 
-        //Welcome Screen goes here.
-        welcome();
+        view.printWelcomeMessage();
 
+
+        //+++++++++++++++  GAME LOOP  +++++++++++++++++++ should be its own method
         while (running){
-            System.out.println(" You are now in the : " + caterpillar.getCurrentLocation().getName());
+            view.printCurrentRoom(caterpillar);
             // logic will go here. To loop through.
+            view.promptUser();
             String userInput = prompter.getInput();
             if(userInput.equalsIgnoreCase("quit")){
-                quit();
+                quit(view);
             }else{
                 ArrayList parsedInput = parser.parseInput(userInput);
                 ArrayList command = kwi.identifyKewWords(parsedInput);
                 commandProcessor.executeCommand(command);// << updates caterpillar
             }
-
-
-
         }
 
 
     }
 
-    private void welcome(){
-        System.out.println("Welcome!! \n");
-        System.out.println("How to Play: " +
-                "\n1. Instructions.\n" );
-        System.out.println("Enter quit to end the game.");
-    }
-    private void quit(){
-        System.out.println("You are leaving the game. Good Bye.");
+
+    private void quit(View view){
+        view.printQuit();
         System.exit(0);
     }
     private void createPlayer(){

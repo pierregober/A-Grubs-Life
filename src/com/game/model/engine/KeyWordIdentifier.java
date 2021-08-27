@@ -1,4 +1,4 @@
-package com.game.model;
+package com.game.model.engine;
 
 import java.util.ArrayList;
 import java.util.HashMap;

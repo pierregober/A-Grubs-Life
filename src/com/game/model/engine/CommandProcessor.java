@@ -1,11 +1,14 @@
-package com.game.model;
+package com.game.model.engine;
 
+
+import com.game.model.materials.Caterpillar;
+import com.game.model.materials.Location;
 
 import java.util.*;
 
 public class CommandProcessor {
     private Caterpillar caterpillar;
-    private HashMap<String,Location> locations;
+    private HashMap<String, Location> locations;
     public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations){
         this.caterpillar = caterpillar;
         this.locations = locations;
