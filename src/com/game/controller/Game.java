@@ -12,6 +12,7 @@ import com.game.view.View;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -42,7 +43,9 @@ public class Game {
 
         //+++++++++++++++  GAME LOOP  +++++++++++++++++++ should be its own method
         while (running){
+            //clearScreen();
             view.printUpdate(caterpillar);
+            System.out.println(caterpillar.getExperience());
             // logic will go here. To loop through.
             view.promptUser();
             String userInput = prompter.getInput();
@@ -84,6 +87,16 @@ public class Game {
             System.out.println(e.getMessage());
             }
         return locations;
+    }
+    private void clearScreen(){
+        String os = System.getProperty("os.name").toLowerCase();
+        ProcessBuilder process = (os.contains("windows")) ?
+                new ProcessBuilder("cmd", "/c", "cls") :
+                new ProcessBuilder("clear");
+        try {
+            process.inheritIO().start().waitFor();
+        } catch (InterruptedException | IOException ignored) {
+        }
     }
 
 }
