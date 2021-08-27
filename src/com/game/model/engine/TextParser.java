@@ -1,4 +1,4 @@
-package com.game.model;
+package com.game.model.engine;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,9 +29,8 @@ public class TextParser {
 
     //If we dont get a viable verb and noun then we will pass null.
     public ArrayList<String> parseInput(String unParsedCommand) {
-        String[] result = new String[unParsedCommand.length()];
+        String[] result;
         result = unParsedCommand.toUpperCase(Locale.ROOT).split(" ");
-        System.out.println(Arrays.toString(result));
         ArrayList<String> list = new ArrayList<>();
 
         for(String str : result){
