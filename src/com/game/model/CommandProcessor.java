@@ -85,7 +85,8 @@ public class CommandProcessor {
         String deadEnd = "DEAD_END";
         if(action.equalsIgnoreCase("go") && focus.equalsIgnoreCase("north") &&
             !caterpillar.getCurrentLocation().getNorth().equalsIgnoreCase(deadEnd)){
-            caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getNorth()));
+            caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getNorth().trim()));
+
         }
     }
 
