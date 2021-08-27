@@ -17,6 +17,7 @@ public class Game {
 
     public void start(){
         //instantiate model objects
+        boolean running = true;
         HashMap<String, Location> locations = populateLocations();
         Caterpillar caterpillar = new Caterpillar(100,0,0);
         Prompter prompter = new Prompter();
@@ -29,15 +30,19 @@ public class Game {
         //Welcome Screen goes here.
         welcome();
        // createPlayer();
-        while (true){
+        while (running){
             // logic will go here. To loop through.
             String userInput = prompter.getInput();
+            if(userInput.equalsIgnoreCase("quit")){
+                quit();
+                running = false;
+            }
             ArrayList parsedInput = parser.parseInput(userInput);
             ArrayList command = kwi.identifyKewWords(parsedInput);
             commandProcessor.executeCommand(command);// << updates caterpillar
-            break;
+
         }
-        quit();
+
 
     }
 
@@ -45,6 +50,7 @@ public class Game {
         System.out.println("Welcome!! \n");
         System.out.println("How to Play: " +
                 "\n1. Instructions.\n" );
+        System.out.println("Enter quit to end the game.");
     }
     private void quit(){
         System.out.println("You are leaving the game. Good Bye.");
@@ -57,7 +63,7 @@ public class Game {
     private HashMap<String,Location> populateLocations(){
 
         HashMap<String,Location> locations = new HashMap<>();
-        String[] locationFields = new String[6];
+        String[] locationFields;
         try{
             File file = new File("locations.txt");
             Scanner myReader = new Scanner(file);
