@@ -4,10 +4,10 @@ public class Caterpillar {
     private int health;
     private int experience;
     private int strength;
-    private int maxHealth;
+    private int maxHealth = 10;
     private int level = 1;
-    private int maxLevel;
-    private int maxExperience;
+    private int maxLevel = 3;
+    private int maxExperience = 4;
     private boolean isButterfly;
     private Location currentLocation;
     private boolean hidden;
@@ -18,26 +18,31 @@ public class Caterpillar {
         this.strength = strength;
         this.hidden = false;
     }
-    public void setCurrentLocation(Location location){
+    public void setCurrentLocation(Location location){ //we should move this to the bottom
         this.currentLocation = location;
     }
     public Location getCurrentLocation(){
         return this.currentLocation;
     }
     public void eat(Leaf leaf){
-        if(!leaf.equals(null)){
-            setExperience(leaf.getXp());
-            setHealth(maxHealth);
+        if( (getExperience() + leaf.getXP()) > maxExperience) {
+            setHealth(maxHealth); // refreshes health
+            setExperience((getExperience() + leaf.getXP) % maxExperience); //level up and transfers remaining to experience
+            levelUp(); //increases level / ends the stage once appropriate level
+            }
+        else{
+            setExperience(getExperience() + leaf.getXP ); // no levelup by experience up
         }
     }
     public void levelUp(){
-        if(experience == maxExperience - 1) {
-            setExperience(0);
-            setStrength(strength + 1);
-            setLevel(level + 1);
-        }
+        setStrength(strength + 1);
+        setLevel(level + 1);
+        if(getLevel() == maxLevel){
+            endStage();
+            }
     }
-//
+
+
 //    public void fightGetHit( Enemy enemy){
 //        int strengthAdvantage = 0;
 //        if(enemy.getStrength() > getStrength()){
