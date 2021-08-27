@@ -1,4 +1,4 @@
-package com.game.model;
+package com.game.model.engine;
 
 import java.util.Scanner;
 
@@ -10,7 +10,7 @@ public class Prompter {
 
 
     public String getInput(){
-        System.out.println("Please enter a command: ");
+
         String result = scanner.nextLine();
         return result;
     }
