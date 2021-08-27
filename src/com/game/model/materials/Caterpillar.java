@@ -10,12 +10,13 @@ public class Caterpillar {
     private int maxExperience;
     private boolean isButterfly;
     private Location currentLocation;
+    private boolean hidden;
     public  Caterpillar(int health, int experience, int strength){
         this.health = health;
         this.health = maxHealth;
         this.experience = experience;
         this.strength = strength;
-
+        this.hidden = false;
     }
     public void setCurrentLocation(Location location){
         this.currentLocation = location;
@@ -23,21 +24,19 @@ public class Caterpillar {
     public Location getCurrentLocation(){
         return this.currentLocation;
     }
-//    public void eat(String object){
-//        if(object.equals("leaf"))
-//            setHealth(maxHealth);
-//            setExperience(experience + 1);
-//    }
-//    public void levelUp(){
-//        if(experience == maxExperience - 1) {
-//            setExperience(0);
-//            setStrength(strength + 1);
-//            setLevel(level + 1);
-//            if(getLevel() == maxLevel){
-//                endStage();
-//            }
-//        }
-//    }
+    public void eat(Leaf leaf){
+        if(!leaf.equals(null)){
+            setExperience(leaf.getXp());
+            setHealth(maxHealth);
+        }
+    }
+    public void levelUp(){
+        if(experience == maxExperience - 1) {
+            setExperience(0);
+            setStrength(strength + 1);
+            setLevel(level + 1);
+        }
+    }
 //
 //    public void fightGetHit( Enemy enemy){
 //        int strengthAdvantage = 0;
@@ -60,37 +59,44 @@ public class Caterpillar {
 //            enemy.setHealth(enemy.getHealth() - strength);
 //        }
 //    }
-//
-//    public int getHealth() {
-//        return health;
-//    }
-//
-//    public void setHealth(int health) {
-//        this.health = health;
-//    }
-//
-//    public int getExperience() {
-//        return experience;
-//    }
-//
-//    public void setExperience(int experience) {
-//        this.experience = experience;
-//    }
-//
-//    public int getStrength() {
-//        return strength;
-//    }
-//
-//    public void setStrength(int strength) {
-//        this.strength = strength;
-//    }
-//
-//    public int getLevel() {
-//        return level;
-//    }
-//
-//    public void setLevel(int level) {
-//        this.level = level;
-//    }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
 }

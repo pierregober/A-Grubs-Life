@@ -1,4 +1,4 @@
-package com.game.model;
+package com.game.model.materials;
 
 public class Leaf {
     private int xp;

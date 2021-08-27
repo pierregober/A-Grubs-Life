@@ -13,6 +13,8 @@ public class KeyWordIdentifier {
         keyWords = new HashSet<>();
         keyWords.add("GO");
         keyWords.add("NORTH");
+        keyWords.add("LEAF");
+        keyWords.add("EAT");
     }
 
 

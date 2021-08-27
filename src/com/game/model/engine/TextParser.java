@@ -18,12 +18,13 @@ public class TextParser {
     private void populateNouns() {
         this.nouns = new HashSet();
         nouns.add("NORTH");
-
+        nouns.add("LEAF");
     }
 
     private void populateVerbs() {
         this.verbs = new HashSet();
         verbs.add("GO");
+        verbs.add("EAT");
     }
 
 

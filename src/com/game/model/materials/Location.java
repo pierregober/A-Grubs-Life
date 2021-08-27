@@ -1,6 +1,7 @@
 package com.game.model.materials;
 
 import java.util.HashSet;
+import java.util.Random;
 
 public class Location {
     private String name;
@@ -9,6 +10,7 @@ public class Location {
     private String south;
     private String east;
     private String west;
+    private Leaf leaf;
 
 
 
@@ -19,8 +21,19 @@ public class Location {
         this.south = south;
         this.east = east;
         this.west = west;
+        setLeaf();
     }
 
+    private void setLeaf() {
+        Random random = new Random();
+
+            this.leaf = new Leaf();
+
+    }
+
+    public Leaf getLeaf(){
+        return this.leaf;
+    }
     public String getName() {
         return name;
     }
