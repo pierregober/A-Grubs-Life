@@ -6,6 +6,7 @@ import com.game.model.engine.KeyWordIdentifier;
 import com.game.model.engine.Prompter;
 import com.game.model.engine.TextParser;
 import com.game.model.materials.Caterpillar;
+import com.game.model.materials.Leaf;
 import com.game.model.materials.Location;
 import com.game.view.View;
 
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -36,11 +38,11 @@ public class Game {
 
 
         view.printWelcomeMessage();
-
+        view.printInstructions();
 
         //+++++++++++++++  GAME LOOP  +++++++++++++++++++ should be its own method
         while (running){
-            view.printCurrentRoom(caterpillar);
+            view.printUpdate(caterpillar);
             // logic will go here. To loop through.
             view.promptUser();
             String userInput = prompter.getInput();
@@ -66,14 +68,15 @@ public class Game {
     }
 
     private HashMap<String,Location> populateLocations(){
-
         HashMap<String,Location> locations = new HashMap<>();
+        HashMap<String, Leaf>  leaves = new HashMap<>();
         String[] locationFields;
         try{
             File file = new File("locations.txt");
             Scanner myReader = new Scanner(file);
             while(myReader.hasNextLine()){
                 locationFields = myReader.nextLine().split(",");
+
                 Location loc = new Location(locationFields[0].trim(),locationFields[ 1].trim(), locationFields[ 2].trim(), locationFields[ 3].trim(), locationFields[4].trim(),locationFields[ 5].trim() );
                 locations.put(locationFields[0].trim(), loc);
             }
@@ -82,4 +85,5 @@ public class Game {
             }
         return locations;
     }
+
 }

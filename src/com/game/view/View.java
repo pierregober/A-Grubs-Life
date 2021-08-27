@@ -17,13 +17,6 @@ public class View {
                            "transform into a butterfly, and find a mate!\n " +
                            "Be careful! Your environment might be more dangerous than you think...");
     }
-    public void printCaterpillarUpdate(Caterpillar caterpillar){
-        printCaterpillarStats(caterpillar);
-        printCurrentRoom(caterpillar);
-        printCurrentItems(caterpillar);
-
-    }
-
     public void printCurrentItems(Caterpillar caterpillar) {
 
     }
@@ -52,12 +45,17 @@ public class View {
     }
 
     public void printCaterpillarStats(Caterpillar caterpillar) {
-
+        System.out.println(caterpillar.getExperience());
     }
     public void printQuit(){
         System.out.println("You are leaving the game. Good Bye.");
     }
     public  void promptUser(){
         System.out.println("Please enter a command [Noun / Verb]: ");
+    }
+
+    public void printUpdate(Caterpillar caterpillar) {
+        printCaterpillarStats(caterpillar);
+        printCurrentRoom(caterpillar);
     }
 }

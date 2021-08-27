@@ -10,12 +10,13 @@ public class Caterpillar {
     private int maxExperience = 4;
     private boolean isButterfly;
     private Location currentLocation;
+    private boolean hidden;
     public  Caterpillar(int health, int experience, int strength){
         this.health = health;
         this.health = maxHealth;
         this.experience = experience;
         this.strength = strength;
-
+        this.hidden = false;
     }
     public void setCurrentLocation(Location location){ //we should move this to the bottom
         this.currentLocation = location;
@@ -40,6 +41,7 @@ public class Caterpillar {
             endStage();
             }
     }
+
 
 //    public void fightGetHit( Enemy enemy){
 //        int strengthAdvantage = 0;
@@ -95,4 +97,11 @@ public class Caterpillar {
         this.level = level;
     }
 
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
 }
