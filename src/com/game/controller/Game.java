@@ -1,3 +1,6 @@
+/*
+    This is the game class. It instantiates all of the games materials, and updates them. The game will use the model package and view package to pass data from the user to the system and vice versa.
+ */
 package com.game.controller;
 
 
@@ -21,12 +24,13 @@ public class Game {
     public Game() {
 
     }
-
+    //This should be called by the client to start a new game.
     public void start(){
         setUpComponents();
         run();
     }
 
+    //This method is designed to instantiate the necessary fields of a Game object.
     private void setUpComponents(){
         this.locations = populateLocations();
         this.enemies = populateEnemies();
@@ -35,6 +39,7 @@ public class Game {
         this.caterpillar.setCurrentLocation(locations.get("GENESIS"));
         this.viewWindow = new ViewWindow(caterpillar, processor);
     }
+    //This class controls the game loop. As the user inputs information the view will be updated.
     private void run(){
         boolean running = true;
         viewWindow.welcomeMessage();
@@ -42,11 +47,12 @@ public class Game {
 
         while (running){
             viewWindow.updateCaterpillarStatus();
+            caterpillar.setHealth(caterpillar.getMaxHealth() + 10);
         }
 
     }
 
-
+    //This is a private helper method to read in all of the locations in a text file and parse them to ingame Location objects.
     private HashMap<String,Location> populateLocations(){
         HashMap<String,Location> locations = new HashMap<>();
         String[] locationFields;
@@ -64,6 +70,7 @@ public class Game {
             }
         return locations;
     }
+    //This is a private helper method to populate Enemy objects from an external text file.
     private HashMap<String,Enemy> populateEnemies(){
         HashMap<String, Enemy> enemies = new HashMap<>();
 
