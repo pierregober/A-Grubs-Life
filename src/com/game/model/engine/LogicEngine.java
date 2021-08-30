@@ -5,7 +5,9 @@ import com.game.model.engine.KeyWordIdentifier;
 import com.game.model.engine.Prompter;
 import com.game.model.engine.TextParser;
 import com.game.model.materials.Caterpillar;
+import com.game.model.materials.Enemy;
 import com.game.model.materials.Location;
+import com.game.view.ViewWindow;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -17,17 +19,17 @@ public class LogicEngine {
     private Prompter prompter;
     private TextParser textParser;
 
-    public LogicEngine(Caterpillar caterpillar, HashMap<String, Location> locations){
-        setUpEngineComponents(caterpillar,locations);
+    public LogicEngine(Caterpillar caterpillar, HashMap<String, Location> locations, HashMap<String, Enemy> enemies){
+        setUpEngineComponents(caterpillar,locations, enemies);
     }
 
-    private void setUpEngineComponents(Caterpillar caterpillar, HashMap<String, Location> locations){
+    private void setUpEngineComponents(Caterpillar caterpillar, HashMap<String, Location> locations, HashMap<String,Enemy> enemies){
         this.prompter = new Prompter();
         this.textParser = new TextParser();
         this.keyWordIdentifier = new KeyWordIdentifier();
-        this.commandProcessor = new CommandProcessor(caterpillar, locations);
+        this.commandProcessor = new CommandProcessor(caterpillar, locations, enemies);
     }
-    public void processCommand(String userInput){
+    public void processCommand(String userInput){//
         ArrayList parsedInput = textParser.parseInput(userInput);
         ArrayList command = keyWordIdentifier.identifyKewWords(parsedInput);
         commandProcessor.executeCommand(command);

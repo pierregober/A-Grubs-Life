@@ -11,12 +11,15 @@ public class Caterpillar {
     private boolean isButterfly;
     private Location currentLocation;
     private boolean hidden;
+    private boolean petOwner;
+
     public  Caterpillar(int health, int experience, int strength){
         this.health = health;
         this.health = maxHealth;
         this.experience = experience;
         this.strength = strength;
         this.hidden = false;
+        this.petOwner = false;
     }
     public void setCurrentLocation(Location location){ //we should move this to the bottom
         this.currentLocation = location;
@@ -103,5 +106,13 @@ public class Caterpillar {
 
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
+    }
+
+    public void setPetOwner(boolean b) {
+        this.petOwner = b;
+    }
+
+    public int getMaxHealth() {
+        return this.maxHealth;
     }
 }

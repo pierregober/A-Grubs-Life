@@ -2,6 +2,7 @@ package com.game.model.engine;
 
 
 import com.game.model.materials.Caterpillar;
+import com.game.model.materials.Enemy;
 import com.game.model.materials.Location;
 
 import java.util.*;
@@ -9,9 +10,11 @@ import java.util.*;
 public class CommandProcessor {
     private Caterpillar caterpillar;
     private HashMap<String, Location> locations;
-    public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations){
+    private HashMap<String, Enemy> enemies;
+    public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations, HashMap<String, Enemy> enemies){
         this.caterpillar = caterpillar;
         this.locations = locations;
+        this.enemies = enemies;
     }
 
     public void executeCommand(ArrayList<String> strings) {
@@ -29,6 +32,10 @@ public class CommandProcessor {
             processHide(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")){
             processLeave(focus);
+        }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("TAME")){
+            processTame(focus);
+        }else{
+            //sout maybe
         }
 
     }
@@ -41,7 +48,11 @@ public class CommandProcessor {
 
     private void processMate(String focus) {
     }
-
+    private void processTame(String focus){
+        if(focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("ANT")){
+            caterpillar.setPetOwner(true);
+        }
+    }
     private void processEating(String focus) {
         switch(focus.toLowerCase()){
             case "leaf":
