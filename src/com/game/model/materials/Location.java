@@ -11,6 +11,7 @@ public class Location {
     private String east;
     private String west;
     private Leaf leaf;
+    private Ant ant;
 
 
 
@@ -34,6 +35,15 @@ public class Location {
     public Leaf getLeaf(){
         return this.leaf;
     }
+
+    public Ant getAnt() {
+        return ant;
+    }
+
+    public void setAnt() {
+        this.ant = new Ant();
+    }
+
     public String getName() {
         return name;
     }
