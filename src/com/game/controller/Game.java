@@ -1,10 +1,7 @@
 package com.game.controller;
 
 
-import com.game.model.engine.CommandProcessor;
-import com.game.model.engine.KeyWordIdentifier;
-import com.game.model.engine.Prompter;
-import com.game.model.engine.TextParser;
+import com.game.model.engine.*;
 import com.game.model.materials.Caterpillar;
 import com.game.model.materials.Leaf;
 import com.game.model.materials.Location;
@@ -15,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -27,10 +23,12 @@ public class Game {
         //instantiate view
         View view = new View();
 
+
         //instantiate model objects
         boolean running = true;
         HashMap<String, Location> locations = populateLocations();
         Caterpillar caterpillar = new Caterpillar(100,0,0);
+        //LogicEngine processor = new LogicEngine(caterpillar,locations);
         Prompter prompter = new Prompter();
         TextParser parser = new TextParser();
         KeyWordIdentifier kwi = new KeyWordIdentifier();
@@ -43,15 +41,15 @@ public class Game {
 
         //+++++++++++++++  GAME LOOP  +++++++++++++++++++ should be its own method
         while (running){
-            //clearScreen();
             view.printUpdate(caterpillar);
             System.out.println(caterpillar.getExperience());
-            // logic will go here. To loop through.
             view.promptUser();
             String userInput = prompter.getInput();
+//            String userInput = processor.getPrompter().getInput();
             if(userInput.equalsIgnoreCase("quit")){
                 quit(view);
             }else{
+
                 ArrayList parsedInput = parser.parseInput(userInput);
                 ArrayList command = kwi.identifyKewWords(parsedInput);
                 commandProcessor.executeCommand(command);// << updates caterpillar
@@ -65,9 +63,6 @@ public class Game {
     private void quit(View view){
         view.printQuit();
         System.exit(0);
-    }
-    private void createPlayer(){
-
     }
 
     private HashMap<String,Location> populateLocations(){
@@ -88,15 +83,4 @@ public class Game {
             }
         return locations;
     }
-    private void clearScreen(){
-        String os = System.getProperty("os.name").toLowerCase();
-        ProcessBuilder process = (os.contains("windows")) ?
-                new ProcessBuilder("cmd", "/c", "cls") :
-                new ProcessBuilder("clear");
-        try {
-            process.inheritIO().start().waitFor();
-        } catch (InterruptedException | IOException ignored) {
-        }
-    }
-
 }

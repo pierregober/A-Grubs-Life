@@ -19,6 +19,10 @@ public class TextParser {
         this.nouns = new HashSet();
         nouns.add("NORTH");
         nouns.add("LEAF");
+        nouns.add("SOUTH");
+        nouns.add("EAST");
+        nouns.add("WEST");
+
     }
 
     private void populateVerbs() {
