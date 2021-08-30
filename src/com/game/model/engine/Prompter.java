@@ -8,9 +8,7 @@ public class Prompter {
         scanner = new Scanner(System.in);
     }
 
-
     public String getInput(){
-
         String result = scanner.nextLine();
         return result;
     }

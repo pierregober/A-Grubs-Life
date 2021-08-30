@@ -1,17 +1,14 @@
 package com.game.controller;
 
 
-import com.game.model.engine.*;
+import com.game.model.engine.LogicEngine;
 import com.game.model.materials.Caterpillar;
 import com.game.model.materials.Enemy;
-import com.game.model.materials.Leaf;
 import com.game.model.materials.Location;
-import com.game.view.View;
+import com.game.view.ViewWindow;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -20,49 +17,35 @@ public class Game {
     private HashMap<String, Enemy> enemies;
     private Caterpillar caterpillar;
     private LogicEngine processor;
-    private View view;
+    private ViewWindow viewWindow;
     public Game() {
 
     }
 
     public void start(){
-
         setUpComponents();
-        run(caterpillar,processor,view);
-
+        run();
     }
 
     private void setUpComponents(){
-        this.view = new View();
         this.locations = populateLocations();
         this.enemies = populateEnemies();
         this.caterpillar = new Caterpillar(100,0,0);
-        this.processor = new LogicEngine(caterpillar,locations);
+        this.processor = new LogicEngine(caterpillar,locations, enemies);
         this.caterpillar.setCurrentLocation(locations.get("GENESIS"));
-
+        this.viewWindow = new ViewWindow(caterpillar, processor);
     }
-    private void run(Caterpillar caterpillar, LogicEngine processor, View view){
+    private void run(){
         boolean running = true;
-        view.printWelcomeMessage();
-        view.printInstructions();
+        viewWindow.welcomeMessage();
+        viewWindow.giveInstructions();
+
         while (running){
-            view.printUpdate(caterpillar);
-            System.out.println(caterpillar.getExperience());
-            view.promptUser();
-            String userInput = processor.getPrompter().getInput();
-            if(userInput.equalsIgnoreCase("quit")){
-                quit(view);
-            }else{
-                processor.processCommand(userInput);
-            }
+            viewWindow.updateCaterpillarStatus();
         }
 
     }
 
-    private void quit(View view){
-        view.printQuit();
-        System.exit(0);
-    }
 
     private HashMap<String,Location> populateLocations(){
         HashMap<String,Location> locations = new HashMap<>();
