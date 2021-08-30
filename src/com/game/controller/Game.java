@@ -3,6 +3,7 @@ package com.game.controller;
 
 import com.game.model.engine.*;
 import com.game.model.materials.Caterpillar;
+import com.game.model.materials.Enemy;
 import com.game.model.materials.Leaf;
 import com.game.model.materials.Location;
 import com.game.view.View;
@@ -27,6 +28,7 @@ public class Game {
         //instantiate model objects
         boolean running = true;
         HashMap<String, Location> locations = populateLocations();
+        HashMap<String, Enemy> enemies = populateEnemies();
         Caterpillar caterpillar = new Caterpillar(100,0,0);
         //LogicEngine processor = new LogicEngine(caterpillar,locations);
         Prompter prompter = new Prompter();
@@ -67,7 +69,6 @@ public class Game {
 
     private HashMap<String,Location> populateLocations(){
         HashMap<String,Location> locations = new HashMap<>();
-        HashMap<String, Leaf>  leaves = new HashMap<>();
         String[] locationFields;
         try{
             File file = new File("locations.txt");
@@ -82,5 +83,24 @@ public class Game {
             System.out.println(e.getMessage());
             }
         return locations;
+    }
+    private HashMap<String,Enemy> populateEnemies(){
+        HashMap<String, Enemy> enemies = new HashMap<>();
+
+        String[] enemyFields;
+        try{
+            File file = new File("enemies.txt");
+            Scanner myReader = new Scanner(file);
+
+            while(myReader.hasNextLine()){
+                enemyFields = myReader.nextLine().split(",");
+
+                Enemy enemy = new Enemy(enemyFields[0].trim(),Integer.parseInt(enemyFields[ 1].trim()), Integer.parseInt(enemyFields[ 2].trim()), Integer.parseInt(enemyFields[ 3].trim()), Boolean.parseBoolean(enemyFields[4].trim()), Boolean.parseBoolean(enemyFields[5].trim()), enemyFields[6].trim());
+                enemies.put(enemyFields[6].trim(), enemy);
+            }
+        }catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
+        return enemies;
     }
 }
