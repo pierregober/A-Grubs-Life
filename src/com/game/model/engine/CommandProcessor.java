@@ -45,7 +45,7 @@ public class CommandProcessor {
     private void processEating(String focus) {
         switch(focus.toLowerCase()){
             case "leaf":
-                caterpillar.setExperience(caterpillar.getExperience() + caterpillar.getCurrentLocation().getLeaf().getXp());
+                caterpillar.eat(caterpillar.getCurrentLocation().getLeaf());
         }
     }
 

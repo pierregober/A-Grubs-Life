@@ -1,10 +1,7 @@
 package com.game.controller;
 
 
-import com.game.model.engine.CommandProcessor;
-import com.game.model.engine.KeyWordIdentifier;
-import com.game.model.engine.Prompter;
-import com.game.model.engine.TextParser;
+import com.game.model.engine.*;
 import com.game.model.materials.Caterpillar;
 import com.game.model.materials.Leaf;
 import com.game.model.materials.Location;
@@ -12,9 +9,9 @@ import com.game.view.View;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -26,10 +23,12 @@ public class Game {
         //instantiate view
         View view = new View();
 
+
         //instantiate model objects
         boolean running = true;
         HashMap<String, Location> locations = populateLocations();
         Caterpillar caterpillar = new Caterpillar(100,0,0);
+        //LogicEngine processor = new LogicEngine(caterpillar,locations);
         Prompter prompter = new Prompter();
         TextParser parser = new TextParser();
         KeyWordIdentifier kwi = new KeyWordIdentifier();
@@ -43,12 +42,14 @@ public class Game {
         //+++++++++++++++  GAME LOOP  +++++++++++++++++++ should be its own method
         while (running){
             view.printUpdate(caterpillar);
-            // logic will go here. To loop through.
+            System.out.println(caterpillar.getExperience());
             view.promptUser();
             String userInput = prompter.getInput();
+//            String userInput = processor.getPrompter().getInput();
             if(userInput.equalsIgnoreCase("quit")){
                 quit(view);
             }else{
+
                 ArrayList parsedInput = parser.parseInput(userInput);
                 ArrayList command = kwi.identifyKewWords(parsedInput);
                 commandProcessor.executeCommand(command);// << updates caterpillar
@@ -62,9 +63,6 @@ public class Game {
     private void quit(View view){
         view.printQuit();
         System.exit(0);
-    }
-    private void createPlayer(){
-
     }
 
     private HashMap<String,Location> populateLocations(){
@@ -85,5 +83,4 @@ public class Game {
             }
         return locations;
     }
-
 }

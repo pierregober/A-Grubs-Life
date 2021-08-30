@@ -15,6 +15,9 @@ public class KeyWordIdentifier {
         keyWords.add("NORTH");
         keyWords.add("LEAF");
         keyWords.add("EAT");
+        keyWords.add("SOUTH");
+        keyWords.add("EAST");
+        keyWords.add("WEST");
     }
 
 

@@ -45,7 +45,18 @@ public class View {
     }
 
     public void printCaterpillarStats(Caterpillar caterpillar) {
-        System.out.println(caterpillar.getExperience());
+        String xpString = "";
+        String borderStringTop = "";
+        for(int i = 0; i < caterpillar.getExperience(); i++){
+            xpString += "|";
+
+        }
+        System.out.println("LEVEL " + caterpillar.getLevel());
+        System.out.println("      ++++++++++++");
+        System.out.println("XP :  +" +xpString  );
+        System.out.println("      ++++++++++++");
+
+
     }
     public void printQuit(){
         System.out.println("You are leaving the game. Good Bye.");
@@ -58,4 +69,6 @@ public class View {
         printCaterpillarStats(caterpillar);
         printCurrentRoom(caterpillar);
     }
+
+
 }
