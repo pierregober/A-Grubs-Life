@@ -18,6 +18,8 @@ public class KeyWordIdentifier {
         keyWords.add("SOUTH");
         keyWords.add("EAST");
         keyWords.add("WEST");
+        keyWords.add("ANT");
+        keyWords.add("TAME");
     }
 
 

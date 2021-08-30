@@ -11,7 +11,7 @@ public class Caterpillar {
     private boolean isButterfly;
     private Location currentLocation;
     private boolean hidden;
-    private boolean petOwner;
+    private String lastAction;
 
     public  Caterpillar(int health, int experience, int strength){
         this.health = health;
@@ -19,7 +19,7 @@ public class Caterpillar {
         this.experience = experience;
         this.strength = strength;
         this.hidden = false;
-        this.petOwner = false;
+        this.lastAction = "";
     }
     public void setCurrentLocation(Location location){ //we should move this to the bottom
         this.currentLocation = location;
@@ -44,29 +44,6 @@ public class Caterpillar {
             //endStage();
             }
     }
-
-
-//    public void fightGetHit( Enemy enemy){
-//        int strengthAdvantage = 0;
-//        if(enemy.getStrength() > getStrength()){
-//            strengthAdvantage = 1;
-//            setHealth(health - enemy.getStrength() - strengthAdvantage);
-//        }
-//        else{
-//            setHealth(health - enemy.getStrength());
-//        };
-//    }
-//
-//    public void fightHitBack( Enemy enemy){
-//        int strengthAdvantage = 0;
-//        if(enemy.getStrength() < getStrength()){
-//            strengthAdvantage = 1;
-//            enemy.setHealth(enemy.getHealth() - strength - strengthAdvantage);
-//        }
-//        else{
-//            enemy.setHealth(enemy.getHealth() - strength);
-//        }
-//    }
 
     public int getHealth() {
         return health;
@@ -108,11 +85,14 @@ public class Caterpillar {
         this.hidden = hidden;
     }
 
-    public void setPetOwner(boolean b) {
-        this.petOwner = b;
-    }
 
     public int getMaxHealth() {
         return this.maxHealth;
+    }
+    public void setLastAction(String str){
+        this.lastAction = str;
+    }
+    public String getLastAction(){
+        return this.lastAction;
     }
 }

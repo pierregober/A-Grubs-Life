@@ -22,13 +22,20 @@ public class TextParser {
         nouns.add("SOUTH");
         nouns.add("EAST");
         nouns.add("WEST");
-
+        nouns.add("ANT");
+        nouns.add("SPIDER");
+        nouns.add("BEES");
+        nouns.add("FLIES");
+        nouns.add("FISH");
     }
 
     private void populateVerbs() {
         this.verbs = new HashSet();
         verbs.add("GO");
         verbs.add("EAT");
+        verbs.add("TAME");
+        verbs.add("HIDE");
+        verbs.add("ATTACK");
     }
 
 

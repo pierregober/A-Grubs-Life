@@ -1,6 +1,8 @@
+/*
+    This class is a representation of a location in the game.
+ */
 package com.game.model.materials;
 
-import java.util.HashSet;
 import java.util.Random;
 
 public class Location {
@@ -11,8 +13,6 @@ public class Location {
     private String east;
     private String west;
     private Leaf leaf;
-    private Ant ant;
-
 
 
     public Location(String name, String description, String north, String south, String east, String west){
@@ -34,14 +34,6 @@ public class Location {
 
     public Leaf getLeaf(){
         return this.leaf;
-    }
-
-    public Ant getAnt() {
-        return ant;
-    }
-
-    public void setAnt() {
-        this.ant = new Ant();
     }
 
     public String getName() {

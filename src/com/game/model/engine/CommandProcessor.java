@@ -49,14 +49,16 @@ public class CommandProcessor {
     private void processMate(String focus) {
     }
     private void processTame(String focus){
-        if(focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("ANT")){
-            caterpillar.setPetOwner(true);
+        if(focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("ANT") && caterpillar.getCurrentLocation().getName().equalsIgnoreCase("hill")){
+            caterpillar.setStrength(caterpillar.getStrength() + 30);
+            caterpillar.setLastAction("You have tamed the fierce ant!!!! You gained 30 strength with your new companion.");
         }
     }
     private void processEating(String focus) {
         switch(focus.toLowerCase()){
             case "leaf":
                 caterpillar.eat(caterpillar.getCurrentLocation().getLeaf());
+                caterpillar.setLastAction("You eat a leaf!");
         }
     }
 
@@ -65,23 +67,27 @@ public class CommandProcessor {
             case "north":
                 if(!caterpillar.getCurrentLocation().getNorth().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getNorth().trim()));
+                    caterpillar.setLastAction("You travel north.");
                     break;
                 }
 
             case "south":
                 if(!caterpillar.getCurrentLocation().getSouth().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getSouth().trim()));
+                    caterpillar.setLastAction("You travel south.");
                     break;
                 }
             case "east":
                 if(!caterpillar.getCurrentLocation().getEast().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getEast().trim()));
+                    caterpillar.setLastAction("You travel east.");
                     break;
                 }
 
             case "west":
                 if(!caterpillar.getCurrentLocation().getWest().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getWest().trim()));
+                    caterpillar.setLastAction("You travel west.");
                     break;
                 }
         }

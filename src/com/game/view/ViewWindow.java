@@ -41,9 +41,12 @@ public class ViewWindow {
     private void updateDescriptionPanel(){
         String location = caterpillar.getCurrentLocation().getName().toLowerCase();
         String desc = caterpillar.getCurrentLocation().getDescription().toLowerCase();
+        String lastAction = caterpillar.getLastAction();
+        //In here we should add a getLastAction table element, this will let the user know the last thing they sucessfuly did... this variable should be updated in every command process function
         descriptionLabel.setText("<html> "+
                 "<h1> " + location + "</h1> <br>" +
                 "<h2> " + desc + "</h2>" +
+                "<h3>" + lastAction +"</h3>" +
                 "</html>");
     }
     private void setUpComponents(){
@@ -81,6 +84,7 @@ public class ViewWindow {
         this.statLabel = new JLabel();
         statPanel.setPreferredSize(new Dimension(300,600));
         statPanel.setLayout(new GridLayout(3,1));
+
         statLabel.setText("<html>\n" +
                 "<style>\n" +
                 "table {\n" +
@@ -145,12 +149,10 @@ public class ViewWindow {
         inputPanel.setPreferredSize(new Dimension(1000,200));
         inputField.setBorder(BorderFactory.createTitledBorder("Enter your command as a [VERB/NOUN]: \n " +
                 ""));
-
         inputField.addActionListener(e -> {
             this.input =  inputField.getText();
             processor.processCommand(getInput());
             inputField.setText("");
-
         });
 
         inputPanel.add(inputField);
