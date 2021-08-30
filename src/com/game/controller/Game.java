@@ -16,51 +16,48 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Game {
+    private HashMap<String, Location> locations;
+    private HashMap<String, Enemy> enemies;
+    private Caterpillar caterpillar;
+    private LogicEngine processor;
+    private View view;
     public Game() {
 
     }
 
     public void start(){
-        //instantiate view
-        View view = new View();
 
+        setUpComponents();
+        run(caterpillar,processor,view);
 
-        //instantiate model objects
+    }
+
+    private void setUpComponents(){
+        this.view = new View();
+        this.locations = populateLocations();
+        this.enemies = populateEnemies();
+        this.caterpillar = new Caterpillar(100,0,0);
+        this.processor = new LogicEngine(caterpillar,locations);
+        this.caterpillar.setCurrentLocation(locations.get("GENESIS"));
+
+    }
+    private void run(Caterpillar caterpillar, LogicEngine processor, View view){
         boolean running = true;
-        HashMap<String, Location> locations = populateLocations();
-        HashMap<String, Enemy> enemies = populateEnemies();
-        Caterpillar caterpillar = new Caterpillar(100,0,0);
-        //LogicEngine processor = new LogicEngine(caterpillar,locations);
-        Prompter prompter = new Prompter();
-        TextParser parser = new TextParser();
-        KeyWordIdentifier kwi = new KeyWordIdentifier();
-        CommandProcessor commandProcessor = new CommandProcessor(caterpillar,locations);
-        caterpillar.setCurrentLocation(locations.get("GENESIS"));
-
-
         view.printWelcomeMessage();
         view.printInstructions();
-
-        //+++++++++++++++  GAME LOOP  +++++++++++++++++++ should be its own method
         while (running){
             view.printUpdate(caterpillar);
             System.out.println(caterpillar.getExperience());
             view.promptUser();
-            String userInput = prompter.getInput();
-//            String userInput = processor.getPrompter().getInput();
+            String userInput = processor.getPrompter().getInput();
             if(userInput.equalsIgnoreCase("quit")){
                 quit(view);
             }else{
-
-                ArrayList parsedInput = parser.parseInput(userInput);
-                ArrayList command = kwi.identifyKewWords(parsedInput);
-                commandProcessor.executeCommand(command);// << updates caterpillar
+                processor.processCommand(userInput);
             }
         }
 
-
     }
-
 
     private void quit(View view){
         view.printQuit();

@@ -8,6 +8,7 @@ import com.game.model.materials.Caterpillar;
 import com.game.model.materials.Location;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LogicEngine {
@@ -25,6 +26,11 @@ public class LogicEngine {
         this.textParser = new TextParser();
         this.keyWordIdentifier = new KeyWordIdentifier();
         this.commandProcessor = new CommandProcessor(caterpillar, locations);
+    }
+    public void processCommand(String userInput){
+        ArrayList parsedInput = textParser.parseInput(userInput);
+        ArrayList command = keyWordIdentifier.identifyKewWords(parsedInput);
+        commandProcessor.executeCommand(command);
     }
 
 
