@@ -18,6 +18,8 @@ public class ViewWindow {
     private Caterpillar caterpillar;
     private String input;
     private LogicEngine processor;
+
+
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
         this.processor = processor;
@@ -63,10 +65,14 @@ public class ViewWindow {
         this.window.add(descriptionPanel, BorderLayout.CENTER);
         this.window.add(inputPanel, BorderLayout.SOUTH);
 
+
         this.window.setSize(1000,800);
-        window.setVisible(true);
-        window.setResizable(false);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.window.setVisible(true);
+        this.window.setResizable(false);
+        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+
     }
 
     private void setUpDescriptionPanel() {

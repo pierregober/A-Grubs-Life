@@ -27,7 +27,7 @@ public class CommandProcessor {
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("EAT")){
             processEating(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")){
-            processMate(focus);
+            processAttack(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")){
             processHide(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")){
@@ -40,14 +40,16 @@ public class CommandProcessor {
 
     }
 
+    private void processAttack(String focus) {
+
+    }
+
     private void processLeave(String focus) {
     }
 
     private void processHide(String focus) {
     }
 
-    private void processMate(String focus) {
-    }
     private void processTame(String focus){
         if(focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("ANT") && caterpillar.getCurrentLocation().getName().equalsIgnoreCase("hill")){
             caterpillar.setStrength(caterpillar.getStrength() + 30);
