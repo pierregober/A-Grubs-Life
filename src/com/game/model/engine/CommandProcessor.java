@@ -27,14 +27,13 @@ public class CommandProcessor {
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("EAT")){
             processEating(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")){
-<<<<<<< HEAD
+
             processAttack(focus);
-=======
-            processMate(focus);
+
             if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
                 processAntAssistance(focus);
             }
->>>>>>> c5f4c5468e380daf3028d0e7af809937e08a92e4
+
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")){
             processHide(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")){
@@ -47,15 +46,15 @@ public class CommandProcessor {
 
     }
 
-<<<<<<< HEAD
-    private void processAttack(String focus) {
 
-=======
+    private void processAttack(String focus) {
+    }
+
     private void processAntAssistance(String focus) {
         if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("COMBAT")) {
             //TODO : Implement "Ant can be used in combat logic here.
         }
->>>>>>> c5f4c5468e380daf3028d0e7af809937e08a92e4
+
     }
 
     private void processLeave(String focus) {
