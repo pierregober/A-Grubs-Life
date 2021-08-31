@@ -20,6 +20,8 @@ public class KeyWordIdentifier {
         keyWords.add("WEST");
         keyWords.add("ANT");
         keyWords.add("TAME");
+        keyWords.add("HELP");
+        keyWords.add("COMBAT");
     }
 
 
