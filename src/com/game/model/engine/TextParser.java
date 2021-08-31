@@ -27,6 +27,7 @@ public class TextParser {
         nouns.add("BEES");
         nouns.add("FLIES");
         nouns.add("FISH");
+        nouns.add("COMBAT");
     }
 
     private void populateVerbs() {
@@ -36,6 +37,7 @@ public class TextParser {
         verbs.add("TAME");
         verbs.add("HIDE");
         verbs.add("ATTACK");
+        verbs.add("HELP");
     }
 
 
