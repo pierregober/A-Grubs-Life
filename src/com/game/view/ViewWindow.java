@@ -18,6 +18,10 @@ public class ViewWindow {
     private Caterpillar caterpillar;
     private String input;
     private LogicEngine processor;
+    private JLabel labelVerbs;
+    private JLabel labelNouns;
+    private JPanel innerPanel;
+    private JLabel lastMove;
 
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
@@ -33,8 +37,10 @@ public class ViewWindow {
                 " </html>");
     }
     public void updateCaterpillarStatus(){
+        updateLastMove();
         updateDescriptionPanel();
         updateStatPanel();
+        this.window.repaint();
     }
     public void giveInstructions(){
 
@@ -44,11 +50,9 @@ public class ViewWindow {
         String location = caterpillar.getCurrentLocation().getName().toLowerCase();
         String desc = caterpillar.getCurrentLocation().getDescription().toLowerCase();
         String lastAction = caterpillar.getLastAction();
-        //In here we should add a getLastAction table element, this will let the user know the last thing they sucessfuly did... this variable should be updated in every command process function
-        descriptionLabel.setText("<html> "+
+        descriptionLabel.setText("<html> " +
                 "<h1> " + location + "</h1> <br>" +
-                "<h2> " + desc + "</h2>" +
-                "<h3>" + lastAction +"</h3>" +
+                "<p> " + desc + "</p>" +
                 "</html>");
     }
     private void setUpComponents(){
@@ -79,8 +83,8 @@ public class ViewWindow {
         this.descriptionPanel = new JPanel();
         this.descriptionLabel = new JLabel();
         descriptionPanel.setPreferredSize(new Dimension(700,600));
-        descriptionPanel.setBackground(Color.lightGray);
-        descriptionPanel.setBorder(BorderFactory.createLineBorder(Color.yellow));
+        descriptionPanel.setBackground(new Color(255, 255, 255));
+        descriptionPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
 
         descriptionPanel.add(descriptionLabel);
     }
@@ -89,7 +93,7 @@ public class ViewWindow {
         this.statPanel = new JPanel();
         this.statLabel = new JLabel();
         statPanel.setPreferredSize(new Dimension(300,600));
-        statPanel.setLayout(new GridLayout(3,1));
+        statPanel.setLayout(new GridLayout(0,1));
 
         statLabel.setText("<html>\n" +
                 "<style>\n" +
@@ -105,7 +109,7 @@ public class ViewWindow {
                 "</td>\n" +
                 "</tr>\n" +
                 "<tr>\n" +
-                "<td style=\"text-align: left;\">Health: </td><td>" + caterpillar.getHealth() + "/" + caterpillar.getMaxHealth() +
+                "<td style=\"text-align: left;\">Health: </td><td>" + caterpillar.getHealth()  +
                 "</td>\n" +
                 "</tr>\n" +
                 "<tr>\n" +
@@ -117,8 +121,8 @@ public class ViewWindow {
                 "</html>");
 
 
-        statPanel.setBackground(Color.BLACK);
-        statPanel.setBorder(BorderFactory.createLineBorder(Color.yellow));
+        statPanel.setBackground(new Color(0, 0, 0));
+        statPanel.setBorder(BorderFactory.createTitledBorder("STATS"));
         statPanel.add(statLabel, Component.TOP_ALIGNMENT);
     }
     private void updateStatPanel(){
@@ -152,16 +156,81 @@ public class ViewWindow {
     private void setUpInputPanel() {
         this.inputPanel = new JPanel();
         this.inputField = new JTextField(50);
+        this.labelVerbs = new JLabel();
+        this.labelNouns = new JLabel();
+        this.innerPanel = new JPanel();
+        this.lastMove = new JLabel();
+
+
+        Color background = new Color(10, 80, 20, 158);
+        inputPanel.setLayout(new BorderLayout());
+        inputPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
+        inputPanel.setBackground(background);
         inputPanel.setPreferredSize(new Dimension(1000,200));
+
+
         inputField.setBorder(BorderFactory.createTitledBorder("Enter your command as a [VERB/NOUN]: \n " +
                 ""));
+        inputField.setBackground(new Color(217, 224, 214));
         inputField.addActionListener(e -> {
             this.input =  inputField.getText();
             processor.processCommand(getInput());
             inputField.setText("");
         });
 
-        inputPanel.add(inputField);
+
+        labelNouns.setText("<html>" +
+                "<style>" +
+                "li {" +
+                "padding-right: 15px;" +
+                "}" +
+                "</style>" +
+                "<body>" +
+                "<ul>" +
+                "<li>North</li>" +
+                "<li>South</li>" +
+                "<li>East</li>" +
+                "<li>West</li>" +
+                "</ul>" +
+                "</body></html>");
+
+        labelVerbs.setText("<html>" +
+                "<style>" +
+                "li {" +
+                "padding-right: 15px;" +
+                "}" +
+                "</style>" +
+                "<body>" +
+                "<ul>" +
+                "<li>go</li>" +
+                "<li>hide</li>" +
+                "<li>attack</li>" +
+                "<li>eat</li>" +
+                "<li>tame</li>" +
+                "</ul></body></html>");
+
+        lastMove.setText("<html><body>" +
+                "                                  " +
+                "<body></html>");
+        labelNouns.setBorder(BorderFactory.createTitledBorder("Directions"));
+        labelVerbs.setBorder(BorderFactory.createTitledBorder("Actions"));
+        lastMove.setBorder(BorderFactory.createTitledBorder("Your Last Move"));
+
+
+
+        inputPanel.add(inputField, BorderLayout.NORTH);
+        inputPanel.add(labelVerbs,BorderLayout.WEST);
+        inputPanel.add(labelNouns, BorderLayout.EAST);
+        inputPanel.add(lastMove, BorderLayout.CENTER);
+
+
+    }
+    private void updateLastMove(){
+        String lastAction = caterpillar.getLastAction();
+        //In here we should add a getLastAction table element, this will let the user know the last thing they sucessfuly did... this variable should be updated in every command process function
+        lastMove.setText("<html> "+
+                "<h1>" + lastAction +"</h1>" +
+                "</html>");
 
     }
     public  String getInput(){

@@ -49,9 +49,6 @@ public class Game {
         while (running){
             viewWindow.updateCaterpillarStatus();
             caterpillar.healthRegenerator(counter++);
-
-
-
         }
 
     }
