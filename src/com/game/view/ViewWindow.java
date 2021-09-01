@@ -5,6 +5,7 @@ import com.game.model.materials.Caterpillar;
 
 import javax.swing.*;
 import java.awt.*;
+import java.security.DigestException;
 
 public class ViewWindow {
 
@@ -20,41 +21,42 @@ public class ViewWindow {
     private LogicEngine processor;
     private JLabel labelVerbs;
     private JLabel labelNouns;
-    private JPanel innerPanel;
     private JLabel lastMove;
-
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
         this.processor = processor;
         setUpComponents();
-
     }
-
     public void welcomeMessage(){
         descriptionLabel.setText("<html>  " +
                 "<h1>Welcome to A Grub's Life!</h1><br>" +
+                "<p> "+ giveInstructions() +"</p>" +
                 " </html>");
+
+    }
+    public  String getInput(){
+        return this.input;
     }
     public void updateCaterpillarStatus(){
-        updateLastMove();
-        updateDescriptionPanel();
-        updateStatPanel();
-        this.window.repaint();
-    }
-    public void giveInstructions(){
-
+            updateLastMove();
+            updateDescriptionPanel();
+            updateStatPanel();
+            this.window.repaint();
     }
 
+    private String giveInstructions(){
+        return "You are a newborn caterpillar with three things on his mind.";
+    }
     private void updateDescriptionPanel(){
         String location = caterpillar.getCurrentLocation().getName().toLowerCase();
         String desc = caterpillar.getCurrentLocation().getDescription().toLowerCase();
-        String lastAction = caterpillar.getLastAction();
         descriptionLabel.setText("<html> " +
                 "<h1> " + location + "</h1> <br>" +
                 "<p> " + desc + "</p>" +
                 "</html>");
     }
+    //==================SETUP METHODS============================
     private void setUpComponents(){
         setUpInputPanel();
         setUpStatPanel();
@@ -69,14 +71,11 @@ public class ViewWindow {
         this.window.add(descriptionPanel, BorderLayout.CENTER);
         this.window.add(inputPanel, BorderLayout.SOUTH);
 
-
-        this.window.setSize(1000,800);
+        this.window.setPreferredSize(new Dimension(1000,800));
         this.window.setVisible(true);
         this.window.setResizable(false);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-
+        this.window.pack();
     }
 
     private void setUpDescriptionPanel() {
@@ -85,7 +84,6 @@ public class ViewWindow {
         descriptionPanel.setPreferredSize(new Dimension(700,600));
         descriptionPanel.setBackground(new Color(255, 255, 255));
         descriptionPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
-
         descriptionPanel.add(descriptionLabel);
     }
 
@@ -94,7 +92,6 @@ public class ViewWindow {
         this.statLabel = new JLabel();
         statPanel.setPreferredSize(new Dimension(300,600));
         statPanel.setLayout(new GridLayout(0,1));
-
         statLabel.setText("<html>\n" +
                 "<style>\n" +
                 "table {\n" +
@@ -119,8 +116,6 @@ public class ViewWindow {
                 "</table>\n" +
                 "\n" +
                 "</html>");
-
-
         statPanel.setBackground(new Color(0, 0, 0));
         statPanel.setBorder(BorderFactory.createTitledBorder("STATS"));
         statPanel.add(statLabel, Component.TOP_ALIGNMENT);
@@ -150,35 +145,27 @@ public class ViewWindow {
                 "</table>\n" +
                 "\n" +
                 "</html>");
-
     }
 
     private void setUpInputPanel() {
         this.inputPanel = new JPanel();
-        this.inputField = new JTextField(50);
-        this.labelVerbs = new JLabel();
-        this.labelNouns = new JLabel();
-        this.innerPanel = new JPanel();
-        this.lastMove = new JLabel();
-
-
         Color background = new Color(10, 80, 20, 158);
         inputPanel.setLayout(new BorderLayout());
         inputPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
         inputPanel.setBackground(background);
         inputPanel.setPreferredSize(new Dimension(1000,200));
+        setUpLabelNouns();
+        setUpLabelVerbs();
+        setUpInputField();
+        setUpLastMove();
+        inputPanel.add(inputField, BorderLayout.NORTH);
+        inputPanel.add(labelVerbs,BorderLayout.WEST);
+        inputPanel.add(labelNouns, BorderLayout.EAST);
+        inputPanel.add(lastMove, BorderLayout.CENTER);
+    }
 
-
-        inputField.setBorder(BorderFactory.createTitledBorder("Enter your command as a [VERB/NOUN]: \n " +
-                ""));
-        inputField.setBackground(new Color(217, 224, 214));
-        inputField.addActionListener(e -> {
-            this.input =  inputField.getText();
-            processor.processCommand(getInput());
-            inputField.setText("");
-        });
-
-
+    private void setUpLabelNouns(){
+        this.labelNouns = new JLabel();
         labelNouns.setText("<html>" +
                 "<style>" +
                 "li {" +
@@ -193,12 +180,15 @@ public class ViewWindow {
                 "<li>West</li>" +
                 "</ul>" +
                 "</body></html>");
-
+        labelNouns.setBorder(BorderFactory.createTitledBorder("Directions"));
+    }
+    private void setUpLabelVerbs(){
+        this.labelVerbs = new JLabel();
         labelVerbs.setText("<html>" +
                 "<style>" +
                 "li {" +
-                "padding-right: 15px;" +
-                "}" +
+                "padding-right: 50px;" +
+                "} " + 
                 "</style>" +
                 "<body>" +
                 "<ul>" +
@@ -208,22 +198,28 @@ public class ViewWindow {
                 "<li>eat</li>" +
                 "<li>tame</li>" +
                 "</ul></body></html>");
+        labelVerbs.setBorder(BorderFactory.createTitledBorder("Actions"));
+    }
+    private void setUpInputField(){
+        this.inputField = new JTextField(50);
+        inputField.setBorder(BorderFactory.createTitledBorder("Enter your command as a [VERB/NOUN]: \n " +
+                ""));
+        inputField.setBackground(new Color(217, 224, 214));
+        inputField.addActionListener(e -> {
 
+            this.input =  inputField.getText();
+            processor.processCommand(getInput());
+            inputField.setText("");
+
+
+        });
+    }
+    private void setUpLastMove(){
+        this.lastMove = new JLabel();
+        lastMove.setBorder(BorderFactory.createTitledBorder("Your Last Move"));
         lastMove.setText("<html><body>" +
                 "                                  " +
                 "<body></html>");
-        labelNouns.setBorder(BorderFactory.createTitledBorder("Directions"));
-        labelVerbs.setBorder(BorderFactory.createTitledBorder("Actions"));
-        lastMove.setBorder(BorderFactory.createTitledBorder("Your Last Move"));
-
-
-
-        inputPanel.add(inputField, BorderLayout.NORTH);
-        inputPanel.add(labelVerbs,BorderLayout.WEST);
-        inputPanel.add(labelNouns, BorderLayout.EAST);
-        inputPanel.add(lastMove, BorderLayout.CENTER);
-
-
     }
     private void updateLastMove(){
         String lastAction = caterpillar.getLastAction();
@@ -231,10 +227,6 @@ public class ViewWindow {
         lastMove.setText("<html> "+
                 "<h1>" + lastAction +"</h1>" +
                 "</html>");
-
-    }
-    public  String getInput(){
-        return this.input;
     }
 
 
