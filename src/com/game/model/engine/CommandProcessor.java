@@ -11,38 +11,56 @@ public class CommandProcessor {
     private Caterpillar caterpillar;
     private HashMap<String, Location> locations;
     private HashMap<String, Enemy> enemies;
+    private boolean begin;
+
+
     public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations, HashMap<String, Enemy> enemies){
         this.caterpillar = caterpillar;
         this.locations = locations;
         this.enemies = enemies;
+        this.begin = false;
     }
 
     public void executeCommand(ArrayList<String> strings) {
-        String action = strings.get(0).toUpperCase(Locale.ROOT);
-        String focus = strings.get(1).toUpperCase(Locale.ROOT);
+        if (strings.size() == 2 && strings.get(0) != null && strings.get(1) != null) {
 
-        System.out.println(action + focus);
-        if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("GO")){
-            processNavigation(focus.toLowerCase());
-        }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("EAT")){
-            processEating(focus);
-        }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")){
 
-        }else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
-            processAntAssistance(focus);
-            
-        }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")){
-            processHide(focus);
-        }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")){
-            processLeave(focus);
-        }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("TAME")){
-            processTame(focus);
-        }else{
-            //sout maybe
+            String action = strings.get(0).toUpperCase(Locale.ROOT);
+            String focus = strings.get(1).toUpperCase(Locale.ROOT);
+
+            System.out.println(action + focus);
+            if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("GO")) {
+                processNavigation(focus.toLowerCase());
+            } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("EAT")) {
+                processEating(focus);
+            } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
+                processAttack(focus);
+            } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")) {
+                processHide(focus);
+            } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")) {
+                processLeave(focus);
+            }else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
+                processAntAssistance(focus);
+
+            } else {
+                processTypo();
+
+            }
+        }
+    }
+
+    private void processTypo() {
+        if(!caterpillar.getLastAction().contains(" \n You need to use a verb noun model like this : [go north]")){
+            caterpillar.setLastAction(caterpillar.getLastAction() + " \n You need to use a verb noun model like this : [go north]");
+        }
+    }
+
+    private void processMisuse(){
+        if(!caterpillar.getLastAction().contains("\n You can't do that here.")){
+            caterpillar.setLastAction(caterpillar.getLastAction()  + "\n You can't do that here.");
         }
 
     }
-
 
     private void processAttack(String focus) {
     }
@@ -53,7 +71,6 @@ public class CommandProcessor {
             caterpillar.setStrength(caterpillar.getStrength() + 60);
             caterpillar.setLastAction("You have received assistance from a friendly ant");
         }
-
     }
 
     private void processLeave(String focus) {
@@ -62,12 +79,7 @@ public class CommandProcessor {
     private void processHide(String focus) {
     }
 
-    private void processTame(String focus){
-        if(focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("ANT") && caterpillar.getCurrentLocation().getName().equalsIgnoreCase("hill")){
-            caterpillar.setStrength(caterpillar.getStrength() + 30);
-            caterpillar.setLastAction("You have tamed the fierce ant!!!! You gained 30 strength with your new companion.");
-        }
-    }
+
     private void processEating(String focus) {
         switch(focus.toLowerCase()){
             case "leaf":
@@ -79,32 +91,37 @@ public class CommandProcessor {
     private void processNavigation(String focus) {
         switch(focus){
             case "north":
-                if(!caterpillar.getCurrentLocation().getNorth().equalsIgnoreCase("DEAD_END")){
+                if(!caterpillar.getCurrentLocation().getNorth().trim().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getNorth().trim()));
                     caterpillar.setLastAction("You travel north.");
-                    break;
+                }else{
+                    processMisuse();
                 }
-
+                break;
             case "south":
                 if(!caterpillar.getCurrentLocation().getSouth().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getSouth().trim()));
                     caterpillar.setLastAction("You travel south.");
-                    break;
+                }else{
+                    processMisuse();
                 }
+                break;
             case "east":
                 if(!caterpillar.getCurrentLocation().getEast().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getEast().trim()));
                     caterpillar.setLastAction("You travel east.");
-                    break;
+                }else{
+                    processMisuse();
                 }
-
+                break;
             case "west":
                 if(!caterpillar.getCurrentLocation().getWest().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getWest().trim()));
                     caterpillar.setLastAction("You travel west.");
-                    break;
+                }else{
+                    processMisuse();
                 }
+                break;
         }
     }
-
 }

@@ -40,15 +40,13 @@ public class Game {
         this.viewWindow = new ViewWindow(caterpillar, processor);
     }
     //This class controls the game loop. As the user inputs information the view will be updated.
+    //I want an instructions panel to be read and you cant start the game until you hit
     private void run(){
-        boolean running = true;
-        viewWindow.welcomeMessage();
-        viewWindow.giveInstructions();
         int counter = 0;
-
-        while (running){
-            viewWindow.updateCaterpillarStatus();
-            caterpillar.healthRegenerator(counter++);
+        viewWindow.welcomeMessage();
+        while (true){
+                viewWindow.updateCaterpillarStatus();
+                caterpillar.healthRegenerator(counter++);
         }
 
     }
