@@ -5,9 +5,9 @@ public class Caterpillar {
     private int experience;
     private int strength ;
     private int maxHealth = 10;
-    private int level = 1;
+    private int level = 3;
     private int maxLevel = 3;
-    private int maxExperience = 10;
+    private int maxExperience = 1;
     private boolean isButterfly;
     private Location currentLocation;
     private boolean hidden;
@@ -27,20 +27,23 @@ public class Caterpillar {
         return this.currentLocation;
     }
     public void eat(Leaf leaf){
-        if( (getExperience() + leaf.getXp()) > maxExperience) {
-            setHealth(maxHealth); // refreshes health
+        setHealth(getHealth() + 10);
+        if( (getExperience() + leaf.getXp()) > maxExperience && level < 5) {
             setExperience((getExperience() + leaf.getXp()) % maxExperience); //level up and transfers remaining to experience
             levelUp(); //increases level / ends the stage once appropriate level
             }
         else{
-            setExperience(getExperience() + leaf.getXp() ); // no levelup by experience up
+            if(level < 5){
+                setExperience(getExperience() + leaf.getXp() ); // no levelup by experience up
+            }
+
         }
     }
     public void levelUp(){
-        setStrength(strength + 1);
+        setStrength(strength + 50);
         setLevel(level + 1);
         if(getLevel() == maxLevel){
-            //endStage();
+            isButterfly = true;
             }
     }
 
