@@ -1,7 +1,6 @@
 package com.game.model.engine;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
 
@@ -28,6 +27,8 @@ public class TextParser {
         nouns.add("FLIES");
         nouns.add("FISH");
         nouns.add("COMBAT");
+        nouns.add("GAME");
+
     }
 
     private void populateVerbs() {
@@ -38,6 +39,7 @@ public class TextParser {
         verbs.add("HIDE");
         verbs.add("ATTACK");
         verbs.add("HELP");
+        verbs.add("START");
     }
 
 

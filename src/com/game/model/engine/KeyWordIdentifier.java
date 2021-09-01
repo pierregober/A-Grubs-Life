@@ -22,19 +22,23 @@ public class KeyWordIdentifier {
         keyWords.add("TAME");
         keyWords.add("HELP");
         keyWords.add("COMBAT");
+        keyWords.add("START");
+        keyWords.add("GAME");
     }
 
 
     public ArrayList<String> identifyKewWords(ArrayList<String> parsedInput) {
          ArrayList<String> result = new ArrayList();
+        if(parsedInput != null){
+            for(int i = 0; i < parsedInput.size(); i++){
+                if(!keyWords.contains(parsedInput.get(i))){
+                    return null;
+                }else{
+                    result.add(parsedInput.get(i).toUpperCase(Locale.ROOT));
+                }
+            }
+        }
 
-         for(int i = 0; i < parsedInput.size(); i++){
-             if(!keyWords.contains(parsedInput.get(i))){
-                 return null;
-             }else{
-                 result.add(parsedInput.get(i).toUpperCase(Locale.ROOT));
-             }
-         }
          return result;
     }
 }

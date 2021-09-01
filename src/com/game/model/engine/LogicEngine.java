@@ -11,7 +11,6 @@ public class LogicEngine {
     private CommandProcessor commandProcessor;
     private KeyWordIdentifier keyWordIdentifier;
     private TextParser textParser;
-
     public LogicEngine(Caterpillar caterpillar, HashMap<String, Location> locations, HashMap<String, Enemy> enemies){
         setUpEngineComponents(caterpillar,locations, enemies);
     }
@@ -26,5 +25,7 @@ public class LogicEngine {
         ArrayList command = keyWordIdentifier.identifyKewWords(parsedInput);
         commandProcessor.executeCommand(command);
     }
+
+
 
 }
