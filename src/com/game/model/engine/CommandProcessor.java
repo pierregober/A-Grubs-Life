@@ -28,9 +28,8 @@ public class CommandProcessor {
             processEating(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")){
             processMate(focus);
-            if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
-                processAntAssistance(focus);
-            }
+        }else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
+            processAntAssistance(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")){
             processHide(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")){
@@ -44,8 +43,10 @@ public class CommandProcessor {
     }
 
     private void processAntAssistance(String focus) {
-        if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("COMBAT")) {
-            //TODO : Implement "Ant can be used in combat logic here.
+        if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("COMBAT") && caterpillar.getLevel() == 2)  {
+            //DONE : Implement "Ant can be used in combat" logic here.
+            caterpillar.setStrength(caterpillar.getStrength() + 60);
+            caterpillar.setLastAction("You have received assistance from a friendly ant");
         }
     }
 
