@@ -22,7 +22,7 @@ public class CommandProcessor {
     }
 
     public void executeCommand(ArrayList<String> strings) {
-        if(strings.size() == 2  &&   strings.get(0) != null && strings.get(1) != null ) {
+        if (strings.size() == 2 && strings.get(0) != null && strings.get(1) != null) {
 
 
             String action = strings.get(0).toUpperCase(Locale.ROOT);
@@ -34,22 +34,18 @@ public class CommandProcessor {
             } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("EAT")) {
                 processEating(focus);
             } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
-
                 processAttack(focus);
-
-                if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
-                    processAntAssistance(focus);
-                }
-
             } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")) {
                 processHide(focus);
             } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")) {
                 processLeave(focus);
-            } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("TAME")) {
+            }else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
+                processAntAssistance(focus);
+
+            } else {
+                processTypo();
 
             }
-        } else{
-            processTypo();
         }
     }
 
@@ -70,8 +66,10 @@ public class CommandProcessor {
     }
 
     private void processAntAssistance(String focus) {
-        if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("COMBAT")) {
-            //TODO : Implement "Ant can be used in combat logic here.
+        if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("COMBAT") && caterpillar.getLevel() == 2)  {
+            //DONE : Implement "Ant can be used in combat" logic here.
+            caterpillar.setStrength(caterpillar.getStrength() + 60);
+            caterpillar.setLastAction("You have received assistance from a friendly ant");
         }
     }
 
