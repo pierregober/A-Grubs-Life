@@ -2,6 +2,7 @@ package com.game.model.engine;
 
 
 import com.game.model.materials.Caterpillar;
+import com.game.model.materials.Combat;
 import com.game.model.materials.Enemy;
 import com.game.model.materials.Location;
 
@@ -12,7 +13,7 @@ public class CommandProcessor {
     private HashMap<String, Location> locations;
     private HashMap<String, Enemy> enemies;
     private boolean begin;
-
+    Enemy enemy = enemies.get(caterpillar.getCurrentLocation().getEnemy().getName()); // shortcut for finding your enemy
 
     public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations, HashMap<String, Enemy> enemies){
         this.caterpillar = caterpillar;
@@ -29,31 +30,44 @@ public class CommandProcessor {
             String focus = strings.get(1).toUpperCase(Locale.ROOT);
 
             System.out.println(action + focus);
-            if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("GO")) {
-                processNavigation(focus.toLowerCase());
-            } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("EAT")) {
-                processEating(focus);
-            } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
-                processAttack(focus);
-            } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")) {
-                processHide(focus);
-            } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")) {
-                processLeave(focus);
-            }else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
-                processAntAssistance(focus);
+            if (enemy.isInCombat()) {
+                if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
+                    processAttack(action, focus);
+                    if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
+                        processAntAssistance(focus);
+                    }
+                } else if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")) {
+                    processRun(focus);
+                }
 
             } else {
-                processTypo();
-
+                if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("GO")) {
+                    processNavigation(focus.toLowerCase());
+                } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("EAT")) {
+                    processEating(focus);
+                } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")) {
+                    processHide(focus);
+                } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")) {
+                    processLeave(focus);
+                } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
+                    processAttack(action, focus);
+                }else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")) {
+                    processAttack(action, focus);
+                } else {
+                }
             }
+        } else {
+            processTypo();
         }
     }
 
     private void processTypo() {
-        if(!caterpillar.getLastAction().contains(" \n You need to use a verb noun model like this : [go north]")){
+        if (!caterpillar.getLastAction().contains(" \n You need to use a verb noun model like this : [go north]")) {
             caterpillar.setLastAction(caterpillar.getLastAction() + " \n You need to use a verb noun model like this : [go north]");
         }
     }
+
+
 
     private void processMisuse(){
         if(!caterpillar.getLastAction().contains("\n You can't do that here.")){
@@ -62,9 +76,56 @@ public class CommandProcessor {
 
     }
 
-    private void processAttack(String focus) {
+
+
+
+    private void processAttack(String action, String focus) {
+        enemy.setInCombat(true);
+        // attacks change as we level and get more powerful
+        if( action.equalsIgnoreCase("ATTACK") && focus.equalsIgnoreCase(String.valueOf(enemies.get(enemy)))){
+        {
+            if(caterpillar.getLevel() > 4 && caterpillar.getLevel()< 10){
+                enemy.setHealth(enemy.getHealth() - caterpillar.getStrength() - strengthFactor() - 5);
+                caterpillar.setLastAction("You attacked the " + focus + " with odor attack, sick!");
+            }
+            else if (caterpillar.getLevel() > 9 ) {
+                enemy.setHealth(enemy.getHealth() - caterpillar.getStrength() - strengthFactor() - 10);
+                caterpillar.setLastAction("You attacked the " + focus + " with acid attack, burn!" );
+            }
+            else{
+                enemy.setHealth(enemy.getHealth() - caterpillar.getStrength() - strengthFactor());
+                caterpillar.setLastAction("You attacked the " + focus + " with tackle attack, bruised!" );
+            }
+            }
+        }
+        if(enemy.getHealth() == 0){
+            enemy.setHidden(true);
+            enemy.setInCombat(false);
+            caterpillar.setLastAction("You have defeated the mighty " + enemy.getName());
+        }
+        else{
+            //TODO: print status of enemy
+        }
+        enemyAttack();
+        if(caterpillar.getHealth() == 0){
+            //TODO: You have died.
+        }
     }
 
+    private void enemyAttack(){
+        caterpillar.setHealth(caterpillar.getHealth() - enemy.getStrength());
+    }
+
+    private int strengthFactor(){
+        int strength = 0;
+        if (caterpillar.getStrength() > enemy.getStrength()) {
+            strength = 5;
+        }
+        else if (caterpillar.getStrength() < enemy.getStrength()){
+            strength = -5;
+        }
+        return strength;
+    }
     private void processAntAssistance(String focus) {
         if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("COMBAT") && caterpillar.getLevel() == 2)  {
             //DONE : Implement "Ant can be used in combat" logic here.
@@ -72,7 +133,30 @@ public class CommandProcessor {
             caterpillar.setLastAction("You have received assistance from a friendly ant");
         }
     }
+    private void processRun(String focus){
+        if(focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")){
+            if(caterpillar.getStrength() > enemy.getStrength() && enemy.isAggressive() == true ){
+                caterpillar.setLastAction("You ran away from the fight despite enemy efforts to subdue you");
+                enemy.setHidden(true);
+                enemy.setInCombat(false);
+            }
+            else if (caterpillar.getStrength() > enemy.getStrength() && enemy.isAggressive() == false) {
+                caterpillar.setLastAction("You ran away from the fight and live another day");
+                enemy.setHidden(true);
+                enemy.setInCombat(false);
+            }
+            else if (caterpillar.getStrength() < enemy.getStrength() && enemy.isAggressive() == false){
+                caterpillar.setLastAction("You were lucky this time, the enemy gave up its pursuit");
+                enemy.setHidden(true);
+                enemy.setInCombat(false);
+                }
+            else{
+                caterpillar.setLastAction("Oh no, you can't escape, you are forced to fight!");
+                enemy.setInCombat(true);
+            }
 
+        }
+    }
     private void processLeave(String focus) {
     }
 

@@ -81,12 +81,15 @@ public class Game {
             while(myReader.hasNextLine()){
                 enemyFields = myReader.nextLine().split(",");
 
-                Enemy enemy = new Enemy(enemyFields[0].trim(),Integer.parseInt(enemyFields[ 1].trim()), Integer.parseInt(enemyFields[ 2].trim()), Integer.parseInt(enemyFields[ 3].trim()), Boolean.parseBoolean(enemyFields[4].trim()), Boolean.parseBoolean(enemyFields[5].trim()), enemyFields[6].trim());
+                Enemy enemy = new Enemy(enemyFields[0].trim(),Integer.parseInt(enemyFields[ 1].trim()), Integer.parseInt(enemyFields[ 2].trim()), Integer.parseInt(enemyFields[ 3].trim()), Boolean.parseBoolean(enemyFields[4].trim()), Boolean.parseBoolean(enemyFields[5].trim()), enemyFields[6].trim(), Boolean.parseBoolean(enemyFields[7].trim()));
                 enemies.put(enemyFields[6].trim(), enemy);
             }
         }catch (FileNotFoundException e){
             System.out.println(e.getMessage());
         }
+        return enemies;
+    }
+    public HashMap<String, Enemy> getEnemies() {
         return enemies;
     }
 }
