@@ -9,7 +9,9 @@ public class Enemy {
     private int strength;
     private boolean tamable;
     private String location;
-    public Enemy(String name, int health, int strength, int requiredLevelToFight, boolean aggressive, boolean tamable, String location){
+    private boolean hidden;
+    private boolean inCombat;
+    public Enemy(String name, int health, int strength, int requiredLevelToFight, boolean aggressive, boolean tamable, String location, boolean hidden){
         this.name = name;
         this.health = health;
         this.requiredLevelToFight = requiredLevelToFight;
@@ -17,6 +19,7 @@ public class Enemy {
         this.strength = strength;
         this.tamable = tamable;
         this.location = location;
+        this.hidden = hidden;
     }
 
     public void setHealth(int health) {
@@ -50,5 +53,21 @@ public class Enemy {
 
     public String getLocation() {
         return location;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
+
+    public boolean isInCombat() {
+        return inCombat;
+    }
+
+    public void setInCombat(boolean inCombat) {
+        this.inCombat = inCombat;
     }
 }
