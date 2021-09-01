@@ -1,0 +1,16 @@
+Index: src/com/game/model/Caterpillar.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.game.model;\n\nclass Caterpillar {\n}\n
+===================================================================
+diff --git a/src/com/game/model/Caterpillar.java b/src/com/game/model/Caterpillar.java
+--- a/src/com/game/model/Caterpillar.java	
++++ b/src/com/game/model/Caterpillar.java	
+@@ -1,4 +1,7 @@
+ package com.game.model;
+ 
+ class Caterpillar {
++    public Caterpillar(int health, int experience, int level){
++
++    }
+ }

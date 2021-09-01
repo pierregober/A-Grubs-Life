@@ -28,6 +28,8 @@ public class TextParser {
         nouns.add("FISH");
         nouns.add("COMBAT");
         nouns.add("GAME");
+        nouns.add("FIGHT");
+        nouns.add("RUN");
 
     }
 
@@ -40,6 +42,7 @@ public class TextParser {
         verbs.add("ATTACK");
         verbs.add("HELP");
         verbs.add("START");
+        verbs.add("RUN");
     }
 
 

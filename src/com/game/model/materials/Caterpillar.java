@@ -3,7 +3,7 @@ package com.game.model.materials;
 public class Caterpillar {
     private int health;
     private int experience;
-    private int strength;
+    private int strength ;
     private int maxHealth = 10;
     private int level = 1;
     private int maxLevel = 3;
