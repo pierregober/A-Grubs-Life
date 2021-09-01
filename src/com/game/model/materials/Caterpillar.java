@@ -15,7 +15,6 @@ public class Caterpillar {
 
     public  Caterpillar(int health, int experience, int strength){
         this.health = health;
-        this.health = maxHealth;
         this.experience = experience;
         this.strength = strength;
         this.hidden = false;
@@ -45,6 +44,11 @@ public class Caterpillar {
             }
     }
 
+    public void healthRegenerator(int counter){
+        if(counter % 2934342 == 0){
+            setHealth(getHealth() + 1);
+        }
+    }
     public int getHealth() {
         return health;
     }

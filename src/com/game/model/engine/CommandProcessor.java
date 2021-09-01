@@ -27,9 +27,10 @@ public class CommandProcessor {
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("EAT")){
             processEating(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")){
-            processMate(focus);
+
         }else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
             processAntAssistance(focus);
+            
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")){
             processHide(focus);
         }else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")){
@@ -42,12 +43,17 @@ public class CommandProcessor {
 
     }
 
+
+    private void processAttack(String focus) {
+    }
+
     private void processAntAssistance(String focus) {
         if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("COMBAT") && caterpillar.getLevel() == 2)  {
             //DONE : Implement "Ant can be used in combat" logic here.
             caterpillar.setStrength(caterpillar.getStrength() + 60);
             caterpillar.setLastAction("You have received assistance from a friendly ant");
         }
+
     }
 
     private void processLeave(String focus) {
@@ -56,8 +62,6 @@ public class CommandProcessor {
     private void processHide(String focus) {
     }
 
-    private void processMate(String focus) {
-    }
     private void processTame(String focus){
         if(focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("ANT") && caterpillar.getCurrentLocation().getName().equalsIgnoreCase("hill")){
             caterpillar.setStrength(caterpillar.getStrength() + 30);

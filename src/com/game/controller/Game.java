@@ -44,10 +44,11 @@ public class Game {
         boolean running = true;
         viewWindow.welcomeMessage();
         viewWindow.giveInstructions();
+        int counter = 0;
 
         while (running){
             viewWindow.updateCaterpillarStatus();
-            caterpillar.setHealth(caterpillar.getMaxHealth() + 10);
+            caterpillar.healthRegenerator(counter++);
         }
 
     }
