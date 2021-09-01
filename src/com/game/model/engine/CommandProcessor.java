@@ -13,7 +13,7 @@ public class CommandProcessor {
     private HashMap<String, Location> locations;
     private HashMap<String, Enemy> enemies;
     private boolean begin;
-    Enemy enemy = enemies.get(caterpillar.getCurrentLocation().getEnemy().getName()); // shortcut for finding your enemy
+    private Enemy enemy;  // shortcut for finding your enemy
 
     public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations, HashMap<String, Enemy> enemies){
         this.caterpillar = caterpillar;
@@ -25,18 +25,15 @@ public class CommandProcessor {
     public void executeCommand(ArrayList<String> strings) {
         if (strings.size() == 2 && strings.get(0) != null && strings.get(1) != null) {
 
-
+            this.enemy = enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase());
             String action = strings.get(0).toUpperCase(Locale.ROOT);
             String focus = strings.get(1).toUpperCase(Locale.ROOT);
 
 
-            if (enemy.isInCombat()) {
+            if ( enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase()).isInCombat()) {
                 if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
-                    processAttack(action, focus);
-                    if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")) {
-                        processAntAssistance(focus);
-                    }
-                } else if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")) {
+                    processAttack(focus);
+                } if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")) {
                     processRun(focus);
                 }
             } else {
@@ -46,17 +43,20 @@ public class CommandProcessor {
                     processEating(focus);
                 } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HIDE")) {
                     processHide(focus);
+                } else if(action.toUpperCase(Locale.ROOT).equalsIgnoreCase("HELP")){
+                    processAntAssistance(focus);
                 } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("LEAVE")) {
                     processLeave(focus);
                 } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
-                    processAttack(action, focus);
+                    processAttack(focus);
                 }else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")) {
-                    processAttack(action, focus);
+                   processRun(focus);
                 } else {
+                    processTypo();
                 }
             }
         } else {
-            processTypo();
+           processMisuse();
         }
     }
 
@@ -78,20 +78,21 @@ public class CommandProcessor {
 
 
 
-    private void processAttack(String action, String focus) {
+    private void processAttack( String focus) {
+
         enemy.setInCombat(true);
         // attacks change as we level and get more powerful
-        if( action.equalsIgnoreCase("ATTACK") && focus.equalsIgnoreCase(String.valueOf(enemies.get(enemy)))){
+        if(focus.equalsIgnoreCase(enemy.getName())){
         {
-            if(caterpillar.getLevel() > 4 && caterpillar.getLevel()< 10){
+            if(caterpillar.getLevel() == 2){
                 enemy.setHealth(enemy.getHealth() - caterpillar.getStrength() - strengthFactor() - 5);
                 caterpillar.setLastAction("You attacked the " + focus + " with odor attack, sick!");
             }
-            else if (caterpillar.getLevel() > 9 ) {
+            else if (caterpillar.getLevel() == 3 ) {
                 enemy.setHealth(enemy.getHealth() - caterpillar.getStrength() - strengthFactor() - 10);
                 caterpillar.setLastAction("You attacked the " + focus + " with acid attack, burn!" );
             }
-            else{
+            else if(caterpillar.getLevel() == 1){
                 enemy.setHealth(enemy.getHealth() - caterpillar.getStrength() - strengthFactor());
                 caterpillar.setLastAction("You attacked the " + focus + " with tackle attack, bruised!" );
             }
@@ -126,7 +127,7 @@ public class CommandProcessor {
         return strength;
     }
     private void processAntAssistance(String focus) {
-        if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("COMBAT") && caterpillar.getLevel() == 2)  {
+        if (focus.equalsIgnoreCase("ANT") && caterpillar.getLevel() == 2)  {
             //DONE : Implement "Ant can be used in combat" logic here.
             caterpillar.setStrength(caterpillar.getStrength() + 60);
             caterpillar.setLastAction("You have received assistance from a friendly ant");

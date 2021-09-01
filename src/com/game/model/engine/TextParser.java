@@ -22,14 +22,14 @@ public class TextParser {
         nouns.add("EAST");
         nouns.add("WEST");
         nouns.add("ANT");
-        nouns.add("SPIDER");
-        nouns.add("BEES");
+        nouns.add("BEE");
         nouns.add("FLIES");
-        nouns.add("FISH");
+        nouns.add("SQUIRREL");
         nouns.add("COMBAT");
         nouns.add("GAME");
-        nouns.add("FIGHT");
-        nouns.add("RUN");
+        nouns.add("SPIDER");
+        nouns.add("BIRD");
+        nouns.add("RAT");
 
     }
 
@@ -43,6 +43,7 @@ public class TextParser {
         verbs.add("HELP");
         verbs.add("START");
         verbs.add("RUN");
+
     }
 
 
