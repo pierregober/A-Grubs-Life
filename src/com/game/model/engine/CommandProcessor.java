@@ -47,6 +47,8 @@ public class CommandProcessor {
                 processLeave(focus);
             } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("TAME")) {
 
+            }else{
+                processMisuse();
             }
         } else{
             processTypo();
