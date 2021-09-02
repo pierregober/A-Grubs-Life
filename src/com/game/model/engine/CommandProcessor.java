@@ -230,7 +230,6 @@ public class CommandProcessor {
                     caterpillar.setLastAction("You travel east.");
                     if(caterpillar.isWinner()){
                         caterpillar.setLastAction("You have made it to safe refuge with your mate! Congratulations you've won the game. ");
-
                     }
                     misfire = false;
                 }
