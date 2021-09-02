@@ -1,6 +1,7 @@
 package com.game.model.materials;
 
 public class Caterpillar {
+    public boolean winner;
     private int health;
     private int experience;
     private int strength ;
@@ -18,6 +19,7 @@ public class Caterpillar {
         this.strength = strength;
         this.hidden = false;
         this.lastAction = "";
+        this.winner = false;
     }
     public void setCurrentLocation(Location location){ //we should move this to the bottom
         this.currentLocation = location;
@@ -57,6 +59,14 @@ public class Caterpillar {
     }
     public int getHealth() {
         return health;
+    }
+
+    public boolean isWinner() {
+        return winner;
+    }
+
+    public void setWinner(boolean winner) {
+        this.winner = winner;
     }
 
     public void setHealth(int health) {
