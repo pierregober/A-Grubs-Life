@@ -110,10 +110,20 @@ public class CommandProcessor {
             enemy.setHidden(true);
             enemy.setInCombat(false);
             caterpillar.setExperience(caterpillar.getExperience() + 10);
-            caterpillar.levelUp();
-            if(caterpillar.getLastAction().contains("level")){
-                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() + "\n " + caterpillar.getLastAction());
+            boolean check = caterpillar.getLevel() == 2;
+            if(enemy.getName().equalsIgnoreCase("squirrel")){
+                caterpillar.setWinner(true);
             }
+            caterpillar.levelUp();
+            if(check){
+                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() + " \n " + caterpillar.getLastAction());
+            } else if (caterpillar.isWinner()){
+                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() + " \n" + "After beating the boss you find your mate! Together you can find the tree and live happily ever after \n ending the game" );
+            }else{
+                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() );
+            }
+
+
 
         }
         else{
@@ -210,6 +220,9 @@ public class CommandProcessor {
                 if(!caterpillar.getCurrentLocation().getEast().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getEast().trim()));
                     caterpillar.setLastAction("You travel east.");
+                    if(caterpillar.isWinner()){
+                        caterpillar.setLastAction("You have made it to safe refuge with your mate! Congratulations you've won the game. ");
+                    }
                     misfire = false;
                 }
                 break;
