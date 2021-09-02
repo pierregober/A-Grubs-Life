@@ -4,11 +4,10 @@ public class Caterpillar {
     private int health;
     private int experience;
     private int strength ;
-    private int maxHealth = 10;
-    private int level = 3;
+    private int level = 1;
     private int maxLevel = 3;
     private int maxExperience = 1;
-    private boolean isButterfly;
+
     private Location currentLocation;
     private boolean hidden;
     private String lastAction;
@@ -28,7 +27,7 @@ public class Caterpillar {
     }
     public void eat(Leaf leaf){
         setHealth(getHealth() + 10);
-        if( (getExperience() + leaf.getXp()) > maxExperience && level < 5) {
+        if( (getExperience() + leaf.getXp()) > maxExperience && level < 2) {
             setExperience((getExperience() + leaf.getXp()) % maxExperience); //level up and transfers remaining to experience
             levelUp(); //increases level / ends the stage once appropriate level
             }
@@ -42,9 +41,13 @@ public class Caterpillar {
     public void levelUp(){
         setStrength(strength + 50);
         setLevel(level + 1);
-        if(getLevel() == maxLevel){
-            isButterfly = true;
+        if(getLevel() == maxLevel- 1){
+            this.setLastAction("You are level 2! You feel slightly stronger and more healthy.");
+        }
+        else {
+            this.setLastAction("You have reached level 3! You are now a butterfly... from now on you can use acid attacks.");
             }
+
     }
 
     public void healthRegenerator(int counter){
@@ -84,18 +87,6 @@ public class Caterpillar {
         this.level = level;
     }
 
-    public boolean isHidden() {
-        return hidden;
-    }
-
-    public void setHidden(boolean hidden) {
-        this.hidden = hidden;
-    }
-
-
-    public int getMaxHealth() {
-        return this.maxHealth;
-    }
     public void setLastAction(String str){
         this.lastAction = str;
     }
