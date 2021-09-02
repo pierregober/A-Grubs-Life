@@ -85,13 +85,6 @@ public class CommandProcessor {
         caterpillar.setLastAction("I can't process that, try again with a verb/noun combo of relevant game objects.");
     }
 
-
-
-
-
-
-
-
     private void processAttack( String focus) {
 
         enemy.setInCombat(true);
@@ -113,10 +106,15 @@ public class CommandProcessor {
             }
             }
         }
-        if(enemy.getHealth() == 0){
+        if(enemy.getHealth() <= 0){
             enemy.setHidden(true);
             enemy.setInCombat(false);
-            caterpillar.setLastAction("You have defeated the mighty " + enemy.getName());
+            caterpillar.setExperience(caterpillar.getExperience() + 10);
+            caterpillar.levelUp();
+            if(caterpillar.getLastAction().contains("level")){
+                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() + "\n " + caterpillar.getLastAction());
+            }
+
         }
         else{
             //TODO: print status of enemy
@@ -185,7 +183,9 @@ public class CommandProcessor {
         switch(focus.toLowerCase()){
             case "leaf":
                 caterpillar.eat(caterpillar.getCurrentLocation().getLeaf());
-                caterpillar.setLastAction("You eat a leaf!");
+                if(!caterpillar.getLastAction().contains("level")){
+                    caterpillar.setLastAction("You eat a leaf!");
+                }
                 misfire = false;
         }
     }
@@ -198,8 +198,6 @@ public class CommandProcessor {
                     caterpillar.setLastAction("You travel north.");
                     misfire = false;
                 }
-
-
                 break;
             case "south":
                 if(!caterpillar.getCurrentLocation().getSouth().equalsIgnoreCase("DEAD_END")){
