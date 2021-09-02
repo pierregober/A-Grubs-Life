@@ -1,5 +1,10 @@
 package com.game.model.materials;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 public class Enemy {
 
     private String name;
@@ -29,6 +34,10 @@ public class Enemy {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getHealth() {
@@ -69,5 +78,25 @@ public class Enemy {
 
     public void setInCombat(boolean inCombat) {
         this.inCombat = inCombat;
+    }
+    //Caterpillar should be able to hide when there is a bird in a room
+    public String getBird() {
+        setName("Bird");
+        return getName();
+    }
+
+    //To increase the probability of a bird not being selected randomly in a room. It just returns an empty string
+    public String getEmptyString(){
+        return "";
+    }
+
+    public String displayBirdRandomly() {
+        List<String> birds = new ArrayList<>(Arrays.asList(getBird(),getEmptyString()));
+
+        Random random = new Random();
+        int randomBird = random.nextInt(birds.size());
+        String bird = birds.get(randomBird);
+
+        return bird;
     }
 }
