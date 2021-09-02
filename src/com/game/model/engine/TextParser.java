@@ -43,7 +43,7 @@ public class TextParser {
         verbs.add("HELP");
         verbs.add("START");
         verbs.add("RUN");
-
+        verbs.add("GODMODE");
     }
 
 
