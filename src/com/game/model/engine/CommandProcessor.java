@@ -29,6 +29,12 @@ public class CommandProcessor {
             String action = strings.get(0).toUpperCase(Locale.ROOT);
             String focus = strings.get(1).toUpperCase(Locale.ROOT);
 
+            //literally outlast everything and one hit everyone
+            if(focus.equalsIgnoreCase("GODMODE")){
+                caterpillar.setHealth(9999999);
+                caterpillar.setStrength(99999999);
+                caterpillar.setLastAction("The Power of God him/her/itself (god is in an existential crisis) flows through you");
+            }
 
             if ( enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase()).isInCombat()) {
                 if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
@@ -50,7 +56,7 @@ public class CommandProcessor {
                 } else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
                     processAttack(focus);
                 }else if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")) {
-                   processRun(focus);
+                    processRun(focus);
                 } else {
                     processTypo();
                 }
