@@ -18,19 +18,34 @@ public class KeyWordIdentifier {
         keyWords.add("SOUTH");
         keyWords.add("EAST");
         keyWords.add("WEST");
+        keyWords.add("ANT");
+        keyWords.add("TAME");
+        keyWords.add("HELP");
+        keyWords.add("COMBAT");
+        keyWords.add("START");
+        keyWords.add("GAME");
+        keyWords.add("SPIDER");
+        keyWords.add("BIRD");
+        keyWords.add("FLIES");
+        keyWords.add("RAT");
+        keyWords.add("SQUIRREL");
+        keyWords.add("BEE");
+        keyWords.add("ATTACK");
     }
 
 
     public ArrayList<String> identifyKewWords(ArrayList<String> parsedInput) {
          ArrayList<String> result = new ArrayList();
+        if(parsedInput != null){
+            for(int i = 0; i < parsedInput.size(); i++){
+                if(!keyWords.contains(parsedInput.get(i))){
+                    return result;
+                }else{
+                    result.add(parsedInput.get(i).toUpperCase(Locale.ROOT));
+                }
+            }
+        }
 
-         for(int i = 0; i < parsedInput.size(); i++){
-             if(!keyWords.contains(parsedInput.get(i))){
-                 return null;
-             }else{
-                 result.add(parsedInput.get(i).toUpperCase(Locale.ROOT));
-             }
-         }
          return result;
     }
 }

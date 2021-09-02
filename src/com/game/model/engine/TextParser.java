@@ -1,7 +1,6 @@
 package com.game.model.engine;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
 
@@ -22,6 +21,15 @@ public class TextParser {
         nouns.add("SOUTH");
         nouns.add("EAST");
         nouns.add("WEST");
+        nouns.add("ANT");
+        nouns.add("BEE");
+        nouns.add("FLIES");
+        nouns.add("SQUIRREL");
+        nouns.add("COMBAT");
+        nouns.add("GAME");
+        nouns.add("SPIDER");
+        nouns.add("BIRD");
+        nouns.add("RAT");
 
     }
 
@@ -29,6 +37,13 @@ public class TextParser {
         this.verbs = new HashSet();
         verbs.add("GO");
         verbs.add("EAT");
+        verbs.add("TAME");
+        verbs.add("HIDE");
+        verbs.add("ATTACK");
+        verbs.add("HELP");
+        verbs.add("START");
+        verbs.add("RUN");
+
     }
 
 

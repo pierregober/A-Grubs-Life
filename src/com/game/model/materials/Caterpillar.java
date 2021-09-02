@@ -3,20 +3,22 @@ package com.game.model.materials;
 public class Caterpillar {
     private int health;
     private int experience;
-    private int strength;
+    private int strength ;
     private int maxHealth = 10;
-    private int level = 1;
+    private int level = 3;
     private int maxLevel = 3;
-    private int maxExperience = 10;
+    private int maxExperience = 1;
     private boolean isButterfly;
     private Location currentLocation;
     private boolean hidden;
+    private String lastAction;
+
     public  Caterpillar(int health, int experience, int strength){
         this.health = health;
-        this.health = maxHealth;
         this.experience = experience;
         this.strength = strength;
         this.hidden = false;
+        this.lastAction = "";
     }
     public void setCurrentLocation(Location location){ //we should move this to the bottom
         this.currentLocation = location;
@@ -25,46 +27,31 @@ public class Caterpillar {
         return this.currentLocation;
     }
     public void eat(Leaf leaf){
-        if( (getExperience() + leaf.getXp()) > maxExperience) {
-            setHealth(maxHealth); // refreshes health
+        setHealth(getHealth() + 10);
+        if( (getExperience() + leaf.getXp()) > maxExperience && level < 5) {
             setExperience((getExperience() + leaf.getXp()) % maxExperience); //level up and transfers remaining to experience
             levelUp(); //increases level / ends the stage once appropriate level
             }
         else{
-            setExperience(getExperience() + leaf.getXp() ); // no levelup by experience up
+            if(level < 5){
+                setExperience(getExperience() + leaf.getXp() ); // no levelup by experience up
+            }
+
         }
     }
     public void levelUp(){
-        setStrength(strength + 1);
+        setStrength(strength + 50);
         setLevel(level + 1);
         if(getLevel() == maxLevel){
-            //endStage();
+            isButterfly = true;
             }
     }
 
-
-//    public void fightGetHit( Enemy enemy){
-//        int strengthAdvantage = 0;
-//        if(enemy.getStrength() > getStrength()){
-//            strengthAdvantage = 1;
-//            setHealth(health - enemy.getStrength() - strengthAdvantage);
-//        }
-//        else{
-//            setHealth(health - enemy.getStrength());
-//        };
-//    }
-//
-//    public void fightHitBack( Enemy enemy){
-//        int strengthAdvantage = 0;
-//        if(enemy.getStrength() < getStrength()){
-//            strengthAdvantage = 1;
-//            enemy.setHealth(enemy.getHealth() - strength - strengthAdvantage);
-//        }
-//        else{
-//            enemy.setHealth(enemy.getHealth() - strength);
-//        }
-//    }
-
+    public void healthRegenerator(int counter){
+        if(counter % 2934342 == 0){
+            setHealth(getHealth() + 1);
+        }
+    }
     public int getHealth() {
         return health;
     }
@@ -103,5 +90,16 @@ public class Caterpillar {
 
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
+    }
+
+
+    public int getMaxHealth() {
+        return this.maxHealth;
+    }
+    public void setLastAction(String str){
+        this.lastAction = str;
+    }
+    public String getLastAction(){
+        return this.lastAction;
     }
 }
