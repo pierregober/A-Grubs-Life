@@ -27,6 +27,7 @@ public class CommandProcessor {
             String action = strings.get(0).toUpperCase(Locale.ROOT);
             String focus = strings.get(1).toUpperCase(Locale.ROOT);
             this.misfire = true;
+
             processCommand(action,focus); // passing in to either the combat system or command menu..
         } else {
            processTypo();
@@ -36,7 +37,7 @@ public class CommandProcessor {
 
     private void processCommand(String action, String focus){
 
-        if ( enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase()).isInCombat()) {
+        if ( enemies.containsKey(enemies.get(caterpillar.getCurrentLocation().getName())) && enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase()).isInCombat()) {
             runCombatCheck(action,focus);
         } else {
             runProcessMenu(action,focus);
@@ -222,6 +223,7 @@ public class CommandProcessor {
                     caterpillar.setLastAction("You travel east.");
                     if(caterpillar.isWinner()){
                         caterpillar.setLastAction("You have made it to safe refuge with your mate! Congratulations you've won the game. ");
+
                     }
                     misfire = false;
                 }
