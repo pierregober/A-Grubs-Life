@@ -194,6 +194,19 @@ public class CommandProcessor {
     }
 
     private void processHide(String focus) {
+
+        String randomBird = enemy.displayBirdRandomly();
+        if (randomBird.equals("Bird")) {
+            if ((enemy.getName().equalsIgnoreCase("Bird")) && (caterpillar.getLevel() == 1) && (focus.equalsIgnoreCase("CATERPILLAR"))) {
+                caterpillar.setHealth(caterpillar.getHealth() + 30);
+                caterpillar.setLastAction("Great job! You are hidden from the bird");
+                this.misfire = false;
+            }
+        }
+        else if ((enemy.getName().equalsIgnoreCase("Bird")) && (caterpillar.getLevel() == 1) && (focus.equalsIgnoreCase("CATERPILLAR"))) {
+            caterpillar.setLastAction("The closest place to hide is in 2 mile");
+            this.misfire = false;
+        }
     }
 
 

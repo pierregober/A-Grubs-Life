@@ -30,6 +30,7 @@ public class TextParser {
         nouns.add("SPIDER");
         nouns.add("BIRD");
         nouns.add("RAT");
+        nouns.add("CATERPILLAR");
 
     }
 

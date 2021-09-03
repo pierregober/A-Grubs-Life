@@ -32,6 +32,8 @@ public class KeyWordIdentifier {
         keyWords.add("BEE");
         keyWords.add("ATTACK");
         keyWords.add("GODMODE");
+        keyWords.add("CATERPILLAR");
+        keyWords.add("HIDE");
     }
 
 
