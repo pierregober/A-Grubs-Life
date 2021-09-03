@@ -7,7 +7,7 @@ public class Caterpillar {
     private int strength ;
     private int level = 1;
     private int maxLevel = 3;
-    private int maxExperience = 1;
+    private int maxExperience = 5;
 
     private Location currentLocation;
     private boolean hidden;
@@ -29,12 +29,12 @@ public class Caterpillar {
     }
     public void eat(Leaf leaf){
         setHealth(getHealth() + 10);
-        if( (getExperience() + leaf.getXp()) > maxExperience && level < 2) {
+        if( (getExperience() + leaf.getXp()) >= maxExperience && level < maxLevel) {
             setExperience((getExperience() + leaf.getXp()) % maxExperience); //level up and transfers remaining to experience
             levelUp(); //increases level / ends the stage once appropriate level
             }
         else{
-            if(level < 2){
+            if(level < maxLevel){
                 setExperience(getExperience() + leaf.getXp() ); // no levelup by experience up
             }
 
@@ -46,7 +46,7 @@ public class Caterpillar {
         if(getLevel() == maxLevel- 1){
             this.setLastAction("You are level 2! You feel slightly stronger and more healthy.");
         }
-        else {
+        else if(getLevel()== maxLevel) {
             this.setLastAction("You have reached level 3! You are now a butterfly... from now on you can use acid attacks.");
             }
 
@@ -104,11 +104,15 @@ public class Caterpillar {
         return this.lastAction;
     }
 
+
     public boolean isHidden() {
         return hidden;
     }
 
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
+    }
+    public int getMaxExperience() {
+        return maxExperience;
     }
 }

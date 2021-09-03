@@ -229,6 +229,7 @@ public class CommandProcessor {
                     caterpillar.setLastAction("You travel north.");
                     misfire = false;
                 }
+
                 break;
             case "south":
                 if(!caterpillar.getCurrentLocation().getSouth().equalsIgnoreCase("DEAD_END")){
