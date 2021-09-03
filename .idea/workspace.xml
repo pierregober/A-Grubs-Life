@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7cca432-aac2-4026-a46e-9424012b981d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

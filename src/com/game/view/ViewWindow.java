@@ -61,36 +61,36 @@ public class ViewWindow {
     private void updateDescriptionPanel(){
         String location = caterpillar.getCurrentLocation().getName().toLowerCase();
         String desc = caterpillar.getCurrentLocation().getDescription().toLowerCase();
-//        descriptionLabel.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                try {
-//
-//                    Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Caterpillar"));
-//
-//                } catch (IOException | URISyntaxException e1) {
-//                    e1.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void mouseEntered(MouseEvent e) {
-//                descriptionLabel.setText(descriptionLabel.getText() +
-//                        "<a href=\"https://en.wikipedia.org/wiki/Caterpillar\">Want to see cool caterpillar facts that inspired the game?</a>\n "  +
-//                        "</html>");
-//            }
-//
-//            @Override
-//            public void mouseExited(MouseEvent e) {
-//                descriptionLabel.setText("<html> " +
-//                        "<style>" +
-//                        "p {padding-bottom: 280px }" +
-//                        "</style>" +
-//                        "<h1> " + location + "</h1> <br>" +
-//                        "<p> " + desc + "</p><br><br><br><br>" +
-//                        "  \n" );
-//            }
-//        });
+        descriptionLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+
+                    Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Caterpillar"));
+
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                descriptionLabel.setText(descriptionLabel.getText() +
+                        "<a href=\"https://en.wikipedia.org/wiki/Caterpillar\">Want to see cool caterpillar facts that inspired the game?</a>\n "  +
+                        "</html>");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                descriptionLabel.setText("<html> " +
+                        "<style>" +
+                        "p {padding-bottom: 280px }" +
+                        "</style>" +
+                        "<h1> " + location + "</h1> <br>" +
+                        "<p> " + desc + "</p><br><br><br><br>" +
+                        "  \n" );
+            }
+        });
         descriptionLabel.setText("<html> " +
                 "<style>" +
                 "p {padding-bottom: 280px }" +
