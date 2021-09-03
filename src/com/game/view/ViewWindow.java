@@ -13,7 +13,8 @@ public class ViewWindow {
     private JPanel statPanel;
     private JPanel descriptionPanel;
     private JPanel inputPanel;
-    private JLabel statLabel;
+    private JLabel caterpillarStatLabel;
+    private JLabel enemyStatLabel;
     private JTextField inputField;
     private JLabel descriptionLabel;
     private Caterpillar caterpillar;
@@ -23,9 +24,11 @@ public class ViewWindow {
     private JLabel labelNouns;
     private JLabel lastMove;
 
+
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
         this.processor = processor;
+
         setUpComponents();
     }
     public void welcomeMessage(){
@@ -58,6 +61,7 @@ public class ViewWindow {
     }
     //==================SETUP METHODS============================
     private void setUpComponents(){
+
         setUpInputPanel();
         setUpStatPanel();
         setUpDescriptionPanel();
@@ -70,7 +74,6 @@ public class ViewWindow {
         this.window.add(statPanel, BorderLayout.EAST);
         this.window.add(descriptionPanel, BorderLayout.CENTER);
         this.window.add(inputPanel, BorderLayout.SOUTH);
-
         this.window.setPreferredSize(new Dimension(1000,800));
         this.window.setVisible(true);
         this.window.setResizable(false);
@@ -89,40 +92,29 @@ public class ViewWindow {
 
     private void setUpStatPanel() {
         this.statPanel = new JPanel();
-        this.statLabel = new JLabel();
-        statPanel.setLayout(new BorderLayout());
+        this.caterpillarStatLabel = new JLabel();
+        this.enemyStatLabel = new JLabel();
+        statPanel.setLayout( new BorderLayout());
         statPanel.setPreferredSize(new Dimension(300,600));
         statPanel.setLayout(new GridLayout(0,1));
-        statLabel.setText("<html>\n" +
-                "<style>\n" +
-                "table {\n" +
-                "color:green;\n" +
-                "font-size:20px;\n" +
-                "padding:15px;\n" +
-                "}\n" +
-                "</style>\n" +
-                "<table style=\"width:5%\">\n" +
-                "<tr>\n" +
-                "<td style=\"text-align: left;\">Strength: </td><td>" + caterpillar.getStrength() +
-                "</td>\n" +
-                "</tr>\n" +
-                "<tr>\n" +
-                "<td style=\"text-align: left;\">Health: </td><td>" + caterpillar.getHealth()  +
-                "</td>\n" +
-                "</tr>\n" +
-                "<tr>\n" +
-                "<td style=\"text-align: left;\">Level: </td><td>" + caterpillar.getLevel() +
-                "</td>\n" +
-                "</tr>\n" +
-                "</table>\n" +
-                "\n" +
-                "</html>");
+        setCaterpillarStats();
+        setEnemyStats();
+        statPanel.add(caterpillarStatLabel, BorderLayout.NORTH);
+        statPanel.add(enemyStatLabel, BorderLayout.CENTER);
         statPanel.setBackground(new Color(0, 0, 0));
-        statPanel.setBorder(BorderFactory.createTitledBorder("STATS"));
-        statPanel.add(statLabel, Component.TOP_ALIGNMENT);
+        caterpillarStatLabel.setBorder(BorderFactory.createTitledBorder("Caterpillar Stats"));
+        enemyStatLabel.setBorder(BorderFactory.createTitledBorder("Enemy Stats"));
     }
-    private void updateStatPanel(){
-        statLabel.setText("<html>\n" +
+    private void setCaterpillarStats() {
+        caterpillarStatLabel.setText("");
+        caterpillarStatLabel.setBorder(BorderFactory.createTitledBorder("Caterpillar"));
+    }
+    private void setEnemyStats() {
+        enemyStatLabel.setText("");
+        enemyStatLabel.setBorder(BorderFactory.createTitledBorder(caterpillar.getCurrentLocation().getEnemy().getName()));
+    }
+    private void updateStatPanel() {
+        caterpillarStatLabel.setText("<html>\n" +
                 "<style>\n" +
                 "table {\n" +
                 "color:green;\n" +
@@ -143,10 +135,41 @@ public class ViewWindow {
                 "<td style=\"text-align: left;\">Level: </td><td>" + caterpillar.getLevel() +
                 "</td>\n" +
                 "</tr>\n" +
+                "<tr>\n" +
+                "<td style=\"text-align: left;\">Experience: </td><td>" + caterpillar.getExperience() + "/" + caterpillar.getMaxExperience() +
+                "</td>\n" +
+                "</tr>\n" +
                 "</table>\n" +
                 "\n" +
                 "</html>");
+
+
+    if(caterpillar.getCurrentLocation().getEnemy() != null){
+        enemyStatLabel.setText(
+                "<html>\n" +
+                        "<style>\n" +
+                        "table {\n" +
+                        "color:green;\n" +
+                        "font-size:20px;\n" +
+                        "padding:15px;\n" +
+                        "}\n" +
+                        "</style>\n" +
+                        "<table style=\"width:5%\">\n" +
+                        "<tr>\n" +
+                        "<td style=\"text-align: left;\">Strength: </td><td>" + caterpillar.getCurrentLocation().getEnemy().getStrength() +
+                "</td>\n" +
+                        "</tr>\n" +
+                        "<tr>\n" +
+                        "<td style=\"text-align: left;\">Health: </td><td>" + caterpillar.getCurrentLocation().getEnemy().getHealth() +
+                        "</td>\n" +
+                        "</tr>\n" +
+                        "</table>\n" +
+                        "\n" +
+                        "</html>");
+        }
+
     }
+
 
     private void setUpInputPanel() {
         this.inputPanel = new JPanel();
