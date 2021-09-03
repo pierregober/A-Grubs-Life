@@ -138,8 +138,8 @@ public class CommandProcessor {
             //TODO: print status of enemy
         }
         enemyAttack();
-        if(caterpillar.getHealth() == 0){
-            //TODO: You have died.
+        if(caterpillar.getHealth() <= 0){
+            caterpillar.setLastAction("Oh dear you have died.");
         }
     }
 
@@ -243,7 +243,6 @@ public class CommandProcessor {
                     caterpillar.setLastAction("You travel east.");
                     if(caterpillar.isWinner()){
                         caterpillar.setLastAction("You have made it to safe refuge with your mate! Congratulations you've won the game. ");
-
                     }
                     misfire = false;
                 }

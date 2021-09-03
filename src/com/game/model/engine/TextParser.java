@@ -51,14 +51,16 @@ public class TextParser {
     //If we dont get a viable verb and noun then we will pass null.
     public ArrayList<String> parseInput(String unParsedCommand) {
         String[] result;
-        result = unParsedCommand.toUpperCase(Locale.ROOT).split(" ");
-        ArrayList<String> list = new ArrayList<>();
+        if(unParsedCommand != null) {
+            result = unParsedCommand.toUpperCase(Locale.ROOT).split(" ");
+            ArrayList<String> list = new ArrayList<>();
 
-        for(String str : result){
-            if(verbs.contains(str.toUpperCase(Locale.ROOT)) || nouns.contains(str.toUpperCase(Locale.ROOT))){
-                list.add(str);
-                if(list.size() == 2){
-                    return list;
+            for (String str : result) {
+                if (verbs.contains(str.toUpperCase(Locale.ROOT)) || nouns.contains(str.toUpperCase(Locale.ROOT))) {
+                    list.add(str);
+                    if (list.size() == 2) {
+                        return list;
+                    }
                 }
             }
         }
