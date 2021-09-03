@@ -34,7 +34,7 @@ public class Caterpillar {
             levelUp(); //increases level / ends the stage once appropriate level
             }
         else{
-            if(level < 5){
+            if(level < 2){
                 setExperience(getExperience() + leaf.getXp() ); // no levelup by experience up
             }
 

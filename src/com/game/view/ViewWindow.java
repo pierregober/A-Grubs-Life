@@ -90,6 +90,7 @@ public class ViewWindow {
     private void setUpStatPanel() {
         this.statPanel = new JPanel();
         this.statLabel = new JLabel();
+        statPanel.setLayout(new BorderLayout());
         statPanel.setPreferredSize(new Dimension(300,600));
         statPanel.setLayout(new GridLayout(0,1));
         statLabel.setText("<html>\n" +

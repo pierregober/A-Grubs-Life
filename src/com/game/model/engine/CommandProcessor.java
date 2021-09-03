@@ -138,8 +138,8 @@ public class CommandProcessor {
             //TODO: print status of enemy
         }
         enemyAttack();
-        if(caterpillar.getHealth() == 0){
-            //TODO: You have died.
+        if(caterpillar.getHealth() <= 0){
+            caterpillar.setLastAction("Oh dear you have died.");
         }
     }
 
