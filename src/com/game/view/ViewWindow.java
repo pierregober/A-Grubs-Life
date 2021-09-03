@@ -8,6 +8,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -29,7 +30,7 @@ public class ViewWindow {
     private JLabel labelVerbs;
     private JLabel labelNouns;
     private JLabel lastMove;
-
+    private PanelListener listener;
     private TitledBorder tb;
     private TitledBorder eb;
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
@@ -61,43 +62,14 @@ public class ViewWindow {
     private void updateDescriptionPanel(){
         String location = caterpillar.getCurrentLocation().getName().toLowerCase();
         String desc = caterpillar.getCurrentLocation().getDescription().toLowerCase();
-        descriptionLabel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                try {
-
-                    Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Caterpillar"));
-
-                } catch (IOException | URISyntaxException e1) {
-                    e1.printStackTrace();
-                }
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                descriptionLabel.setText(descriptionLabel.getText() +
-                        "<a href=\"https://en.wikipedia.org/wiki/Caterpillar\">Want to see cool caterpillar facts that inspired the game?</a>\n "  +
-                        "</html>");
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                descriptionLabel.setText("<html> " +
-                        "<style>" +
-                        "p {padding-bottom: 280px }" +
-                        "</style>" +
-                        "<h1> " + location + "</h1> <br>" +
-                        "<p> " + desc + "</p><br><br><br><br>" +
-                        "  \n" );
-            }
-        });
         descriptionLabel.setText("<html> " +
                 "<style>" +
                 "p {padding-bottom: 280px }" +
                 "</style>" +
+                "<a href=\"https://en.wikipedia.org/wiki/Caterpillar\">Caterpillar Wiki</a>"+
                 "<h1> " + location + "</h1> <br>" +
                 "<p> " + desc + "</p><br><br><br><br>" +
-                "  \n" );
+                "  </html>\n" );
     }
     //==================SETUP METHODS============================
     private void setUpComponents(){
@@ -124,10 +96,13 @@ public class ViewWindow {
     private void setUpDescriptionPanel() {
         this.descriptionPanel = new JPanel();
         this.descriptionLabel = new JLabel();
+        listener = new PanelListener();
+        descriptionLabel.addMouseListener(listener);
         descriptionPanel.setPreferredSize(new Dimension(700,600));
         descriptionPanel.setBackground(new Color(255, 255, 255));
         descriptionPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
         descriptionPanel.add(descriptionLabel);
+
     }
 
     private void setUpStatPanel() {
@@ -301,5 +276,36 @@ public class ViewWindow {
                 "</html>");
     }
 
+    private class PanelListener implements MouseListener{
 
-}
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+
+                    Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Caterpillar"));
+
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        }
+    }
+
