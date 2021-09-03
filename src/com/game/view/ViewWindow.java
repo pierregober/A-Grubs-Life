@@ -30,7 +30,8 @@ public class ViewWindow {
     private JLabel labelNouns;
     private JLabel lastMove;
 
-
+    private TitledBorder tb;
+    private TitledBorder eb;
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
         this.processor = processor;
@@ -141,8 +142,8 @@ public class ViewWindow {
         statPanel.add(caterpillarStatLabel, BorderLayout.NORTH);
         statPanel.add(enemyStatLabel, BorderLayout.CENTER);
         statPanel.setBackground(new Color(0, 0, 0));
-        TitledBorder tb = new TitledBorder("Caterpillar Stats");
-        TitledBorder eb = new TitledBorder(caterpillar.getCurrentLocation().getEnemy().getName() + " Stats");
+        this.tb = new TitledBorder("Caterpillar Stats");
+        this.eb = new TitledBorder(caterpillar.getCurrentLocation().getEnemy().getName() + " Stats");
         tb.setTitleColor(Color.GREEN);
         eb.setTitleColor(Color.GREEN);
         caterpillarStatLabel.setBorder(tb);
@@ -211,7 +212,9 @@ public class ViewWindow {
                         "</table>\n" +
                         "\n" +
                         "</html>");
+        eb.setTitle(caterpillar.getCurrentLocation().getEnemy().getName() + " Stats");
         }
+
 
     }
 
