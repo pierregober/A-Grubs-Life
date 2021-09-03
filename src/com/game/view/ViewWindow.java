@@ -4,8 +4,14 @@ import com.game.model.engine.LogicEngine;
 import com.game.model.materials.Caterpillar;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.security.DigestException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 
 public class ViewWindow {
 
@@ -54,10 +60,43 @@ public class ViewWindow {
     private void updateDescriptionPanel(){
         String location = caterpillar.getCurrentLocation().getName().toLowerCase();
         String desc = caterpillar.getCurrentLocation().getDescription().toLowerCase();
+//        descriptionLabel.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                try {
+//
+//                    Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Caterpillar"));
+//
+//                } catch (IOException | URISyntaxException e1) {
+//                    e1.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void mouseEntered(MouseEvent e) {
+//                descriptionLabel.setText(descriptionLabel.getText() +
+//                        "<a href=\"https://en.wikipedia.org/wiki/Caterpillar\">Want to see cool caterpillar facts that inspired the game?</a>\n "  +
+//                        "</html>");
+//            }
+//
+//            @Override
+//            public void mouseExited(MouseEvent e) {
+//                descriptionLabel.setText("<html> " +
+//                        "<style>" +
+//                        "p {padding-bottom: 280px }" +
+//                        "</style>" +
+//                        "<h1> " + location + "</h1> <br>" +
+//                        "<p> " + desc + "</p><br><br><br><br>" +
+//                        "  \n" );
+//            }
+//        });
         descriptionLabel.setText("<html> " +
+                "<style>" +
+                "p {padding-bottom: 280px }" +
+                "</style>" +
                 "<h1> " + location + "</h1> <br>" +
-                "<p> " + desc + "</p>" +
-                "</html>");
+                "<p> " + desc + "</p><br><br><br><br>" +
+                "  \n" );
     }
     //==================SETUP METHODS============================
     private void setUpComponents(){
@@ -102,8 +141,14 @@ public class ViewWindow {
         statPanel.add(caterpillarStatLabel, BorderLayout.NORTH);
         statPanel.add(enemyStatLabel, BorderLayout.CENTER);
         statPanel.setBackground(new Color(0, 0, 0));
-        caterpillarStatLabel.setBorder(BorderFactory.createTitledBorder("Caterpillar Stats"));
-        enemyStatLabel.setBorder(BorderFactory.createTitledBorder("Enemy Stats"));
+        TitledBorder tb = new TitledBorder("Caterpillar Stats");
+        TitledBorder eb = new TitledBorder(caterpillar.getCurrentLocation().getEnemy().getName() + " Stats");
+        tb.setTitleColor(Color.GREEN);
+        eb.setTitleColor(Color.GREEN);
+        caterpillarStatLabel.setBorder(tb);
+        enemyStatLabel.setBorder(eb);
+
+
     }
     private void setCaterpillarStats() {
         caterpillarStatLabel.setText("");
