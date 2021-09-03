@@ -4,8 +4,14 @@ import com.game.model.engine.LogicEngine;
 import com.game.model.materials.Caterpillar;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.security.DigestException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 
 public class ViewWindow {
 
@@ -13,7 +19,8 @@ public class ViewWindow {
     private JPanel statPanel;
     private JPanel descriptionPanel;
     private JPanel inputPanel;
-    private JLabel statLabel;
+    private JLabel caterpillarStatLabel;
+    private JLabel enemyStatLabel;
     private JTextField inputField;
     private JLabel descriptionLabel;
     private Caterpillar caterpillar;
@@ -23,9 +30,12 @@ public class ViewWindow {
     private JLabel labelNouns;
     private JLabel lastMove;
 
+    private TitledBorder tb;
+    private TitledBorder eb;
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
         this.processor = processor;
+
         setUpComponents();
     }
     public void welcomeMessage(){
@@ -51,13 +61,47 @@ public class ViewWindow {
     private void updateDescriptionPanel(){
         String location = caterpillar.getCurrentLocation().getName().toLowerCase();
         String desc = caterpillar.getCurrentLocation().getDescription().toLowerCase();
+        descriptionLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+
+                    Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Caterpillar"));
+
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                descriptionLabel.setText(descriptionLabel.getText() +
+                        "<a href=\"https://en.wikipedia.org/wiki/Caterpillar\">Want to see cool caterpillar facts that inspired the game?</a>\n "  +
+                        "</html>");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                descriptionLabel.setText("<html> " +
+                        "<style>" +
+                        "p {padding-bottom: 280px }" +
+                        "</style>" +
+                        "<h1> " + location + "</h1> <br>" +
+                        "<p> " + desc + "</p><br><br><br><br>" +
+                        "  \n" );
+            }
+        });
         descriptionLabel.setText("<html> " +
+                "<style>" +
+                "p {padding-bottom: 280px }" +
+                "</style>" +
                 "<h1> " + location + "</h1> <br>" +
-                "<p> " + desc + "</p>" +
-                "</html>");
+                "<p> " + desc + "</p><br><br><br><br>" +
+                "  \n" );
     }
     //==================SETUP METHODS============================
     private void setUpComponents(){
+
         setUpInputPanel();
         setUpStatPanel();
         setUpDescriptionPanel();
@@ -70,7 +114,6 @@ public class ViewWindow {
         this.window.add(statPanel, BorderLayout.EAST);
         this.window.add(descriptionPanel, BorderLayout.CENTER);
         this.window.add(inputPanel, BorderLayout.SOUTH);
-
         this.window.setPreferredSize(new Dimension(1000,800));
         this.window.setVisible(true);
         this.window.setResizable(false);
@@ -89,39 +132,35 @@ public class ViewWindow {
 
     private void setUpStatPanel() {
         this.statPanel = new JPanel();
-        this.statLabel = new JLabel();
+        this.caterpillarStatLabel = new JLabel();
+        this.enemyStatLabel = new JLabel();
+        statPanel.setLayout( new BorderLayout());
         statPanel.setPreferredSize(new Dimension(300,600));
         statPanel.setLayout(new GridLayout(0,1));
-        statLabel.setText("<html>\n" +
-                "<style>\n" +
-                "table {\n" +
-                "color:green;\n" +
-                "font-size:20px;\n" +
-                "padding:15px;\n" +
-                "}\n" +
-                "</style>\n" +
-                "<table style=\"width:5%\">\n" +
-                "<tr>\n" +
-                "<td style=\"text-align: left;\">Strength: </td><td>" + caterpillar.getStrength() +
-                "</td>\n" +
-                "</tr>\n" +
-                "<tr>\n" +
-                "<td style=\"text-align: left;\">Health: </td><td>" + caterpillar.getHealth()  +
-                "</td>\n" +
-                "</tr>\n" +
-                "<tr>\n" +
-                "<td style=\"text-align: left;\">Level: </td><td>" + caterpillar.getLevel() +
-                "</td>\n" +
-                "</tr>\n" +
-                "</table>\n" +
-                "\n" +
-                "</html>");
+        setCaterpillarStats();
+        setEnemyStats();
+        statPanel.add(caterpillarStatLabel, BorderLayout.NORTH);
+        statPanel.add(enemyStatLabel, BorderLayout.CENTER);
         statPanel.setBackground(new Color(0, 0, 0));
-        statPanel.setBorder(BorderFactory.createTitledBorder("STATS"));
-        statPanel.add(statLabel, Component.TOP_ALIGNMENT);
+        this.tb = new TitledBorder("Caterpillar Stats");
+        this.eb = new TitledBorder(caterpillar.getCurrentLocation().getEnemy().getName() + " Stats");
+        tb.setTitleColor(Color.GREEN);
+        eb.setTitleColor(Color.GREEN);
+        caterpillarStatLabel.setBorder(tb);
+        enemyStatLabel.setBorder(eb);
+
+
     }
-    private void updateStatPanel(){
-        statLabel.setText("<html>\n" +
+    private void setCaterpillarStats() {
+        caterpillarStatLabel.setText("");
+        caterpillarStatLabel.setBorder(BorderFactory.createTitledBorder("Caterpillar"));
+    }
+    private void setEnemyStats() {
+        enemyStatLabel.setText("");
+        enemyStatLabel.setBorder(BorderFactory.createTitledBorder(caterpillar.getCurrentLocation().getEnemy().getName()));
+    }
+    private void updateStatPanel() {
+        caterpillarStatLabel.setText("<html>\n" +
                 "<style>\n" +
                 "table {\n" +
                 "color:green;\n" +
@@ -142,10 +181,43 @@ public class ViewWindow {
                 "<td style=\"text-align: left;\">Level: </td><td>" + caterpillar.getLevel() +
                 "</td>\n" +
                 "</tr>\n" +
+                "<tr>\n" +
+                "<td style=\"text-align: left;\">Experience: </td><td>" + caterpillar.getExperience() + "/" + caterpillar.getMaxExperience() +
+                "</td>\n" +
+                "</tr>\n" +
                 "</table>\n" +
                 "\n" +
                 "</html>");
+
+
+    if(caterpillar.getCurrentLocation().getEnemy() != null){
+        enemyStatLabel.setText(
+                "<html>\n" +
+                        "<style>\n" +
+                        "table {\n" +
+                        "color:green;\n" +
+                        "font-size:20px;\n" +
+                        "padding:15px;\n" +
+                        "}\n" +
+                        "</style>\n" +
+                        "<table style=\"width:5%\">\n" +
+                        "<tr>\n" +
+                        "<td style=\"text-align: left;\">Strength: </td><td>" + caterpillar.getCurrentLocation().getEnemy().getStrength() +
+                "</td>\n" +
+                        "</tr>\n" +
+                        "<tr>\n" +
+                        "<td style=\"text-align: left;\">Health: </td><td>" + caterpillar.getCurrentLocation().getEnemy().getHealth() +
+                        "</td>\n" +
+                        "</tr>\n" +
+                        "</table>\n" +
+                        "\n" +
+                        "</html>");
+        eb.setTitle(caterpillar.getCurrentLocation().getEnemy().getName() + " Stats");
+        }
+
+
     }
+
 
     private void setUpInputPanel() {
         this.inputPanel = new JPanel();

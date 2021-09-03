@@ -13,6 +13,7 @@ import com.game.view.ViewWindow;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Game {
@@ -32,8 +33,8 @@ public class Game {
 
     //This method is designed to instantiate the necessary fields of a Game object.
     private void setUpComponents(){
-        this.locations = populateLocations();
         this.enemies = populateEnemies();
+        this.locations = populateLocations();
         this.caterpillar = new Caterpillar(100,0,0);
         this.processor = new LogicEngine(caterpillar,locations, enemies);
         this.caterpillar.setCurrentLocation(locations.get("GENESIS"));
@@ -62,6 +63,7 @@ public class Game {
                 locationFields = myReader.nextLine().split(",");
 
                 Location loc = new Location(locationFields[0].trim(),locationFields[ 1].trim(), locationFields[ 2].trim(), locationFields[ 3].trim(), locationFields[4].trim(),locationFields[ 5].trim() );
+                loc.setEnemy(enemies.get(locationFields[0].trim().toLowerCase(Locale.ROOT)));
                 locations.put(locationFields[0].trim(), loc);
             }
         }catch (FileNotFoundException e){
@@ -92,4 +94,5 @@ public class Game {
     public HashMap<String, Enemy> getEnemies() {
         return enemies;
     }
+
 }
