@@ -103,4 +103,12 @@ public class Caterpillar {
     public String getLastAction(){
         return this.lastAction;
     }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
 }

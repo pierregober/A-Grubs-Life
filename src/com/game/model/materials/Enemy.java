@@ -36,9 +36,9 @@ public class Enemy {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public int getHealth() {
         return health;
@@ -81,8 +81,7 @@ public class Enemy {
     }
     //Caterpillar should be able to hide when there is a bird in a room
     public String getBird() {
-        setName("Bird");
-        return getName();
+        return "Bird";
     }
 
     //To increase the probability of a bird not being selected randomly in a room. It just returns an empty string
