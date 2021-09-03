@@ -3,6 +3,8 @@
  */
 package com.game.model.materials;
 
+import com.game.controller.Game;
+
 import java.util.Random;
 
 public class Location {
@@ -13,6 +15,7 @@ public class Location {
     private String east;
     private String west;
     private Leaf leaf;
+    private Enemy enemy;
 
 
     public Location(String name, String description, String north, String south, String east, String west){
@@ -23,12 +26,15 @@ public class Location {
         this.east = east;
         this.west = west;
         setLeaf();
+
     }
 
     private void setLeaf() {
         Random random = new Random();
 
             this.leaf = new Leaf();
+    }
+    private void setRandomSpawnedEnemy(){
 
     }
 
@@ -59,4 +65,9 @@ public class Location {
     public String getWest() {
         return west;
     }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
+    public void setEnemy(Enemy enemy){ this.enemy = enemy;}
 }

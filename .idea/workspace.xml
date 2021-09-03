@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b401f0b-e7b7-494e-937e-09eeadccd748" name="Default Changelist" comment="" />
+    <list default="true" id="b7cca432-aac2-4026-a46e-9424012b981d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,20 +14,18 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit4 Test Class" />
-        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1xEGnvdvjArczQWXXNl4rndYv4P" />
+  <component name="ProjectId" id="1xb3uPdpL5Jp2XhFXAjq7cXkrA3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -34,61 +35,92 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE" value="right" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE" value="left" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="228" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/library" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.game.view" />
+      <recent name="com.game.model.engine" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
-      <module name="Java-Practical-Applications" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <module name="AGrubsLife" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.game.view.GameWindow" />
+    <configuration name="LogicEngineTest.processCommand_shouldLevelCaterpillarUp_whenEatingLeavesAtLevelOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Java-Practical-Applications" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.game.view.*" />
+          <option name="PATTERN" value="com.game.model.engine.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.LogicEngineTest" />
+      <option name="METHOD_NAME" value="processCommand_shouldLevelCaterpillarUp_whenEatingLeavesAtLevelOne" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PanelTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.game.view.PanelTest" />
+    <configuration name="LogicEngineTest.processCommand_shouldUpdateCaterpillarExp_whenCaterpillarEatsAndIsNotLevelTwo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Java-Practical-Applications" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.game.view.*" />
+          <option name="PATTERN" value="com.game.model.engine.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.LogicEngineTest" />
+      <option name="METHOD_NAME" value="processCommand_shouldUpdateCaterpillarExp_whenCaterpillarEatsAndIsNotLevelTwo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogicEngineTest.processCommand_shouldUpdateCaterpillarLastAction_whenCaterpillarIsDead" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Java-Practical-Applications" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.LogicEngineTest" />
+      <option name="METHOD_NAME" value="processCommand_shouldUpdateCaterpillarLastAction_whenCaterpillarIsDead" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogicEngineTest.processCommand_shouldUpdateNotCaterpillarExp_whenCaterpillarEatsAndIsOverLevelOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Java-Practical-Applications" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.LogicEngineTest" />
+      <option name="METHOD_NAME" value="processCommand_shouldUpdateNotCaterpillarExp_whenCaterpillarEatsAndIsOverLevelOne" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -96,21 +128,27 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
-        <item itemvalue="Application.PanelTest" />
-        <item itemvalue="Application.GameWindow" />
+        <item itemvalue="JUnit.LogicEngineTest.processCommand_shouldLevelCaterpillarUp_whenEatingLeavesAtLevelOne" />
+        <item itemvalue="JUnit.LogicEngineTest.processCommand_shouldUpdateNotCaterpillarExp_whenCaterpillarEatsAndIsOverLevelOne" />
+        <item itemvalue="JUnit.LogicEngineTest.processCommand_shouldUpdateCaterpillarExp_whenCaterpillarEatsAndIsNotLevelTwo" />
+        <item itemvalue="JUnit.LogicEngineTest.processCommand_shouldUpdateCaterpillarLastAction_whenCaterpillarIsDead" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0b401f0b-e7b7-494e-937e-09eeadccd748" name="Default Changelist" comment="" />
-      <created>1629913004969</created>
+      <changelist id="b7cca432-aac2-4026-a46e-9424012b981d" name="Changes" comment="" />
+      <created>1630610192472</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1629913004969</updated>
+      <updated>1630610192472</updated>
+      <workItem from="1630610194559" duration="3075000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -123,15 +161,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NumberFormatException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

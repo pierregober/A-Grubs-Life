@@ -13,6 +13,7 @@ import com.game.view.ViewWindow;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Game {
@@ -32,23 +33,21 @@ public class Game {
 
     //This method is designed to instantiate the necessary fields of a Game object.
     private void setUpComponents(){
-        this.locations = populateLocations();
         this.enemies = populateEnemies();
+        this.locations = populateLocations();
         this.caterpillar = new Caterpillar(100,0,0);
         this.processor = new LogicEngine(caterpillar,locations, enemies);
         this.caterpillar.setCurrentLocation(locations.get("GENESIS"));
         this.viewWindow = new ViewWindow(caterpillar, processor);
     }
     //This class controls the game loop. As the user inputs information the view will be updated.
+    //I want an instructions panel to be read and you cant start the game until you hit
     private void run(){
-        boolean running = true;
-        viewWindow.welcomeMessage();
-        viewWindow.giveInstructions();
         int counter = 0;
-
-        while (running){
-            viewWindow.updateCaterpillarStatus();
-            caterpillar.healthRegenerator(counter++);
+        viewWindow.welcomeMessage();
+        while (true){
+                viewWindow.updateCaterpillarStatus();
+                caterpillar.healthRegenerator(counter++);
         }
 
     }
@@ -64,6 +63,7 @@ public class Game {
                 locationFields = myReader.nextLine().split(",");
 
                 Location loc = new Location(locationFields[0].trim(),locationFields[ 1].trim(), locationFields[ 2].trim(), locationFields[ 3].trim(), locationFields[4].trim(),locationFields[ 5].trim() );
+                loc.setEnemy(enemies.get(locationFields[0].trim().toLowerCase(Locale.ROOT)));
                 locations.put(locationFields[0].trim(), loc);
             }
         }catch (FileNotFoundException e){
@@ -83,7 +83,7 @@ public class Game {
             while(myReader.hasNextLine()){
                 enemyFields = myReader.nextLine().split(",");
 
-                Enemy enemy = new Enemy(enemyFields[0].trim(),Integer.parseInt(enemyFields[ 1].trim()), Integer.parseInt(enemyFields[ 2].trim()), Integer.parseInt(enemyFields[ 3].trim()), Boolean.parseBoolean(enemyFields[4].trim()), Boolean.parseBoolean(enemyFields[5].trim()), enemyFields[6].trim());
+                Enemy enemy = new Enemy(enemyFields[0].trim(),Integer.parseInt(enemyFields[ 1].trim()), Integer.parseInt(enemyFields[ 2].trim()), Integer.parseInt(enemyFields[ 3].trim()), Boolean.parseBoolean(enemyFields[4].trim()), Boolean.parseBoolean(enemyFields[5].trim()), enemyFields[6].trim(), Boolean.parseBoolean(enemyFields[7].trim()));
                 enemies.put(enemyFields[6].trim(), enemy);
             }
         }catch (FileNotFoundException e){
@@ -91,4 +91,8 @@ public class Game {
         }
         return enemies;
     }
+    public HashMap<String, Enemy> getEnemies() {
+        return enemies;
+    }
+
 }

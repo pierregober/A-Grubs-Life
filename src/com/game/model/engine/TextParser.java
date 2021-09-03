@@ -1,7 +1,6 @@
 package com.game.model.engine;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
 
@@ -23,11 +22,16 @@ public class TextParser {
         nouns.add("EAST");
         nouns.add("WEST");
         nouns.add("ANT");
-        nouns.add("SPIDER");
-        nouns.add("BEES");
+        nouns.add("BEE");
         nouns.add("FLIES");
-        nouns.add("FISH");
+        nouns.add("SQUIRREL");
         nouns.add("COMBAT");
+        nouns.add("GAME");
+        nouns.add("SPIDER");
+        nouns.add("BIRD");
+        nouns.add("RAT");
+        nouns.add("CATERPILLAR");
+
     }
 
     private void populateVerbs() {
@@ -38,20 +42,25 @@ public class TextParser {
         verbs.add("HIDE");
         verbs.add("ATTACK");
         verbs.add("HELP");
+        verbs.add("START");
+        verbs.add("RUN");
+        verbs.add("GODMODE");
     }
 
 
     //If we dont get a viable verb and noun then we will pass null.
     public ArrayList<String> parseInput(String unParsedCommand) {
         String[] result;
-        result = unParsedCommand.toUpperCase(Locale.ROOT).split(" ");
-        ArrayList<String> list = new ArrayList<>();
+        if(unParsedCommand != null) {
+            result = unParsedCommand.toUpperCase(Locale.ROOT).split(" ");
+            ArrayList<String> list = new ArrayList<>();
 
-        for(String str : result){
-            if(verbs.contains(str.toUpperCase(Locale.ROOT)) || nouns.contains(str.toUpperCase(Locale.ROOT))){
-                list.add(str);
-                if(list.size() == 2){
-                    return list;
+            for (String str : result) {
+                if (verbs.contains(str.toUpperCase(Locale.ROOT)) || nouns.contains(str.toUpperCase(Locale.ROOT))) {
+                    list.add(str);
+                    if (list.size() == 2) {
+                        return list;
+                    }
                 }
             }
         }
