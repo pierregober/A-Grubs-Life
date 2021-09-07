@@ -33,6 +33,9 @@ public class ViewWindow {
     private PanelListener listener;
     private TitledBorder tb;
     private TitledBorder eb;
+    private JPanel instructions;
+    private JLabel instDesc;
+
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
         this.processor = processor;
@@ -40,11 +43,27 @@ public class ViewWindow {
         setUpComponents();
     }
     public void welcomeMessage(){
-        descriptionLabel.setText("<html>  " +
-                "<h1>Welcome to A Grub's Life!</h1><br>" +
-                "<p> "+ giveInstructions() +"</p>" +
-                " </html>");
+        this.instructions = new JPanel();
+        this.instDesc = new JLabel();
 
+        instDesc.setText("<html>\n" +
+                "<body>\n" +
+                "\n" +
+                "<h2>Instructions</h2>\n" +
+                "\n" +
+                "<ol>\n" +
+                "  <li>You must enter a verb and a noun to direct the caterpillar. Ex. eat leaf</li>\n" +
+                "<br>" +
+                "  <li>Level one goal is to eat leaf and avoid enemies</li>\n" +
+                "<br>" +
+                "  <li>Level two is to fight enemies and befriend ants to gain experience. </li>\n" +
+                "<br>" +
+                "  <li>Level three is to fight the boss (squirrel) and save your mate. </li>\n" +
+                "</ol>  \n" +
+                "\n" +
+                "</body>\n" +
+                "</html>");
+        instructions.add(instDesc);
     }
     public  String getInput(){
         return this.input;
@@ -56,9 +75,6 @@ public class ViewWindow {
             this.window.repaint();
     }
 
-    private String giveInstructions(){
-        return "You are a newborn caterpillar with three things on his mind.";
-    }
     private void updateDescriptionPanel(){
         String location = caterpillar.getCurrentLocation().getName().toLowerCase();
         String desc = caterpillar.getCurrentLocation().getDescription().toLowerCase();
@@ -73,7 +89,7 @@ public class ViewWindow {
     }
     //==================SETUP METHODS============================
     private void setUpComponents(){
-
+        welcomeMessage();
         setUpInputPanel();
         setUpStatPanel();
         setUpDescriptionPanel();
@@ -86,7 +102,8 @@ public class ViewWindow {
         this.window.add(statPanel, BorderLayout.EAST);
         this.window.add(descriptionPanel, BorderLayout.CENTER);
         this.window.add(inputPanel, BorderLayout.SOUTH);
-        this.window.setPreferredSize(new Dimension(1000,800));
+        this.window.add(instructions, BorderLayout.WEST);
+        this.window.setPreferredSize(new Dimension(1500,1000));
         this.window.setVisible(true);
         this.window.setResizable(false);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -243,7 +260,7 @@ public class ViewWindow {
                 "<li>hide</li>" +
                 "<li>attack</li>" +
                 "<li>eat</li>" +
-                "<li>tame</li>" +
+                "<li>help</li>" +
                 "</ul></body></html>");
         labelVerbs.setBorder(BorderFactory.createTitledBorder("Actions"));
     }
