@@ -56,9 +56,11 @@ public class ViewWindow {
                 "<br>" +
                 "  <li>Level one goal is to eat leaf and avoid enemies</li>\n" +
                 "<br>" +
-                "  <li>Level two is to fight enemies and befriend ants to gain experience. </li>\n" +
+                "  <li>Level two is to fight enemies and befriend ants to gain experience (help ant). </li>\n" +
                 "<br>" +
                 "  <li>Level three is to fight the boss (squirrel) and save your mate. </li>\n" +
+                "<br>" +
+                "  <li>For easy game play enter (go godmode) </li>\n" +
                 "</ol>  \n" +
                 "\n" +
                 "</body>\n" +
