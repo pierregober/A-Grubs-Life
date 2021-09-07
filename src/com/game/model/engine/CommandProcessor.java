@@ -28,15 +28,23 @@ public class CommandProcessor {
             String focus = strings.get(1).toUpperCase(Locale.ROOT);
             this.misfire = true;
             processCommand(action,focus); // passing in to either the combat system or command menu..
+
+
         } else {
            processTypo();
         }
     }
 
-
+    private void processGodMode(String focus){
+          if(focus.equalsIgnoreCase("GODMODE")){
+          caterpillar.setHealth(9999999);
+          caterpillar.setStrength(99999999);
+          caterpillar.setLastAction("The Power of God him/her/itself (god is in an existential crisis) flows through you");
+      }
+    }
     private void processCommand(String action, String focus){
 
-        if ( enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase()).isInCombat()) {
+        if ( enemies.containsKey(enemies.get(caterpillar.getCurrentLocation().getName())) && enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase()).isInCombat()) {
             runCombatCheck(action,focus);
         } else {
             runProcessMenu(action,focus);
@@ -60,6 +68,7 @@ public class CommandProcessor {
         switch(action.toUpperCase(Locale.ROOT)){
             case "GO":
                 processNavigation(focus.toLowerCase());
+                processGodMode(focus);
                 break;
             case "EAT":
                 processEating(focus);
@@ -85,13 +94,6 @@ public class CommandProcessor {
         caterpillar.setLastAction("I can't process that, try again with a verb/noun combo of relevant game objects.");
     }
 
-
-
-
-
-
-
-
     private void processAttack( String focus) {
 
         enemy.setInCombat(true);
@@ -113,17 +115,32 @@ public class CommandProcessor {
             }
             }
         }
-        if(enemy.getHealth() == 0){
+        if(enemy.getHealth() <= 0){
             enemy.setHidden(true);
             enemy.setInCombat(false);
-            caterpillar.setLastAction("You have defeated the mighty " + enemy.getName());
+            caterpillar.setExperience(caterpillar.getExperience() + 10);
+            boolean check = caterpillar.getLevel() == 2;
+            if(enemy.getName().equalsIgnoreCase("squirrel")){
+                caterpillar.setWinner(true);
+            }
+            caterpillar.levelUp();
+            if(check){
+                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() + " \n " + caterpillar.getLastAction());
+            } else if (caterpillar.isWinner()){
+                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() + " \n" + "After beating the boss you find your mate! Together you can find the tree and live happily ever after \n ending the game" );
+            }else{
+                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() );
+            }
+
+
+
         }
         else{
             //TODO: print status of enemy
         }
         enemyAttack();
-        if(caterpillar.getHealth() == 0){
-            //TODO: You have died.
+        if(caterpillar.getHealth() <= 0){
+            caterpillar.setLastAction("Oh dear you have died.");
         }
     }
 
@@ -178,6 +195,19 @@ public class CommandProcessor {
     }
 
     private void processHide(String focus) {
+
+        String randomBird = enemy.displayBirdRandomly();
+        if (randomBird.equals("Bird")) {
+            if ((enemy.getName().equalsIgnoreCase("Bird")) && (caterpillar.getLevel() == 1) && (focus.equalsIgnoreCase("CATERPILLAR"))) {
+                caterpillar.setHealth(caterpillar.getHealth() + 30);
+                caterpillar.setLastAction("Great job! You are hidden from the bird");
+                this.misfire = false;
+            }
+        }
+        else if ((enemy.getName().equalsIgnoreCase("Bird")) && (caterpillar.getLevel() == 1) && (focus.equalsIgnoreCase("CATERPILLAR"))) {
+            caterpillar.setLastAction("The closest place to hide is in 2 mile");
+            this.misfire = false;
+        }
     }
 
 
@@ -185,7 +215,11 @@ public class CommandProcessor {
         switch(focus.toLowerCase()){
             case "leaf":
                 caterpillar.eat(caterpillar.getCurrentLocation().getLeaf());
-                caterpillar.setLastAction("You eat a leaf!");
+
+                if(!caterpillar.getLastAction().contains("level")){
+                    caterpillar.setLastAction("You eat a leaf!");
+                }
+
                 misfire = false;
         }
     }
@@ -212,6 +246,11 @@ public class CommandProcessor {
                 if(!caterpillar.getCurrentLocation().getEast().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getEast().trim()));
                     caterpillar.setLastAction("You travel east.");
+
+                    if(caterpillar.isWinner()){
+                        caterpillar.setLastAction("You have made it to safe refuge with your mate! Congratulations you've won the game. ");
+                    }
+
                     misfire = false;
                 }
                 break;
