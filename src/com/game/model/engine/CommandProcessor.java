@@ -29,6 +29,7 @@ public class CommandProcessor {
             this.misfire = true;
             processCommand(action,focus); // passing in to either the combat system or command menu..
 
+
         } else {
            processTypo();
         }
@@ -214,9 +215,11 @@ public class CommandProcessor {
         switch(focus.toLowerCase()){
             case "leaf":
                 caterpillar.eat(caterpillar.getCurrentLocation().getLeaf());
+
                 if(!caterpillar.getLastAction().contains("level")){
                     caterpillar.setLastAction("You eat a leaf!");
                 }
+
                 misfire = false;
         }
     }
@@ -230,6 +233,7 @@ public class CommandProcessor {
                     misfire = false;
                 }
 
+
                 break;
             case "south":
                 if(!caterpillar.getCurrentLocation().getSouth().equalsIgnoreCase("DEAD_END")){
@@ -242,9 +246,11 @@ public class CommandProcessor {
                 if(!caterpillar.getCurrentLocation().getEast().equalsIgnoreCase("DEAD_END")){
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getEast().trim()));
                     caterpillar.setLastAction("You travel east.");
+
                     if(caterpillar.isWinner()){
                         caterpillar.setLastAction("You have made it to safe refuge with your mate! Congratulations you've won the game. ");
                     }
+
                     misfire = false;
                 }
                 break;
