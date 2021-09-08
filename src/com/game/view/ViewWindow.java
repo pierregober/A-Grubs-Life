@@ -16,25 +16,26 @@ import java.net.URISyntaxException;
 
 public class ViewWindow {
 
+    private Caterpillar caterpillar;
+
     private JFrame window;
     private JPanel statPanel;
     private JPanel descriptionPanel;
     private JPanel inputPanel;
+    private JPanel instructions;
     private JLabel caterpillarStatLabel;
     private JLabel enemyStatLabel;
-    private JTextField inputField;
-    private JLabel descriptionLabel;
-    private Caterpillar caterpillar;
-    private String input;
-    private LogicEngine processor;
+    private JLabel instDesc;
     private JLabel labelVerbs;
     private JLabel labelNouns;
     private JLabel lastMove;
+    private JLabel descriptionLabel;
+    private JTextField inputField;
+    private LogicEngine processor;
     private PanelListener listener;
     private TitledBorder tb;
     private TitledBorder eb;
-    private JPanel instructions;
-    private JLabel instDesc;
+    private String input;
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
@@ -105,19 +106,20 @@ public class ViewWindow {
         this.window.add(descriptionPanel, BorderLayout.CENTER);
         this.window.add(inputPanel, BorderLayout.SOUTH);
         this.window.add(instructions, BorderLayout.WEST);
-        this.window.setPreferredSize(new Dimension(1500,1000));
+        this.window.setPreferredSize(new Dimension(850,650));
         this.window.setVisible(true);
-        this.window.setResizable(false);
+        this.window.setResizable(true);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.window.pack();
     }
 
+    //Middle panel which links to the wiki page
     private void setUpDescriptionPanel() {
         this.descriptionPanel = new JPanel();
         this.descriptionLabel = new JLabel();
         listener = new PanelListener();
         descriptionLabel.addMouseListener(listener);
-        descriptionPanel.setPreferredSize(new Dimension(700,600));
+        descriptionPanel.setPreferredSize(new Dimension(250,600));
         descriptionPanel.setBackground(new Color(255, 255, 255));
         descriptionPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
         descriptionPanel.add(descriptionLabel);
@@ -129,7 +131,7 @@ public class ViewWindow {
         this.caterpillarStatLabel = new JLabel();
         this.enemyStatLabel = new JLabel();
         statPanel.setLayout( new BorderLayout());
-        statPanel.setPreferredSize(new Dimension(300,600));
+        statPanel.setPreferredSize(new Dimension(250,600));
         statPanel.setLayout(new GridLayout(0,1));
         setCaterpillarStats();
         setEnemyStats();
@@ -190,11 +192,11 @@ public class ViewWindow {
                         "<style>\n" +
                         "table {\n" +
                         "color:green;\n" +
-                        "font-size:20px;\n" +
+                        "font-size:15px;\n" +
                         "padding:15px;\n" +
                         "}\n" +
                         "</style>\n" +
-                        "<table style=\"width:5%\">\n" +
+                        "<table style=\"width:2%\">\n" +
                         "<tr>\n" +
                         "<td style=\"text-align: left;\">Strength: </td><td>" + caterpillar.getCurrentLocation().getEnemy().getStrength() +
                 "</td>\n" +
@@ -297,16 +299,16 @@ public class ViewWindow {
 
     private class PanelListener implements MouseListener{
 
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                try {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            try {
 
-                    Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Caterpillar"));
+                Desktop.getDesktop().browse(new URI("https://en.wikipedia.org/wiki/Caterpillar"));
 
-                } catch (IOException | URISyntaxException e1) {
-                    e1.printStackTrace();
-                }
+            } catch (IOException | URISyntaxException e1) {
+                e1.printStackTrace();
             }
+        }
 
         @Override
         public void mousePressed(MouseEvent e) {
