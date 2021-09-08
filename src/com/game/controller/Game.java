@@ -24,16 +24,22 @@ public class Game {
     private Caterpillar caterpillar;
     private LogicEngine processor;
     private ViewWindow viewWindow;
+
     public Game() {
 
     }
-    //This should be called by the client to start a new game.
+
+    /**
+     *   Called by the client to start a new game.
+     */
     public void start(){
         setUpComponents();
         run();
     }
 
-    //This method is designed to instantiate the necessary fields of a Game object.
+    /**
+     * Instantiates the necessary fields of a Game object.
+     */
     private void setUpComponents(){
         this.enemies = populateEnemies();
         this.locations = populateLocations();
@@ -42,19 +48,26 @@ public class Game {
         this.caterpillar.setCurrentLocation(locations.get("GENESIS"));
         this.viewWindow = new ViewWindow(caterpillar, processor);
     }
-    //This class controls the game loop. As the user inputs information the view will be updated.
-    //I want an instructions panel to be read and you cant start the game until you hit
+
+    /**
+     *  Controls the game loop.
+     *  View updates with user input.
+     *
+     */
     private void run(){
         int counter = 0;
         viewWindow.welcomeMessage();
-        while (true){
-                viewWindow.updateCaterpillarStatus();
-                caterpillar.healthRegenerator(counter++);
+        while (true) {
+            viewWindow.updateCaterpillarStatus();
+            caterpillar.healthRegenerator(counter++);
         }
 
     }
 
-    //This is a private helper method to read in all of the locations in a text file and parse them to ingame Location objects.
+    /**
+     * Generates location objects from text file data
+     * @return hashmap of location objects (String, Location)
+     */
     private HashMap<String,Location> populateLocations(){
         HashMap<String,Location> locations = new HashMap<>();
         String[] locationFields;
@@ -82,19 +95,21 @@ public class Game {
             br.close();
             myReader.close();
             inputStream.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
-            }
+        }
         return locations;
     }
-    //This is a private helper method to populate Enemy objects from an external text file.
-    private HashMap<String,Enemy> populateEnemies(){
+
+    /**
+     * Populates Enemy objects from an external text file.
+     * @return Hashmap of Enemy objects (String, Enemy)
+     */
+    private HashMap<String,Enemy> populateEnemies() {
         HashMap<String, Enemy> enemies = new HashMap<>();
 
         String[] enemyFields;
-        try{
-
-
+        try {
             InputStream inputStream = getClass().getResourceAsStream("enemies.txt");
             InputStreamReader myReader = new InputStreamReader(inputStream);
             BufferedReader br = new BufferedReader(myReader);
@@ -110,11 +125,16 @@ public class Game {
             br.close();
             myReader.close();
             inputStream.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return enemies;
     }
+
+    /**
+     * Get a hashmap of enemies in the game
+     * @return Hashmap of Enemy objects (String, Enemy)
+     */
     public HashMap<String, Enemy> getEnemies() {
         return enemies;
     }
