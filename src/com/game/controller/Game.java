@@ -3,20 +3,15 @@
  */
 package com.game.controller;
 
-
-import com.game.client.Client;
 import com.game.model.engine.LogicEngine;
 import com.game.model.materials.Caterpillar;
 import com.game.model.materials.Enemy;
 import com.game.model.materials.Location;
 import com.game.view.ViewWindow;
-import com.sun.tools.javac.Main;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Scanner;
 
 public class Game {
     private HashMap<String, Location> locations;
@@ -71,23 +66,15 @@ public class Game {
     private HashMap<String,Location> populateLocations(){
         HashMap<String,Location> locations = new HashMap<>();
         String[] locationFields;
-        //                locationFields = myReader.nextLine().split(",");
-//
-//                Location loc = new Location(locationFields[0].trim(),locationFields[ 1].trim(), locationFields[ 2].trim(), locationFields[ 3].trim(), locationFields[4].trim(),locationFields[ 5].trim() );
-//                loc.setEnemy(enemies.get(locationFields[0].trim().toLowerCase(Locale.ROOT)));
-//                locations.put(locationFields[0].trim(), loc);
-//        File file = new File(getClass().getResource("src/com/game/locations.txt").toURI());
-//            Scanner myReader = new Scanner(file);
-//            while(myReader.hasNextLine()){
         try{
             InputStream inputStream = getClass().getResourceAsStream("locations.txt");
             InputStreamReader myReader = new InputStreamReader(inputStream);
             BufferedReader br = new BufferedReader(myReader);
             String line = null;
             while((line = br.readLine() )!= null){
-                locationFields = line.split(",");
+                locationFields = line.split(":");
 
-                Location loc = new Location(locationFields[0].trim(),locationFields[ 1].trim(), locationFields[ 2].trim(), locationFields[ 3].trim(), locationFields[4].trim(),locationFields[ 5].trim() );
+                Location loc = new Location(locationFields[0].trim(),locationFields[1].trim(), locationFields[2].trim(), locationFields[3].trim(), locationFields[4].trim(),locationFields[5].trim() );
                 loc.setEnemy(enemies.get(locationFields[0].trim().toLowerCase(Locale.ROOT)));
                 locations.put(locationFields[0].trim(), loc);
             }
@@ -107,7 +94,6 @@ public class Game {
      */
     private HashMap<String,Enemy> populateEnemies() {
         HashMap<String, Enemy> enemies = new HashMap<>();
-
         String[] enemyFields;
         try {
             InputStream inputStream = getClass().getResourceAsStream("enemies.txt");
