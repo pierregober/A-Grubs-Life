@@ -1,6 +1,7 @@
 package com.game.view;
 
 import com.game.model.engine.LogicEngine;
+import com.game.model.engine.MapGenerator;
 import com.game.model.materials.Caterpillar;
 
 import javax.swing.*;
@@ -35,10 +36,12 @@ public class ViewWindow {
     private TitledBorder eb;
     private JPanel instructions;
     private JLabel instDesc;
+    private MapGenerator map;
 
-    public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
+    public ViewWindow(Caterpillar caterpillar, LogicEngine processor, MapGenerator map) {
         this.caterpillar = caterpillar;
         this.processor = processor;
+        this.map = map;
 
         setUpComponents();
     }
@@ -70,11 +73,15 @@ public class ViewWindow {
     public  String getInput(){
         return this.input;
     }
+
     public void updateCaterpillarStatus(){
             updateLastMove();
             updateDescriptionPanel();
             updateStatPanel();
             this.window.repaint();
+            //Endless loop of reading the file. Beware
+//            map.makeFile();
+//            map.displayFile("currentLocation.txt");
     }
 
     private void updateDescriptionPanel(){
@@ -288,6 +295,7 @@ public class ViewWindow {
                 "<body></html>");
     }
     private void updateLastMove(){
+
         String lastAction = caterpillar.getLastAction();
         //In here we should add a getLastAction table element, this will let the user know the last thing they sucessfuly did... this variable should be updated in every command process function
         lastMove.setText("<html> "+

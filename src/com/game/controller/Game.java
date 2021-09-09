@@ -6,6 +6,7 @@ package com.game.controller;
 
 import com.game.client.Client;
 import com.game.model.engine.LogicEngine;
+import com.game.model.engine.MapGenerator;
 import com.game.model.materials.Caterpillar;
 import com.game.model.materials.Enemy;
 import com.game.model.materials.Location;
@@ -24,6 +25,7 @@ public class Game {
     private Caterpillar caterpillar;
     private LogicEngine processor;
     private ViewWindow viewWindow;
+    private MapGenerator map;
     public Game() {
 
     }
@@ -40,13 +42,15 @@ public class Game {
         this.caterpillar = new Caterpillar(100,0,0);
         this.processor = new LogicEngine(caterpillar,locations, enemies);
         this.caterpillar.setCurrentLocation(locations.get("GENESIS"));
-        this.viewWindow = new ViewWindow(caterpillar, processor);
+        this.map = new MapGenerator(caterpillar);
+        this.viewWindow = new ViewWindow(caterpillar, processor, map);
     }
     //This class controls the game loop. As the user inputs information the view will be updated.
     //I want an instructions panel to be read and you cant start the game until you hit
     private void run(){
         int counter = 0;
         viewWindow.welcomeMessage();
+
         while (true){
                 viewWindow.updateCaterpillarStatus();
                 caterpillar.healthRegenerator(counter++);
@@ -118,5 +122,45 @@ public class Game {
     public HashMap<String, Enemy> getEnemies() {
         return enemies;
     }
+
+//    public void makeFile() {
+//        try {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("map.txt")));
+//            PrintWriter writer = new PrintWriter(new BufferedOutputStream(new FileOutputStream("C:\\StudentWork\\Sprint\\A-Grubs-Life\\src\\com\\game\\controller\\currentLocation.txt")));
+//
+//            String line;
+//
+//            while((line = br.readLine() )!= null){
+//                if (line.contains(("[" + caterpillar.getCurrentLocation().getName() + "]"))) {
+//                    line = line.replace("[" + caterpillar.getCurrentLocation().getName() + "]", "<PLAYER>");
+//                }
+//                writer.println(line);
+//            }
+//            writer.close();
+//            br.close();
+//            System.out.println("File Created");
+//        }
+//        catch (IOException e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
+//
+//    private void displayFile(String map) {
+//        try {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(map)));
+//            String line;
+//
+//            System.out.println("DISPLAY FILE FUNCTION");
+//            while((line = br.readLine() )!= null){
+//                System.out.println(line);
+//            }
+//        }
+//        catch (FileNotFoundException e){
+//            System.out.println("cannot find file");
+//        }
+//        catch (IOException e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
 }
