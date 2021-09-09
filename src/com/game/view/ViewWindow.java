@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Locale;
 
 
 public class ViewWindow {
@@ -24,6 +25,7 @@ public class ViewWindow {
     private JLabel enemyStatLabel;
     private JTextField inputField;
     private JLabel descriptionLabel;
+    private JEditorPane descriptionArea;
     private Caterpillar caterpillar;
     private String input;
     private LogicEngine processor;
@@ -41,6 +43,7 @@ public class ViewWindow {
         this.processor = processor;
 
         setUpComponents();
+        updateDescriptionPanel();
     }
     public void welcomeMessage(){
         this.instructions = new JPanel();
@@ -72,15 +75,14 @@ public class ViewWindow {
     }
     public void updateCaterpillarStatus(){
             updateLastMove();
-            updateDescriptionPanel();
             updateStatPanel();
             this.window.repaint();
     }
 
     private void updateDescriptionPanel(){
-        String location = caterpillar.getCurrentLocation().getName().toLowerCase();
-        String desc = caterpillar.getCurrentLocation().getDescription().toLowerCase();
-        descriptionLabel.setText("<html> " +
+        String location = caterpillar.getCurrentLocation().getName().toUpperCase();
+        String desc = caterpillar.getCurrentLocation().getDescription();
+        descriptionArea.setText("<html> " +
                 "<style>" +
                 "p {padding-bottom: 280px }" +
                 "</style>" +
@@ -89,6 +91,7 @@ public class ViewWindow {
                 "<p> " + desc + "</p><br><br><br><br>" +
                 "  </html>\n" );
     }
+
     //==================SETUP METHODS============================
     private void setUpComponents(){
         welcomeMessage();
@@ -114,13 +117,21 @@ public class ViewWindow {
 
     private void setUpDescriptionPanel() {
         this.descriptionPanel = new JPanel();
-        this.descriptionLabel = new JLabel();
+        descriptionPanel.setLayout(new BorderLayout());
+        //this.descriptionLabel = new JLabel();
         listener = new PanelListener();
-        descriptionLabel.addMouseListener(listener);
+//        descriptionLabel.addMouseListener(listener);
+        this.descriptionArea = new JEditorPane();
+        descriptionArea.setContentType("text/html");
+        descriptionArea.addMouseListener(listener);
+//        descriptionArea.setLineWrap(true);
+//        descriptionArea.setWrapStyleWord(true);
+        descriptionArea.setEditable(false);
         descriptionPanel.setPreferredSize(new Dimension(700,600));
         descriptionPanel.setBackground(new Color(255, 255, 255));
         descriptionPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
-        descriptionPanel.add(descriptionLabel);
+//        descriptionPanel.add(descriptionLabel);
+        descriptionPanel.add(descriptionArea);
 
     }
 
@@ -184,7 +195,7 @@ public class ViewWindow {
                 "</html>");
 
 
-    if(caterpillar.getCurrentLocation().getEnemy() != null){
+    if(caterpillar.getCurrentLocation().getEnemy() != null) {
         enemyStatLabel.setText(
                 "<html>\n" +
                         "<style>\n" +
@@ -276,6 +287,7 @@ public class ViewWindow {
             this.input =  inputField.getText();
             processor.processCommand(getInput());
             inputField.setText("");
+            updateDescriptionPanel();
 
 
         });
@@ -287,6 +299,7 @@ public class ViewWindow {
                 "                                  " +
                 "<body></html>");
     }
+
     private void updateLastMove(){
         String lastAction = caterpillar.getLastAction();
         //In here we should add a getLastAction table element, this will let the user know the last thing they sucessfuly did... this variable should be updated in every command process function
