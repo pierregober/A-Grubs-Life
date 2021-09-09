@@ -31,7 +31,6 @@ public class TextParser {
         nouns.add("BIRD");
         nouns.add("RAT");
         nouns.add("CATERPILLAR");
-
     }
 
     private void populateVerbs() {
