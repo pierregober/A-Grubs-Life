@@ -41,6 +41,7 @@ public class TextParser {
         verbs.add("HIDE");
         verbs.add("ATTACK");
         verbs.add("HELP");
+        verbs.add("LOOK");
         verbs.add("START");
         verbs.add("RUN");
         verbs.add("GODMODE");

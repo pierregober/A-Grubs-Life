@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Locale;
 
 
 public class ViewWindow {
@@ -32,22 +33,23 @@ public class ViewWindow {
     private JLabel caterpillarStatLabel;
     private JLabel enemyStatLabel;
     private JLabel instDesc;
+    private JTextField inputField;
+    private JEditorPane descriptionArea;
+    private String input;
+    private LogicEngine processor;
     private JLabel labelVerbs;
     private JLabel labelNouns;
     private JLabel lastMove;
-    private JLabel descriptionLabel;
-    private JTextField inputField;
-    private LogicEngine processor;
     private PanelListener listener;
     private TitledBorder tb;
     private TitledBorder eb;
-    private String input;
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
         this.processor = processor;
 
         setUpComponents();
+        updateDescriptionPanel();
     }
 
     public void welcomeMessage() {
@@ -63,7 +65,6 @@ public class ViewWindow {
 
     public void updateCaterpillarStatus() {
         updateLastMove();
-        updateDescriptionPanel();
         updateStatPanel();
         this.window.repaint();
     }
@@ -75,7 +76,7 @@ public class ViewWindow {
         data.put("{{desc}}", caterpillar.getCurrentLocation().getDescription().toLowerCase());
 
         //Step 2: Set the desc label that calls our helper method
-        descriptionLabel.setText(readHTML("description.html", data));
+        descriptionArea.setText(readHTML("description.html", data));
     }
 
     //==================SETUP METHODS============================
@@ -101,17 +102,18 @@ public class ViewWindow {
         this.window.pack();
     }
 
-    //Middle panel which links to the wiki page
     private void setUpDescriptionPanel() {
         this.descriptionPanel = new JPanel();
-        this.descriptionLabel = new JLabel();
+        descriptionPanel.setLayout(new BorderLayout());
         listener = new PanelListener();
-        descriptionLabel.addMouseListener(listener);
-        descriptionPanel.setPreferredSize(new Dimension(250, 600));
+        this.descriptionArea = new JEditorPane();
+        descriptionArea.setContentType("text/html");
+        descriptionArea.addMouseListener(listener);
+        descriptionArea.setEditable(false);
+        descriptionPanel.setPreferredSize(new Dimension(700,600));
         descriptionPanel.setBackground(new Color(255, 255, 255));
         descriptionPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
-        descriptionPanel.add(descriptionLabel);
-
+        descriptionPanel.add(descriptionArea);
     }
 
     private void setUpStatPanel() {
@@ -207,6 +209,7 @@ public class ViewWindow {
             this.input = inputField.getText();
             processor.processCommand(getInput());
             inputField.setText("");
+            updateDescriptionPanel();
         });
     }
 
