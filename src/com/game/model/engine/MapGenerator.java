@@ -32,15 +32,14 @@ public class MapGenerator {
         }
     }
 
-    public void displayFile(String map) {
+    public void displayFile() {
+        File file = new File("C:\\StudentWork\\Sprint\\A-Grubs-Life\\src\\com\\game\\model\\engine\\currentLocation.txt");
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(map)));
-            String line;
+            BufferedReader br = new BufferedReader(new FileReader(file));
 
-            System.out.println("DISPLAY FILE FUNCTION");
-            while((line = br.readLine() )!= null){
-                System.out.println(line);
-            }
+            String st;
+            while ((st = br.readLine()) != null)
+                System.out.println(st);
         }
         catch (FileNotFoundException e){
             System.out.println("cannot find file");
@@ -50,4 +49,12 @@ public class MapGenerator {
         }
     }
 
+    public void deleteFile(String file){
+        File myObj = new File(file);
+        if (myObj.delete()) {
+            System.out.println("Deleted the file: " + myObj.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
+        }
+    }
 }

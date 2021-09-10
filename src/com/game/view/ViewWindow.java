@@ -82,6 +82,7 @@ public class ViewWindow {
             //Endless loop of reading the file. Beware
 //            map.makeFile();
 //            map.displayFile("currentLocation.txt");
+//            map.deleteFile("C:\\StudentWork\\Sprint\\A-Grubs-Life\\src\\com\\game\\model\\engine\\currentLocation.txt");
     }
 
     private void updateDescriptionPanel(){
