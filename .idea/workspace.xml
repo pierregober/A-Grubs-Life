@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58bc0c96-7c66-4c68-9206-5fe37b89ad56" name="Default Changelist" comment="">
+    <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/controller/enemies.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/enemies.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/controller/locations.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/locations.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/TextParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/TextParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,39 +12,35 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1xpQ7hQH2wGnBoKFGamPVh1qgdV" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1xpTp3ePeVy2mscaMaQW1RapfVV" />
   <component name="ProjectViewState">
-    <option name="flattenModules" value="true" />
-    <option name="flattenPackages" value="true" />
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="restartRequiresConfirmation" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chris\IdeaProjects\MiniProject\A-Grubs-Life\src\resources\music" />
+    </key>
+  </component>
+  <component name="RunManager">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
       <module name="A-Grubs-Life" />
@@ -66,25 +54,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="A-Grubs-Life.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/A-Grubs-Life.jar" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
-        <item itemvalue="JAR Application.A-Grubs-Life.jar" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="58bc0c96-7c66-4c68-9206-5fe37b89ad56" name="Default Changelist" comment="" />
-      <created>1631049384564</created>
+      <changelist id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="" />
+      <created>1631051214589</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1631049384564</updated>
+      <updated>1631051214589</updated>
     </task>
     <servers />
   </component>
@@ -93,7 +76,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

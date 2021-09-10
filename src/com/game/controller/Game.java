@@ -52,11 +52,11 @@ public class Game {
     private void run(){
         int counter = 0;
         viewWindow.welcomeMessage();
+        playAudio("src/resources/music/forest.wav");
         while (true) {
             viewWindow.updateCaterpillarStatus();
             caterpillar.healthRegenerator(counter++);
         }
-
     }
 
     /**
@@ -123,6 +123,11 @@ public class Game {
      */
     public HashMap<String, Enemy> getEnemies() {
         return enemies;
+    }
+
+    public static void playAudio(String musicFilePath){
+        Thread musicThread = new Thread(new Audio(musicFilePath), "backgroundMusicThread");
+        musicThread.run();
     }
 
 }
