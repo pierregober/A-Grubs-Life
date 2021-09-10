@@ -4,11 +4,11 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Sound implements Runnable{
+public class Audio implements Runnable{
 
     private String musicFilePath;
 
-    public Sound(String musicFilePath) {
+    public Audio(String musicFilePath) {
         this.musicFilePath = musicFilePath;
     }
 
@@ -25,7 +25,7 @@ public class Sound implements Runnable{
         try {
             //Get Audio file
             File file = new File(musicFilePath);
-
+            System.out.println(file.exists());
             //Get Clip that will be use to open and play the sound/music
             Clip clip = AudioSystem.getClip();
 
