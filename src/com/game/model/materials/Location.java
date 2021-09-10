@@ -5,10 +5,6 @@ package com.game.model.materials;
 
 import com.game.controller.Game;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Random;
 
 public class Location {
@@ -73,7 +69,5 @@ public class Location {
     public Enemy getEnemy() {
         return enemy;
     }
-    public void setEnemy(Enemy enemy){ this.enemy = enemy;}
-
-
+    public void setEnemy(Enemy enemy){this.enemy = enemy;}
 }
