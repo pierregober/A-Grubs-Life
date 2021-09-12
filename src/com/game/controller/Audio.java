@@ -25,7 +25,7 @@ public class Audio implements Runnable{
         try {
             //Get Audio file
             File file = new File(musicFilePath);
-            System.out.println(file.exists());
+
             //Get Clip that will be use to open and play the sound/music
             Clip clip = AudioSystem.getClip();
 
@@ -50,6 +50,9 @@ public class Audio implements Runnable{
             //Clip will loop the audio until Clip is stop/closed
             clip.loop(Clip.LOOP_CONTINUOUSLY);
 
+            //Close Audio Streams
+            in.close();
+            ais.close();
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         } catch (UnsupportedAudioFileException e) {
@@ -59,3 +62,4 @@ public class Audio implements Runnable{
         }
     }
 }
+

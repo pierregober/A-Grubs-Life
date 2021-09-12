@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Audio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +29,14 @@
   <component name="ProjectId" id="1xpTp3ePeVy2mscaMaQW1RapfVV" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../" />
@@ -37,10 +44,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chris\IdeaProjects\MiniProject\A-Grubs-Life\src\resources\images" />
       <recent name="C:\Users\chris\IdeaProjects\MiniProject\A-Grubs-Life\src\resources\music" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ViewWindowTest.testAudioFilesAreFoundAndDoesNotReturnNull">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
       <module name="A-Grubs-Life" />
@@ -54,8 +62,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ViewWindowTest.testAudioFilesAreFoundAndDoesNotReturnNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.view" />
+      <option name="MAIN_CLASS_NAME" value="com.game.view.ViewWindowTest" />
+      <option name="METHOD_NAME" value="testAudioFilesAreFoundAndDoesNotReturnNull" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ViewWindowTest.testAudioFilesAreFoundAndDoesNotReturnNull" />
         <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
