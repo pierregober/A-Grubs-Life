@@ -62,9 +62,8 @@ public class ViewWindow {
         this.soundImage = new JPanel();
         instDesc.setText(readHTML("instructions.html", null));
         instructions.add(instDesc);
-        BufferedImage myPicture = null;
         String startGameAudio = "src/resources/images/audio.jpg";
-        myPicture = getAudioFile(startGameAudio);
+        BufferedImage myPicture = getAudioFile(startGameAudio);
         Image imageIcon = new ImageIcon(myPicture).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         JLabel picLabel = new JLabel(new ImageIcon(imageIcon));
         soundImage.add(picLabel);
