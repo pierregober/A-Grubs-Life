@@ -176,9 +176,9 @@ public class ViewWindow {
 
     //START -- PIERRE TESTING
     private void updateMapPanel() {
-        String test = MapGenerator.displayFile("map.txt");
+        String test = MapGenerator.displayFile("currentLocation.txt");
         mapLabel.setText("</html>" + "</body>" + "<div>" +
-                MapGenerator.displayFile("map.txt") +
+                MapGenerator.displayFile("currentLocation.txt") +
                 "</div>" + "</body>" + "</html>");
     }
     //END -- PIERRE TESTING

@@ -19,13 +19,13 @@ public class MapGenerator {
 
             while((line = br.readLine() )!= null){
                 if (line.contains(("[" + caterpillar.getCurrentLocation().getName() + "]"))) {
-                    line = line.replace("[" + caterpillar.getCurrentLocation().getName() + "]", "<PLAYER>");
+                    line = line.replace("[" + caterpillar.getCurrentLocation().getName() + "]", "PLAYER");
                 }
                 writer.println(line);
             }
             writer.close();
             br.close();
-            System.out.println("File Created");
+//            System.out.println("File Created");
         }
         catch (IOException e){
             System.out.println(e.getMessage());
@@ -52,8 +52,10 @@ public class MapGenerator {
 
     public static String displayFile(String map) {
         StringBuilder contentBuilder = new StringBuilder();
+        File file = new File("C:\\StudentWork\\Sprint\\A-Grubs-Life\\src\\com\\game\\model\\engine\\currentLocation.txt");
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(MapGenerator.class.getResourceAsStream(map)));
+//            BufferedReader br = new BufferedReader(new InputStreamReader(MapGenerator.class.getResourceAsStream(map)));
+            BufferedReader br = new BufferedReader(new FileReader(file));
             String line = null;
 
             while((line = br.readLine() )!= null){

@@ -61,17 +61,10 @@ public class Game {
         while (true) {
             viewWindow.updateCaterpillarStatus();
             caterpillar.healthRegenerator(counter++);
-            if (counter % 2934342 == 0) {
-                map.makeFile();
-                map.displayFile();
-                System.out.println(caterpillar.getCurrentLocation().getName());
-            }
-//                map.deleteFile("C:\\StudentWork\\Sprint\\A-Grubs-Life\\src\\com\\game\\model\\engine\\currentLocation.txt");
-            playAudio("src/resources/music/forest.wav");
-            while (true) {
-                viewWindow.updateCaterpillarStatus();
-                caterpillar.healthRegenerator(counter++);
-            }
+            map.makeFile();
+            map.displayFile("currentLocation.txt");
+//            System.out.println(caterpillar.getCurrentLocation().getName());
+//            playAudio("src/resources/music/forest.wav");
         }
     }
 

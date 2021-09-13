@@ -1,5 +1,5 @@
              [WOODS]         [HILL]  -   [BOSS]
                 |              |            |
-[HOLE]   -   [GENESIS]   -   <PLAYER>   -   [FLOWERS]   -   [TREE]
+[HOLE]   -   [GENESIS]   -   [WEB]   -   PLAYER   -   [TREE]
                 |
              [LAKE]
