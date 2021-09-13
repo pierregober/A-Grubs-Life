@@ -43,6 +43,10 @@ public class ViewWindow {
     private PanelListener listener;
     private TitledBorder tb;
     private TitledBorder eb;
+    //START PIERRE TESTING
+    private JPanel mapPanel;
+    private JEditorPane mapLabel;
+    //END PIERRE TESTING
     private MapGenerator map;
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor, MapGenerator map) {
@@ -53,6 +57,19 @@ public class ViewWindow {
         setUpComponents();
         updateDescriptionPanel();
     }
+
+    //START -- PIERRE TESTING
+    private void setUpMapPanel() {
+        this.mapPanel = new JPanel();
+        this.mapLabel = new JEditorPane();
+        mapLabel.setContentType("text/html");
+        mapLabel.setEditable(false);
+        mapPanel.setPreferredSize(new Dimension(200, 200));
+        mapPanel.setBackground(new Color(255, 255, 255));
+        mapPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
+        mapPanel.add(mapLabel);
+    }
+    //END -- PIERRE TESTING
 
     public void welcomeMessage() {
         this.instructions = new JPanel();
@@ -68,11 +85,10 @@ public class ViewWindow {
     public void updateCaterpillarStatus(){
         updateLastMove();
         updateStatPanel();
+        //START -- PIERRE TESTING
+        updateMapPanel();
+        //END -- PIERRE TESTING
         this.window.repaint();
-        //Endless loop of reading the file. Beware
-//            map.makeFile();
-//            map.displayFile("currentLocation.txt");
-//            map.deleteFile("C:\\StudentWork\\Sprint\\A-Grubs-Life\\src\\com\\game\\model\\engine\\currentLocation.txt");
     }
 
     private void updateDescriptionPanel() {
@@ -91,6 +107,9 @@ public class ViewWindow {
         setUpInputPanel();
         setUpStatPanel();
         setUpDescriptionPanel();
+        //START  -- PIERRE TESTING
+        setUpMapPanel();
+        //END -- PIERRE TESTING
         setUpWindow();
     }
 
@@ -98,7 +117,10 @@ public class ViewWindow {
         this.window = new JFrame("A Grub's Life.");
         this.window.setLayout(new BorderLayout());
         this.window.add(statPanel, BorderLayout.EAST);
-        this.window.add(descriptionPanel, BorderLayout.CENTER);
+        this.window.add(descriptionPanel, BorderLayout.NORTH);
+        //START -- PIERRE TESTING
+        this.window.add(mapPanel, BorderLayout.CENTER);
+        //END -- PIERRE TESTING
         this.window.add(inputPanel, BorderLayout.SOUTH);
         this.window.add(instructions, BorderLayout.WEST);
         this.window.setPreferredSize(new Dimension(850, 650));
@@ -116,7 +138,7 @@ public class ViewWindow {
         descriptionArea.setContentType("text/html");
         descriptionArea.addMouseListener(listener);
         descriptionArea.setEditable(false);
-        descriptionPanel.setPreferredSize(new Dimension(700,600));
+        descriptionPanel.setPreferredSize(new Dimension(700, 150));
         descriptionPanel.setBackground(new Color(255, 255, 255));
         descriptionPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
         descriptionPanel.add(descriptionArea);
@@ -152,13 +174,22 @@ public class ViewWindow {
         enemyStatLabel.setBorder(BorderFactory.createTitledBorder(caterpillar.getCurrentLocation().getEnemy().getName()));
     }
 
+    //START -- PIERRE TESTING
+    private void updateMapPanel() {
+        String test = MapGenerator.displayFile("map.txt");
+        mapLabel.setText("</html>" + "</body>" + "<div>" +
+                MapGenerator.displayFile("map.txt") +
+                "</div>" + "</body>" + "</html>");
+    }
+    //END -- PIERRE TESTING
+
     private void updateStatPanel() {
         //Step 1: Create a structure will will pass to method
         HashMap<String, String> myStats = new HashMap<>();
-        myStats.put("{{strength}}",  String.valueOf(caterpillar.getStrength()));
-        myStats.put("{{health}}",  String.valueOf(caterpillar.getHealth()));
-        myStats.put("{{level}}",  String.valueOf(caterpillar.getLevel()));
-        myStats.put("{{exp}}",  String.valueOf(caterpillar.getExperience()/caterpillar.getMaxExperience()));
+        myStats.put("{{strength}}", String.valueOf(caterpillar.getStrength()));
+        myStats.put("{{health}}", String.valueOf(caterpillar.getHealth()));
+        myStats.put("{{level}}", String.valueOf(caterpillar.getLevel()));
+        myStats.put("{{exp}}", String.valueOf(caterpillar.getExperience() / caterpillar.getMaxExperience()));
 
         //Step 2: Set the stat label that calls our helper method
         caterpillarStatLabel.setText(readHTML("statPanel.html", myStats));
@@ -167,8 +198,8 @@ public class ViewWindow {
         if (caterpillar.getCurrentLocation().getEnemy() != null) {
             //Step 3a: Create a structure will will pass to method
             HashMap<String, String> enemyStats = new HashMap<>();
-            enemyStats.put("{{strength}}",  String.valueOf(caterpillar.getCurrentLocation().getEnemy().getStrength()));
-            enemyStats.put("{{health}}",  String.valueOf(caterpillar.getCurrentLocation().getEnemy().getHealth()));
+            enemyStats.put("{{strength}}", String.valueOf(caterpillar.getCurrentLocation().getEnemy().getStrength()));
+            enemyStats.put("{{health}}", String.valueOf(caterpillar.getCurrentLocation().getEnemy().getHealth()));
 
             //Step 3b: Set the desc label that calls our helper method
             enemyStatLabel.setText(readHTML("statPanelEnemy.html", enemyStats));
@@ -229,7 +260,7 @@ public class ViewWindow {
         //In here we should add a getLastAction table element, this will let the user know the last thing they sucessfuly did... this variable should be updated in every command process function
         //Step 1: Create a structure will will pass to method
         HashMap<String, String> move = new HashMap<>();
-        move.put("{{move}}",  caterpillar.getLastAction());
+        move.put("{{move}}", caterpillar.getLastAction());
         //Step 2: Set the last move body label that calls our helper method
         lastMove.setText(readHTML("lastMoveBody.html", move));
     }
@@ -255,7 +286,7 @@ public class ViewWindow {
                             contentBuilder.append(line.replace(entry.getKey(), entry.getValue()));
                         }
                     }
-                }else{
+                } else {
                     contentBuilder.append(line);
                 }
             }

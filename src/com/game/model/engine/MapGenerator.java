@@ -32,14 +32,36 @@ public class MapGenerator {
         }
     }
 
-    public void displayFile() {
-        File file = new File("C:\\StudentWork\\Sprint\\A-Grubs-Life\\src\\com\\game\\model\\engine\\currentLocation.txt");
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
+//    public void displayFile(String map) {
+//        try {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(map)));
+//            String line;
+//
+//            System.out.println("DISPLAY FILE FUNCTION");
+//            while((line = br.readLine() )!= null){
+//                System.out.println(line);
+//            }
+//        }
+//        catch (FileNotFoundException e){
+//            System.out.println("cannot find file");
+//        }
+//        catch (IOException e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
-            String st;
-            while ((st = br.readLine()) != null)
-                System.out.println(st);
+    public static String displayFile(String map) {
+        StringBuilder contentBuilder = new StringBuilder();
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(MapGenerator.class.getResourceAsStream(map)));
+            String line = null;
+
+            while((line = br.readLine() )!= null){
+                line = line.replace(" ",  "&nbsp;");
+                contentBuilder.append("<p>").append(line).append("</p>");
+            }
+            //Step 3: Make sure to close the connections if done!
+            br.close();
         }
         catch (FileNotFoundException e){
             System.out.println("cannot find file");
@@ -47,6 +69,7 @@ public class MapGenerator {
         catch (IOException e){
             System.out.println(e.getMessage());
         }
+        return contentBuilder.toString();
     }
 
     public void deleteFile(String file){
