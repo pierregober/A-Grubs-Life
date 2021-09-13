@@ -35,6 +35,7 @@ public class KeyWordIdentifier {
         keyWords.add("GODMODE");
         keyWords.add("CATERPILLAR");
         keyWords.add("HIDE");
+        keyWords.add("EXIT");
     }
 
 
