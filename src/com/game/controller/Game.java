@@ -50,13 +50,15 @@ public class Game {
      *
      */
     private void run(){
-        int counter = 0;
-        viewWindow.welcomeMessage();
-        playAudio("src/resources/music/forest.wav");
-        while (true) {
-            viewWindow.updateCaterpillarStatus();
-            caterpillar.healthRegenerator(counter++);
-        }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                int counter = 0;
+                viewWindow.welcomeMessage();
+                playAudio("src/resources/music/forest.wav");
+                viewWindow.updateCaterpillarStatus();
+                caterpillar.healthRegenerator(counter++);
+            }
+        });
     }
 
     /**
