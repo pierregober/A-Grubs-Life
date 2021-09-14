@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/resources/music/spider.wav" afterDir="false" />
+    <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="Audio resource file added for WEB Location AB#367">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/controller/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Audio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +113,21 @@
       <option name="project" value="LOCAL" />
       <updated>1631424677471</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Audio changes when player moves to a different room(location) AB#367">
+      <created>1631638384054</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1631638384054</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Audio resource file added for WEB Location AB#367">
+      <created>1631638429271</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1631638429271</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +157,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added test method to get sound files AB#357" />
     <MESSAGE value="Clean up code for readability AB#357" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up code for readability AB#357" />
+    <MESSAGE value="Audio changes when player moves to a different room(location) AB#367" />
+    <MESSAGE value="Audio resource file added for WEB Location AB#367" />
+    <option name="LAST_COMMIT_MESSAGE" value="Audio resource file added for WEB Location AB#367" />
   </component>
 </project>

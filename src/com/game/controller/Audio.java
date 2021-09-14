@@ -15,6 +15,7 @@ public class Audio implements Runnable{
      */
     private enum AudioPaths{
         GENESIS ("GENESIS","src/resources/music/forest.wav"),
+        START ("START","src/resources/music/forest.wav"),
         WEB("WEB","src/resources/music/spider.wav");
 
         String location;
@@ -35,6 +36,7 @@ public class Audio implements Runnable{
 
     private String musicFilePath;
     private AtomicBoolean exit;
+    private static Clip clip;
 
     public Audio(String musicFilePath) {
         this.musicFilePath = musicFilePath;
@@ -49,13 +51,13 @@ public class Audio implements Runnable{
 
     public void stop()
     {
-        exit.set(true);
+        clip.stop();
     }
 
     /*
      *This method will be used to play a sound or music
      */
-    public static void playBackgroundMusic(String musicFilePath){
+    public void playBackgroundMusic(String musicFilePath){
 
         String musicPath = Arrays.stream(
                 AudioPaths.values())
@@ -68,7 +70,7 @@ public class Audio implements Runnable{
             File file = new File(musicPath);
 
             //Get Clip that will be use to open and play the sound/music
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
 
             //Get the file as an AudioInputStream
             AudioInputStream in = AudioSystem.getAudioInputStream(file);

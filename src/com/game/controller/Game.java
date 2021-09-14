@@ -19,7 +19,7 @@ public class Game {
     private Caterpillar caterpillar;
     private LogicEngine processor;
     private ViewWindow viewWindow;
-    public static Thread musicThread;
+    public static Audio currentAudio;
 
     public Game() {
 
@@ -129,9 +129,9 @@ public class Game {
     }
 
     public static void playAudio(String musicFilePath){
-        if(musicThread instanceof Thread) musicThread.interrupt();
-        musicThread = null;
-        musicThread = new Thread(new Audio(musicFilePath), "backgroundMusicThread");
+        if(currentAudio != null) currentAudio.stop();
+        currentAudio = new Audio(musicFilePath);
+        Thread musicThread = new Thread(currentAudio, "backgroundMusicThread");
         musicThread.start();
     }
 
