@@ -210,6 +210,7 @@ public class ViewWindow {
             processor.processCommand(getInput());
             inputField.setText("");
             updateDescriptionPanel();
+            updateLastMove();
         });
     }
 
