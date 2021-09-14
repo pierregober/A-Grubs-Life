@@ -1,5 +1,7 @@
 package com.game.model.materials;
 
+import com.game.controller.Game;
+
 public class Caterpillar {
     public boolean winner;
     private int health;
@@ -23,7 +25,8 @@ public class Caterpillar {
     }
 
     public void setCurrentLocation(Location location){ //we should move this to the bottom
-        System.out.println("Moving from " + currentLocation + " to " + location);
+        System.out.println("Moving from " + currentLocation + " to " + location.getName());
+        Game.playAudio(location.getName());
         this.currentLocation = location;
     }
 

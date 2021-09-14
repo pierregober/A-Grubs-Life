@@ -19,6 +19,7 @@ public class Game {
     private Caterpillar caterpillar;
     private LogicEngine processor;
     private ViewWindow viewWindow;
+    public static Thread musicThread;
 
     public Game() {
 
@@ -54,7 +55,7 @@ public class Game {
             public void run() {
                 int counter = 0;
                 viewWindow.welcomeMessage();
-                playAudio("src/resources/music/forest.wav");
+                playAudio("GENESIS");
                 viewWindow.updateCaterpillarStatus();
                 caterpillar.healthRegenerator(counter++);
             }
@@ -128,8 +129,10 @@ public class Game {
     }
 
     public static void playAudio(String musicFilePath){
-        Thread musicThread = new Thread(new Audio(musicFilePath), "backgroundMusicThread");
-        musicThread.run();
+        if(musicThread instanceof Thread) musicThread.interrupt();
+        musicThread = null;
+        musicThread = new Thread(new Audio(musicFilePath), "backgroundMusicThread");
+        musicThread.start();
     }
 
 }

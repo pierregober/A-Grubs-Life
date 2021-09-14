@@ -3,13 +3,43 @@ package com.game.controller;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 public class Audio implements Runnable{
 
+    /*
+     * Enum class for the different room  contain location and audio file path
+     */
+    private enum AudioPaths{
+        GENESIS ("GENESIS","src/resources/music/forest.wav"),
+        WEB("WEB","src/resources/music/spider.wav");
+
+        String location;
+        String path; //file sound file path for location
+        AudioPaths(String location, String path){
+            this.location = location;
+            this.path = path;
+        }
+
+        private String getLocation(){
+            return location;
+        }
+
+        private String getPath(){
+            return path;
+        }
+    }
+
     private String musicFilePath;
+    private AtomicBoolean exit;
 
     public Audio(String musicFilePath) {
         this.musicFilePath = musicFilePath;
+        exit = new AtomicBoolean();
+        exit.set(false);
     }
 
     @Override
@@ -17,14 +47,25 @@ public class Audio implements Runnable{
         playBackgroundMusic(musicFilePath);
     }
 
+    public void stop()
+    {
+        exit.set(true);
+    }
+
     /*
      *This method will be used to play a sound or music
      */
     public static void playBackgroundMusic(String musicFilePath){
 
+        String musicPath = Arrays.stream(
+                AudioPaths.values())
+                .filter(audioPaths ->
+                        audioPaths.getLocation().equalsIgnoreCase(musicFilePath))
+                .findAny().orElse(null).getPath();
+
         try {
             //Get Audio file
-            File file = new File(musicFilePath);
+            File file = new File(musicPath);
 
             //Get Clip that will be use to open and play the sound/music
             Clip clip = AudioSystem.getClip();
