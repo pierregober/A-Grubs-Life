@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="763e3118-5644-4361-b8f6-f84fa891f762" name="Default Changelist" comment="">
+    <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/TextParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/TextParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,12 +26,19 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1xpTp3ePeVy2mscaMaQW1RapfVV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
+    <option name="flattenModules" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../" />
