@@ -45,6 +45,7 @@ public class TextParser {
         verbs.add("START");
         verbs.add("RUN");
         verbs.add("GODMODE");
+        verbs.add("EXIT");
     }
 
 

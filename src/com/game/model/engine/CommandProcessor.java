@@ -104,6 +104,9 @@ public class CommandProcessor {
             case "RUN":
                 processRun(focus);
                 break;
+            case "EXIT":
+                processExit(focus);
+                break;
         }
     }
     private void processTypo() {
@@ -280,6 +283,15 @@ public class CommandProcessor {
                     caterpillar.setLastAction("You travel west.");
                     misfire = false;
                 }
+                break;
+        }
+    }
+
+    private void processExit(String focus) {
+        switch(focus.toLowerCase()){
+            case "game":
+                misfire = false;
+                System.exit(0);
                 break;
         }
     }
