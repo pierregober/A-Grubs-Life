@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class Game {
+    public static Audio backgroundSound;
     private HashMap<String, Location> locations;
     private HashMap<String, Enemy> enemies;
     private Caterpillar caterpillar;
@@ -54,6 +55,7 @@ public class Game {
             public void run() {
                 int counter = 0;
                 viewWindow.welcomeMessage();
+                Audio backgroundSound = new Audio("src/resources/music/forest.wav");
                 playAudio("src/resources/music/forest.wav");
                 viewWindow.updateCaterpillarStatus();
                 caterpillar.healthRegenerator(counter++);
@@ -128,7 +130,8 @@ public class Game {
     }
 
     public static void playAudio(String musicFilePath){
-        Thread musicThread = new Thread(new Audio(musicFilePath), "backgroundMusicThread");
+        backgroundSound = new Audio(musicFilePath);
+        Thread musicThread = new Thread(backgroundSound, "backgroundMusicThread");
         musicThread.run();
     }
 

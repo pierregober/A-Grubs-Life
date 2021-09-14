@@ -31,6 +31,8 @@ public class TextParser {
         nouns.add("BIRD");
         nouns.add("RAT");
         nouns.add("CATERPILLAR");
+        nouns.add("UP");
+        nouns.add("DOWN");
     }
 
     private void populateVerbs() {
@@ -46,6 +48,7 @@ public class TextParser {
         verbs.add("RUN");
         verbs.add("GODMODE");
         verbs.add("EXIT");
+        verbs.add("VOLUME");
     }
 
 

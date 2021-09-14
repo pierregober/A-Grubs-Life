@@ -7,6 +7,16 @@ import java.io.IOException;
 public class Audio implements Runnable{
 
     private String musicFilePath;
+    private static Clip clip;
+    private double volume = 0.99;
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
 
     public Audio(String musicFilePath) {
         this.musicFilePath = musicFilePath;
@@ -15,6 +25,18 @@ public class Audio implements Runnable{
     @Override
     public void run() {
         playBackgroundMusic(musicFilePath);
+    }
+
+    /**
+     * Changes volume of background sound, the static clip object in class Audio
+     * @param direction UP or DOWN
+     */
+    public void changeVolume(String direction) {
+        double delta = direction.equalsIgnoreCase("UP") ? 0.1 : -0.1;
+        double newVol = getVolume() + delta;
+        setVolume(newVol);
+        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        volumeControl.setValue((float) ((volumeControl.getMinimum() + newVol * (volumeControl.getMaximum() - volumeControl.getMinimum()))));
     }
 
     /*
@@ -27,7 +49,7 @@ public class Audio implements Runnable{
             File file = new File(musicFilePath);
             System.out.println(file.exists());
             //Get Clip that will be use to open and play the sound/music
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
 
             //Get the file as an AudioInputStream
             AudioInputStream in = AudioSystem.getAudioInputStream(file);
