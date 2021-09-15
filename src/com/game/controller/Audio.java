@@ -21,10 +21,10 @@ public class Audio implements Runnable{
         WOODS   ("WOODS","src/resources/music/woods_owl.wav"),
         HOLE    ("HOLE","src/resources/music/hole.wav"),
         LAKE    ("LAKE","src/resources/music/lake.wav"),
-        HILL    ("HILL","src/resources/music/hill.wav"),
+        HILL    ("HILL","src/resources/music/anthill.wav"),
         FLOWERS ("FLOWERS","src/resources/music/flowers.wav"),
         BOSS    ("BOSS","src/resources/music/boss.wav"),
-        TREE    ("TREE","src/resources/music/trees.wav"),
+        TREE    ("TREE","src/resources/music/tree.wav"),
         WEB     ("WEB","src/resources/music/spider.wav");
 
         private String location;
