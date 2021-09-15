@@ -57,7 +57,7 @@ public class Caterpillar {
         setLevel(level + 1);
         Map<String, String> abilities = getDefenses();
 
-        if (getLevel()== maxLevel) {
+        if (getLevel() == maxLevel) {
             action = "You have reached level " + maxLevel + "! You are now a butterfly.";
         }
 
