@@ -18,6 +18,8 @@ public class Caterpillar {
     private boolean hidden;
     private String lastAction;
 
+    private final Defenses defenses;
+
     public  Caterpillar(int health, int experience, int strength){
         this.health = health;
         this.experience = experience;

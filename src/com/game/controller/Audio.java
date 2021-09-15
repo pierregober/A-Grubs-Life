@@ -113,7 +113,7 @@ public class Audio implements Runnable {
 
         try {
             //Get Audio file
-            File file = new File(musicFilePath);
+            File file = new File(musicPath);
 
             //Get Clip that will be use to open and play the sound/music
             clip = AudioSystem.getClip();
