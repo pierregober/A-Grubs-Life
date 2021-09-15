@@ -9,39 +9,39 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
-public class Audio implements Runnable{
+public class Audio implements Runnable {
 
     /*
      * Enum class for the different room containing location and audio file path
      */
-    private enum AudioPaths{
+    private enum AudioPaths {
 
-        GENESIS ("GENESIS","src/resources/music/forest.wav"),
-        START   ("START","src/resources/music/forest.wav"),
-        WOODS   ("WOODS","src/resources/music/woods_owl.wav"),
-        HOLE    ("HOLE","src/resources/music/hole.wav"),
-        LAKE    ("LAKE","src/resources/music/lake.wav"),
-        HILL    ("HILL","src/resources/music/anthill.wav"),
-        FLOWERS ("FLOWERS","src/resources/music/flowers.wav"),
-        BOSS    ("BOSS","src/resources/music/boss.wav"),
-        TREE    ("TREE","src/resources/music/tree.wav"),
-        WEB     ("WEB","src/resources/music/spider.wav");
+        GENESIS("GENESIS", "src/resources/music/forest.wav"),
+        START("START", "src/resources/music/forest.wav"),
+        WOODS("WOODS", "src/resources/music/woods_owl.wav"),
+        HOLE("HOLE", "src/resources/music/hole.wav"),
+        LAKE("LAKE", "src/resources/music/lake.wav"),
+        HILL("HILL", "src/resources/music/anthill.wav"),
+        FLOWERS("FLOWERS", "src/resources/music/flowers.wav"),
+        BOSS("BOSS", "src/resources/music/boss.wav"),
+        TREE("TREE", "src/resources/music/tree.wav"),
+        WEB("WEB", "src/resources/music/spider.wav");
 
         private String location;
         private String path;    //file sound file path for location
 
-        AudioPaths(String location, String path){
+        AudioPaths(String location, String path) {
             this.location = location;
             this.path = path;
         }
 
         //Get the location
-        private String getLocation(){
+        private String getLocation() {
             return location;
         }
 
         //Get the audio path for the location
-        private String getPath(){
+        private String getPath() {
             return path;
         }
     }
@@ -50,13 +50,14 @@ public class Audio implements Runnable{
     private static Clip clip;     //Clip is the player that plays the audio
     private double volume = 0.99;
 
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
     public double getVolume() {
         return volume;
     }
 
-    public void setVolume(double volume) {
-        this.volume = volume;
-    }
 
     public Audio(String musicFilePath) {
         this.musicFilePath = musicFilePath;
@@ -67,15 +68,18 @@ public class Audio implements Runnable{
         playBackgroundMusic(musicFilePath);
     }
 
-    public void stop()
-    {
+    public void stop() {
         clip.stop();
     }
 
     /**
      * This method will be used to play a sound or music
-    /**
+     * /**
      * Changes volume of background sound, the static clip object in class Audio
+     *
+     * @param direction UP or DOWN
+     *                  /**
+     *                  Changes volume of background sound, the static clip object in class Audio
      * @param direction UP or DOWN
      */
     public void changeVolume(String direction) {
@@ -94,6 +98,10 @@ public class Audio implements Runnable{
     /*
      *This method will be used to play a sound or music
      */
+
+    /*
+     *This method will be used to play a sound or music
+     */
     public void playBackgroundMusic(String musicFilePath) {
 
         //Used to match musicFilePath to the correct enum and once found return the path of that enum
@@ -105,7 +113,7 @@ public class Audio implements Runnable{
 
         try {
             //Get Audio file
-            File file = new File(musicPath);
+            File file = new File(musicFilePath);
 
             //Get Clip that will be use to open and play the sound/music
             clip = AudioSystem.getClip();
@@ -120,10 +128,10 @@ public class Audio implements Runnable{
             AudioFormat decodedFormat = new AudioFormat(
                     AudioFormat.Encoding.PCM_SIGNED,
                     baseFormat.getSampleRate(), 16, baseFormat.getChannels(),
-                    baseFormat.getChannels() * 2, baseFormat.getSampleRate(),false);
+                    baseFormat.getChannels() * 2, baseFormat.getSampleRate(), false);
 
             //Get a new AudioInputStream from the old format to the new format
-            AudioInputStream ais = AudioSystem.getAudioInputStream(decodedFormat ,in);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(decodedFormat, in);
 
             //Open and start playing the audio stream
             clip.open(ais);
@@ -143,3 +151,4 @@ public class Audio implements Runnable{
         }
     }
 }
+
