@@ -3,6 +3,8 @@ package com.game.model.materials;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.game.controller.Game;
+
 public class Caterpillar {
     public boolean winner;
     private int health;
@@ -18,7 +20,7 @@ public class Caterpillar {
 
     private final Defenses defenses;
 
-    public Caterpillar(int health, int experience, int strength){
+    public  Caterpillar(int health, int experience, int strength){
         this.health = health;
         this.experience = experience;
         this.strength = strength;
@@ -29,7 +31,8 @@ public class Caterpillar {
     }
 
     public void setCurrentLocation(Location location){ //we should move this to the bottom
-        System.out.println("Moving from " + currentLocation + " to " + location);
+        System.out.println("Moving from " + currentLocation + " to " + location.getName());
+        Game.playAudio(location.getName());
         this.currentLocation = location;
     }
 
