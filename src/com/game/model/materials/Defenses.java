@@ -36,6 +36,8 @@ class Defenses {
         }
 
     }
+
+
     Defenses() {
         defenses = initialize();
     }
