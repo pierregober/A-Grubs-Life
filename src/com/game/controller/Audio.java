@@ -34,9 +34,14 @@ public class Audio implements Runnable{
     public void changeVolume(String direction) {
         double delta = direction.equalsIgnoreCase("UP") ? 0.1 : -0.1;
         double newVol = getVolume() + delta;
-        setVolume(newVol);
         FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        volumeControl.setValue((float) ((volumeControl.getMinimum() + newVol * (volumeControl.getMaximum() - volumeControl.getMinimum()))));
+        float newVal = (float) ((volumeControl.getMinimum() + newVol * (volumeControl.getMaximum() - volumeControl.getMinimum())));
+        if (newVal > volumeControl.getMaximum()) {
+            newVal = volumeControl.getMaximum();
+            newVol -= delta;
+        }
+        volumeControl.setValue(newVal);
+        setVolume(newVol);
     }
 
     /*
