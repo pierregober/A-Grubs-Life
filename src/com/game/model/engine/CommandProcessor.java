@@ -1,6 +1,7 @@
 package com.game.model.engine;
 
 
+import com.game.controller.Game;
 import com.game.model.materials.Caterpillar;
 import com.game.model.materials.Enemy;
 import com.game.model.materials.Location;
@@ -107,6 +108,8 @@ public class CommandProcessor {
             case "EXIT":
                 processExit(focus);
                 break;
+            case "VOLUME":
+                Game.currentAudio.changeVolume(focus);
         }
     }
     private void processTypo() {
