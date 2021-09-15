@@ -196,7 +196,7 @@ public class ViewWindow {
     private void updateMapPanel() {
         HashMap<String, String> myLoc = new HashMap<>();
         myLoc.put("[[" + caterpillar.getCurrentLocation().getName() + "]]",  "<b class=\"target\">[[" + caterpillar.getCurrentLocation().getName() + "]]</b>");
-        System.out.println(myLoc);
+//        System.out.println(myLoc);
         mapArea.setText(readMap("map.html", myLoc));
     }
     //END -- PIERRE TESTING
@@ -241,7 +241,7 @@ public class ViewWindow {
             processor.processCommand(getInput());
             inputField.setText("");
             updateDescriptionPanel();
-//            updateLastMove();
+
             //START -- PIERRE TESTING
             updateMapPanel();
             //END -- PIERRE TESTING
@@ -282,7 +282,7 @@ public class ViewWindow {
                     //Step 2b: loop over the hashmap
                     for (Map.Entry<String, String> entry : data.entrySet()) {
                         if (line.contains(entry.getKey())) {
-                            System.out.println("hit" + entry.getKey());
+                            //System.out.println("hit" + entry.getKey());
                             //Need to the get the position of a string values and replace to the entry value
                             contentBuilder.append(line.replace(entry.getKey(), entry.getValue()));
                         }
@@ -318,7 +318,7 @@ public class ViewWindow {
                     //Step 2b: loop over the hashmap
                     for (Map.Entry<String, String> entry : data.entrySet()) {
                         if (line.contains(entry.getKey())) {
-                            System.out.println("hit" + entry.getKey());
+//                            System.out.println("hit" + entry.getKey());
                             //Need to the get the position of a string values and replace to the entry value
                             contentBuilder.append(line.replace(entry.getKey(), entry.getValue()));
                         }else{
