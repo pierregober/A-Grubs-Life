@@ -36,6 +36,8 @@ public class KeyWordIdentifier {
         keyWords.add("CATERPILLAR");
         keyWords.add("HIDE");
         keyWords.add("EXIT");
+        keyWords.add("SHIELD");
+        keyWords.add("SELF");
     }
 
 

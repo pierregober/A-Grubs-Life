@@ -219,7 +219,7 @@ public class ViewWindow {
         lastMove.setText(readHTML("lastMoveTitle.html", null));
     }
 
-    private void updateLastMove() {
+    public void updateLastMove() {
         //In here we should add a getLastAction table element, this will let the user know the last thing they sucessfuly did... this variable should be updated in every command process function
         //Step 1: Create a structure will will pass to method
         HashMap<String, String> move = new HashMap<>();

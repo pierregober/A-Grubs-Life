@@ -47,6 +47,7 @@ public class CommandProcessor {
           if(focus.equalsIgnoreCase("GODMODE")){
           caterpillar.setHealth(9999999);
           caterpillar.setStrength(99999999);
+          misfire = false;
           caterpillar.setLastAction("The Power of God him/her/itself (god is in an existential crisis) flows through you");
       }
     }
@@ -107,6 +108,9 @@ public class CommandProcessor {
             case "EXIT":
                 processExit(focus);
                 break;
+            case "SHIELD":
+                processShield(focus);
+                break;
         }
     }
     private void processTypo() {
@@ -132,6 +136,12 @@ public class CommandProcessor {
             }
             else if (caterpillar.getLevel() == 1){
                 attackOuch = "tackle attack, bruised!";
+            }
+
+            // If the caterpillar sets up a shield, it will take damage by half and
+            // the shield will disappear
+            if (caterpillar.getShield()) {
+                attackOuch += " You took half damage, but your silk shield went away...";
             }
             enemy.setHealth(newHealth - factor);
             caterpillar.setLastAction("You attacked the " + focus + " with " + attackOuch);
@@ -165,8 +175,15 @@ public class CommandProcessor {
         }
     }
 
+    // Take half damage if shield is up, otherwise, take normal damage
     private void enemyAttack(){
-        caterpillar.setHealth(caterpillar.getHealth() - enemy.getStrength());
+        if (caterpillar.getShield()) {
+            caterpillar.setHealth(caterpillar.getHealth() - (enemy.getStrength() / 2));
+            caterpillar.setShield(false);
+        }
+        else {
+            caterpillar.setHealth(caterpillar.getHealth() - enemy.getStrength());
+        }
     }
 
     private int strengthFactor(){
@@ -242,7 +259,6 @@ public class CommandProcessor {
                 if(!caterpillar.getLastAction().contains("level")){
                     caterpillar.setLastAction("You eat a leaf!");
                 }
-
                 misfire = false;
         }
     }
@@ -293,6 +309,15 @@ public class CommandProcessor {
                 misfire = false;
                 System.exit(0);
                 break;
+        }
+    }
+
+    private void processShield(String focus) {
+        String player = focus.toLowerCase();
+        if (player.equals("self") || player.equals("caterpillar")){
+                misfire = false;
+                caterpillar.setShield(true);
+                caterpillar.setLastAction("A layer of silk shields your body. The next damage dealt to you will be reduced by half!");
         }
     }
 }

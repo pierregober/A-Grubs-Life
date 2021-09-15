@@ -31,6 +31,8 @@ public class TextParser {
         nouns.add("BIRD");
         nouns.add("RAT");
         nouns.add("CATERPILLAR");
+        nouns.add("SELF");
+        nouns.add("GODMODE");
     }
 
     private void populateVerbs() {
@@ -44,8 +46,9 @@ public class TextParser {
         verbs.add("LOOK");
         verbs.add("START");
         verbs.add("RUN");
-        verbs.add("GODMODE");
         verbs.add("EXIT");
+        verbs.add("SHIELD");
+
     }
 
 

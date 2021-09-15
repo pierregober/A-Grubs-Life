@@ -5,6 +5,7 @@ public class Caterpillar {
     private int health;
     private int experience;
     private int strength ;
+    private boolean shield = false;
     private int level = 1;
     private int maxLevel = 3;
     private int maxExperience = 5;
@@ -110,9 +111,16 @@ public class Caterpillar {
         return this.lastAction;
     }
 
-
     public boolean isHidden() {
         return hidden;
+    }
+
+    public boolean setShield(boolean bool) {
+        return this.shield = bool;
+    }
+
+    public boolean getShield() {
+        return this.shield;
     }
 
     public void setHidden(boolean hidden) {
