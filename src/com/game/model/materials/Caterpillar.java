@@ -61,7 +61,6 @@ public class Caterpillar {
     public void healthRegenerator(){
         int timeDiff = (int)(System.currentTimeMillis() - lastStartTime) / 1000;
         setHealth(getHealth() + timeDiff);
-        System.out.println("Health advanced to " + getHealth() + " for " + timeDiff + "s");
     }
 
     public int getHealth() {
@@ -79,8 +78,6 @@ public class Caterpillar {
     public void setHealth(int health) {
         this.health = health;
         this.lastStartTime = System.currentTimeMillis();
-        System.out.println("Health updated to " + health);
-        System.out.println("Time now " + this.lastStartTime);
     }
 
     public int getExperience() {
