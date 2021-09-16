@@ -256,6 +256,7 @@ public class ViewWindow {
             updateDescriptionPanel();
             updateMapPanel();
             updateLastMove();
+            updateCaterpillarStatus();
         });
     }
 
