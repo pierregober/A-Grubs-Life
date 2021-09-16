@@ -1,30 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="Refactor 3 AB#367">
-      <change afterPath="$PROJECT_DIR$/src/com/game/model/materials/Defenses.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/game/model/materials/defenses.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/audio.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/audioimagetoggle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/giphysound.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/music/anthill.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/music/boss.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/music/flowers.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/music/gameover.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/music/hole.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/music/lake.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/music/spider.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/music/tree.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/music/woods_owl.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/com/game/model/materials/DefensesTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/com/game/view/ViewWindowTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
+    <list default="true" id="c890587c-deaa-45b6-b0d8-23b7905bae1e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/view/actions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/actions.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
