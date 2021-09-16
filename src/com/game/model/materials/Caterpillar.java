@@ -8,6 +8,7 @@ public class Caterpillar {
     private int level = 1;
     private int maxLevel = 3;
     private int maxExperience = 5;
+    private long lastStartTime = System.currentTimeMillis();
 
     private Location currentLocation;
     private boolean hidden;
@@ -57,10 +58,10 @@ public class Caterpillar {
 
     }
 
-    public void healthRegenerator(int counter){
-        if(counter % 2934342 == 0){
-            setHealth(getHealth() + 1);
-        }
+    public void healthRegenerator(){
+        int timeDiff = (int)(System.currentTimeMillis() - lastStartTime) / 1000;
+        setHealth(getHealth() + timeDiff);
+        System.out.println("Health advanced to " + getHealth() + " for " + timeDiff + "s");
     }
 
     public int getHealth() {
@@ -77,6 +78,9 @@ public class Caterpillar {
 
     public void setHealth(int health) {
         this.health = health;
+        this.lastStartTime = System.currentTimeMillis();
+        System.out.println("Health updated to " + health);
+        System.out.println("Time now " + this.lastStartTime);
     }
 
     public int getExperience() {

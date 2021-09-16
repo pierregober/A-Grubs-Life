@@ -58,7 +58,7 @@ public class Game {
                 Audio backgroundSound = new Audio("src/resources/music/forest.wav");
                 playAudio("src/resources/music/forest.wav");
                 viewWindow.updateCaterpillarStatus();
-                caterpillar.healthRegenerator(counter++);
+                caterpillar.healthRegenerator();
             }
         });
     }

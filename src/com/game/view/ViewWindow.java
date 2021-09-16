@@ -49,6 +49,7 @@ public class ViewWindow {
         setUpComponents();
         updateMapPanel();
         updateDescriptionPanel();
+        updateCaterpillarStatus();
     }
 
     public void welcomeMessage() {
@@ -241,10 +242,11 @@ public class ViewWindow {
             processor.processCommand(getInput());
             inputField.setText("");
             updateDescriptionPanel();
-//            updateLastMove();
+            updateLastMove();
             //START -- PIERRE TESTING
             updateMapPanel();
             //END -- PIERRE TESTING
+            updateCaterpillarStatus();
         });
     }
 
