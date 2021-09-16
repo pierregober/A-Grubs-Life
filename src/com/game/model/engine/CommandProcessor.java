@@ -17,7 +17,7 @@ public class CommandProcessor {
     private Enemy enemy;  // shortcut for finding your enemy
     private boolean misfire;
 
-    public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations, HashMap<String, Enemy> enemies){
+    public CommandProcessor(Caterpillar caterpillar, HashMap<String, Location> locations, HashMap<String, Enemy> enemies) {
         this.caterpillar = caterpillar;
         this.locations = locations;
         this.enemies = enemies;
@@ -25,39 +25,47 @@ public class CommandProcessor {
 
     /**
      * Formats input and sends to command processing
+     *
      * @param strings
      */
     public void executeCommand(ArrayList<String> strings) {
+        System.out.println("executing " + strings);
         if (strings.size() == 2 && strings.get(0) != null && strings.get(1) != null) {
             this.enemy = enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase());
             String action = strings.get(0).toUpperCase(Locale.ROOT);
             String focus = strings.get(1).toUpperCase(Locale.ROOT);
             this.misfire = true;
             processCommand(action, focus); // passing in to either the combat system or command menu
-        } else {
-           processTypo();
-        }
+        } else if (strings.size() == 3 && strings.get(0) != null && strings.get(1) != null) {
+            this.enemy = enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase());
+            String action = strings.get(0).toUpperCase(Locale.ROOT);
+            String focus = strings.get(1).toUpperCase(Locale.ROOT) + " " + strings.get(2).toUpperCase(Locale.ROOT);
+            this.misfire = true;
+            processCommand(action, focus);
+        } else
+            processTypo();
     }
 
     /**
      * Sets health and strength to enable god mode on GODMODE command
+     *
      * @param focus
      */
-    private void processGodMode(String focus){
-          if(focus.equalsIgnoreCase("GODMODE")){
-          caterpillar.setHealth(9999999);
-          caterpillar.setStrength(99999999);
-          misfire = false;
-          caterpillar.setLastAction("The Power of God him/her/itself (god is in an existential crisis) flows through you");
-      }
+    private void processGodMode(String focus) {
+        if (focus.equalsIgnoreCase("GODMODE")) {
+            caterpillar.setHealth(9999999);
+            caterpillar.setStrength(99999999);
+            caterpillar.setLevel(7);
+            misfire = false;
+            caterpillar.setLastAction("The Power of God him/her/itself (god is in an existential crisis) flows through you");
+        }
     }
 
     /**
-     *
      * @param action
      * @param focus
      */
-    private void processCommand(String action, String focus){
+    private void processCommand(String action, String focus) {
         if (enemies.containsKey(enemies.get(caterpillar.getCurrentLocation().getName()))
                 && enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase()).isInCombat()) {
             runCombatCheck(action, focus);
@@ -70,19 +78,22 @@ public class CommandProcessor {
     }
 
 
-    private void runCombatCheck(String action, String focus){
+    private void runCombatCheck(String action, String focus) {
         if (action.toUpperCase(Locale.ROOT).equalsIgnoreCase("ATTACK")) {
             processAttack(focus);
-        } if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")) {
+        }
+        if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")) {
             processRun(focus);
         }
     }
-    private void processCantDoThatHere(){
+
+    private void processCantDoThatHere() {
         caterpillar.setLastAction("You can't do that here.. We don't have that ");
     }
+
     //This method is where to put any new commands.. each of the cases links out to the corresponding logic method... this is essentially a directory for incoming eligible commands.
-    private void runProcessMenu(String action, String focus){
-        switch(action.toUpperCase(Locale.ROOT)){
+    private void runProcessMenu(String action, String focus) {
+        switch (action.toUpperCase(Locale.ROOT)) {
             case "GO":
                 processNavigation(focus.toLowerCase());
                 processGodMode(focus);
@@ -111,94 +122,112 @@ public class CommandProcessor {
             case "SHIELD":
                 processShield(focus);
                 break;
+            case "USE":
+                processUse(focus);
+                break;
         }
     }
+
     private void processTypo() {
         caterpillar.setLastAction("I can't process that, try again with a verb/noun combo of relevant game objects.");
     }
 
-    private void processAttack(String focus) {
+    // Caterpillar can use its defense moves in battle depending on the level
+    private void processUse(String focus) {
 
-        enemy.setInCombat(true);
         // attacks change as we level and get more powerful
-        if (focus.equalsIgnoreCase(enemy.getName())){
+
+        misfire = false;
+        String battleMsg = "";
+
+        // checks to see if caterpillar attack is usable
+        if (!caterpillar.isInCombat()) {
             misfire = false;
+            caterpillar.setLastAction("Cannot use " + focus + " right now. You are not in combat");
+        }
+        if (caterpillar.isInCombat() && caterpillar.getDefenses().containsKey(focus)) {
+            misfire = false;
+            battleMsg += caterpillar.getDefenses().get(focus);
             int newHealth = enemy.getHealth() - caterpillar.getStrength() - strengthFactor();
             int factor = 0;
-            String attackOuch = " your mind, brah.";
-            if (caterpillar.getLevel() == 2){
-                factor = 5;
-                attackOuch = "odor attack, sick!";
-            }
-            else if (caterpillar.getLevel() == 3 ) {
-                factor = 10;
-                attackOuch = "acid attack, burn!";
-            }
-            else if (caterpillar.getLevel() == 1){
-                attackOuch = "tackle attack, bruised!";
-            }
 
             // If the caterpillar sets up a shield, it will take damage by half and
             // the shield will disappear
             if (caterpillar.getShield()) {
-                attackOuch += " You took half damage, but your silk shield went away...";
+                battleMsg += " You took half damage, but your silk shield went away...";
             }
             enemy.setHealth(newHealth - factor);
-            caterpillar.setLastAction("You attacked the " + focus + " with " + attackOuch);
-        }
-        if(enemy.getHealth() <= 0){
-            enemy.setHidden(true);
-            enemy.setInCombat(false);
-            caterpillar.setExperience(caterpillar.getExperience() + 10);
-            boolean check = caterpillar.getLevel() == 2;
-            if(enemy.getName().equalsIgnoreCase("squirrel")){
-                caterpillar.setWinner(true);
+
+            if (enemy.getHealth() <= 0) {
+                enemy.setHidden(true);
+                enemy.setInCombat(false);
+                caterpillar.setInCombat(false);
+                caterpillar.setExperience(caterpillar.getExperience() + 10);
+                boolean check = caterpillar.getLevel() == 2;
+                if (enemy.getName().equalsIgnoreCase("squirrel")) {
+                    caterpillar.setWinner(true);
+                }
+//                    caterpillar.levelUp();
+                if (check) {
+                    if (caterpillar.isWinner()) {
+                        battleMsg += "You have defeated the mighty " + enemy.getName() + " \n" + "After beating the boss you find your mate! Together you can find the tree and live happily ever after \n ending the game";
+                    } else {
+                        battleMsg += "You have defeated the mighty " + enemy.getName();
+                    }
+                }
             }
-            caterpillar.levelUp();
-            if(check){
-                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() + " \n " + caterpillar.getLastAction());
-            } else if (caterpillar.isWinner()){
-                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() + " \n" + "After beating the boss you find your mate! Together you can find the tree and live happily ever after \n ending the game" );
-            }else{
-                caterpillar.setLastAction("You have defeated the mighty " + enemy.getName() );
+            enemyAttack();
+            caterpillar.setLastAction(battleMsg);
+            if (caterpillar.getHealth() <= 0) {
+                caterpillar.setLastAction("Oh dear you have died.");
             }
+        } else if (caterpillar.isInCombat() && !caterpillar.getDefenses().containsKey(focus)) {
+            misfire = false;
+            caterpillar.setLastAction("That move doesn't exist");
+        }
 
 
+    }
 
+    // Changes the state of the caterpillar to attacking. This will enable the caterpillar to
+    // use its defenses
+    private void processAttack(String focus) {
+        if (focus.equalsIgnoreCase(enemy.getName())) {
+            if (!caterpillar.isInCombat()) {
+                caterpillar.setInCombat(true);
+                misfire = false;
+                caterpillar.setLastAction("Prepare for battle!");
+            } else {
+                misfire = false;
+                caterpillar.setLastAction("Already fighting");
+            }
         }
-        else{
-            //TODO: print status of enemy
-        }
-        enemyAttack();
-        if(caterpillar.getHealth() <= 0){
-            caterpillar.setLastAction("Oh dear you have died.");
-        }
+
+
     }
 
     // Take half damage if shield is up, otherwise, take normal damage
-    private void enemyAttack(){
+    private void enemyAttack() {
         if (caterpillar.getShield()) {
             caterpillar.setHealth(caterpillar.getHealth() - (enemy.getStrength() / 2));
             caterpillar.setShield(false);
-        }
-        else {
+        } else {
             caterpillar.setHealth(caterpillar.getHealth() - enemy.getStrength());
         }
     }
 
-    private int strengthFactor(){
+    private int strengthFactor() {
         int strength = 0;
         if (caterpillar.getStrength() > enemy.getStrength()) {
             strength = 5;
-        }
-        else if (caterpillar.getStrength() < enemy.getStrength()){
+        } else if (caterpillar.getStrength() < enemy.getStrength()) {
             strength = -5;
         }
         return strength;
     }
 
     private void processAntAssistance(String focus) {
-        if (focus.equalsIgnoreCase("ANT") && caterpillar.getLevel() == 2)  {
+        if (focus.equalsIgnoreCase("ANT") && caterpillar.getLevel() == 2) {
             //DONE : Implement "Ant can be used in combat" logic here.
             caterpillar.setStrength(caterpillar.getStrength() + 60);
             caterpillar.setLastAction("You have received assistance from a friendly ant");
@@ -206,31 +235,29 @@ public class CommandProcessor {
         }
     }
 
-    private void processRun(String focus){
-        if(focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")){
+    private void processRun(String focus) {
+        if (focus.toUpperCase(Locale.ROOT).equalsIgnoreCase("RUN")) {
             misfire = false;
-            if(caterpillar.getStrength() > enemy.getStrength() && enemy.isAggressive() == true ){
+            if (caterpillar.getStrength() > enemy.getStrength() && enemy.isAggressive() == true) {
                 caterpillar.setLastAction("You ran away from the fight despite enemy efforts to subdue you");
                 enemy.setHidden(true);
                 enemy.setInCombat(false);
-            }
-            else if (caterpillar.getStrength() > enemy.getStrength() && enemy.isAggressive() == false) {
+            } else if (caterpillar.getStrength() > enemy.getStrength() && enemy.isAggressive() == false) {
                 caterpillar.setLastAction("You ran away from the fight and live another day");
                 enemy.setHidden(true);
                 enemy.setInCombat(false);
-            }
-            else if (caterpillar.getStrength() < enemy.getStrength() && enemy.isAggressive() == false){
+            } else if (caterpillar.getStrength() < enemy.getStrength() && enemy.isAggressive() == false) {
                 caterpillar.setLastAction("You were lucky this time, the enemy gave up its pursuit");
                 enemy.setHidden(true);
                 enemy.setInCombat(false);
-                }
-            else{
+            } else {
                 caterpillar.setLastAction("Oh no, you can't escape, you are forced to fight!");
                 enemy.setInCombat(true);
             }
 
         }
     }
+
     private void processLeave(String focus) {
     }
 
@@ -243,8 +270,7 @@ public class CommandProcessor {
                 caterpillar.setLastAction("Great job! You are hidden from the bird");
                 this.misfire = false;
             }
-        }
-        else if ((enemy.getName().equalsIgnoreCase("Bird")) && (caterpillar.getLevel() == 1) && (focus.equalsIgnoreCase("CATERPILLAR"))) {
+        } else if ((enemy.getName().equalsIgnoreCase("Bird")) && (caterpillar.getLevel() == 1) && (focus.equalsIgnoreCase("CATERPILLAR"))) {
             caterpillar.setLastAction("The closest place to hide is in 2 mile");
             this.misfire = false;
         }
@@ -252,11 +278,11 @@ public class CommandProcessor {
 
 
     private void processEating(String focus) {
-        switch(focus.toLowerCase()){
+        switch (focus.toLowerCase()) {
             case "leaf":
                 caterpillar.eat(caterpillar.getCurrentLocation().getLeaf());
 
-                if(!caterpillar.getLastAction().contains("level")){
+                if (!caterpillar.getLastAction().contains("level")) {
                     caterpillar.setLastAction("You eat a leaf!");
                 }
                 misfire = false;
@@ -264,9 +290,9 @@ public class CommandProcessor {
     }
 
     private void processNavigation(String focus) {
-        switch(focus) {
+        switch (focus) {
             case "north":
-                if(!caterpillar.getCurrentLocation().getNorth().trim().equalsIgnoreCase("DEAD_END")){
+                if (!caterpillar.getCurrentLocation().getNorth().trim().equalsIgnoreCase("DEAD_END")) {
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getNorth().trim()));
                     caterpillar.setLastAction("You travel north.");
                     misfire = false;
@@ -275,18 +301,18 @@ public class CommandProcessor {
 
                 break;
             case "south":
-                if(!caterpillar.getCurrentLocation().getSouth().equalsIgnoreCase("DEAD_END")){
+                if (!caterpillar.getCurrentLocation().getSouth().equalsIgnoreCase("DEAD_END")) {
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getSouth().trim()));
                     caterpillar.setLastAction("You travel south.");
                     misfire = false;
                 }
                 break;
             case "east":
-                if(!caterpillar.getCurrentLocation().getEast().equalsIgnoreCase("DEAD_END")){
+                if (!caterpillar.getCurrentLocation().getEast().equalsIgnoreCase("DEAD_END")) {
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getEast().trim()));
                     caterpillar.setLastAction("You travel east.");
 
-                    if(caterpillar.isWinner()){
+                    if (caterpillar.isWinner()) {
                         caterpillar.setLastAction("You have made it to safe refuge with your mate! Congratulations you've won the game. ");
                     }
 
@@ -294,7 +320,7 @@ public class CommandProcessor {
                 }
                 break;
             case "west":
-                if(!caterpillar.getCurrentLocation().getWest().equalsIgnoreCase("DEAD_END")){
+                if (!caterpillar.getCurrentLocation().getWest().equalsIgnoreCase("DEAD_END")) {
                     caterpillar.setCurrentLocation(locations.get(caterpillar.getCurrentLocation().getWest().trim()));
                     caterpillar.setLastAction("You travel west.");
                     misfire = false;
@@ -304,7 +330,7 @@ public class CommandProcessor {
     }
 
     private void processExit(String focus) {
-        switch(focus.toLowerCase()){
+        switch (focus.toLowerCase()) {
             case "game":
                 misfire = false;
                 System.exit(0);
@@ -314,10 +340,10 @@ public class CommandProcessor {
 
     private void processShield(String focus) {
         String player = focus.toLowerCase();
-        if (player.equals("self") || player.equals("caterpillar")){
-                misfire = false;
-                caterpillar.setShield(true);
-                caterpillar.setLastAction("A layer of silk shields your body. The next damage dealt to you will be reduced by half!");
+        if (player.equals("self") || player.equals("caterpillar")) {
+            misfire = false;
+            caterpillar.setShield(true);
+            caterpillar.setLastAction("A layer of silk shields your body. The next damage dealt to you will be reduced by half!");
         }
     }
 }

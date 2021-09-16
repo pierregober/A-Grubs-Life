@@ -1,6 +1,7 @@
 package com.game.model.engine;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
 
@@ -48,7 +49,17 @@ public class TextParser {
         verbs.add("RUN");
         verbs.add("EXIT");
         verbs.add("SHIELD");
-
+        verbs.add("USE");
+        verbs.add("CRYPSIS");
+        verbs.add("STINGING");
+        verbs.add("HAIRS");
+        verbs.add("STINK");
+        verbs.add("NOXIOUS");
+        verbs.add("SPIT");
+        verbs.add("CLICK");
+        verbs.add("DEFENSE");
+        verbs.add("ALLIANCE");
+        verbs.add("ACID");
     }
 
 
@@ -62,11 +73,9 @@ public class TextParser {
             for (String str : result) {
                 if (verbs.contains(str.toUpperCase(Locale.ROOT)) || nouns.contains(str.toUpperCase(Locale.ROOT))) {
                     list.add(str);
-                    if (list.size() == 2) {
-                        return list;
-                    }
                 }
             }
+            return list;
         }
         return null;
     }

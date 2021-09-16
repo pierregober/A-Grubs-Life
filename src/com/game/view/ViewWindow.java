@@ -110,7 +110,7 @@ public class ViewWindow {
         descriptionArea.setContentType("text/html");
         descriptionArea.addMouseListener(listener);
         descriptionArea.setEditable(false);
-        descriptionPanel.setPreferredSize(new Dimension(700,600));
+        descriptionPanel.setPreferredSize(new Dimension(700, 600));
         descriptionPanel.setBackground(new Color(255, 255, 255));
         descriptionPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
         descriptionPanel.add(descriptionArea);
@@ -149,10 +149,10 @@ public class ViewWindow {
     private void updateStatPanel() {
         //Step 1: Create a structure will will pass to method
         HashMap<String, String> myStats = new HashMap<>();
-        myStats.put("{{strength}}",  String.valueOf(caterpillar.getStrength()));
-        myStats.put("{{health}}",  String.valueOf(caterpillar.getHealth()));
-        myStats.put("{{level}}",  String.valueOf(caterpillar.getLevel()));
-        myStats.put("{{exp}}",  String.valueOf(caterpillar.getExperience()/caterpillar.getMaxExperience()));
+        myStats.put("{{strength}}", String.valueOf(caterpillar.getStrength()));
+        myStats.put("{{health}}", String.valueOf(caterpillar.getHealth()));
+        myStats.put("{{level}}", String.valueOf(caterpillar.getLevel()));
+        myStats.put("{{exp}}", String.valueOf(caterpillar.getExperience() / caterpillar.getMaxExperience()));
 
         //Step 2: Set the stat label that calls our helper method
         caterpillarStatLabel.setText(readHTML("statPanel.html", myStats));
@@ -161,8 +161,8 @@ public class ViewWindow {
         if (caterpillar.getCurrentLocation().getEnemy() != null) {
             //Step 3a: Create a structure will will pass to method
             HashMap<String, String> enemyStats = new HashMap<>();
-            enemyStats.put("{{strength}}",  String.valueOf(caterpillar.getCurrentLocation().getEnemy().getStrength()));
-            enemyStats.put("{{health}}",  String.valueOf(caterpillar.getCurrentLocation().getEnemy().getHealth()));
+            enemyStats.put("{{strength}}", String.valueOf(caterpillar.getCurrentLocation().getEnemy().getStrength()));
+            enemyStats.put("{{health}}", String.valueOf(caterpillar.getCurrentLocation().getEnemy().getHealth()));
 
             //Step 3b: Set the desc label that calls our helper method
             enemyStatLabel.setText(readHTML("statPanelEnemy.html", enemyStats));
@@ -200,6 +200,12 @@ public class ViewWindow {
         labelVerbs.setBorder(BorderFactory.createTitledBorder("Actions"));
     }
 
+    private void setUpLabelMoves() {
+        this.labelVerbs = new JLabel();
+        labelVerbs.setText(readHTML("attackMoves.html", null));
+        labelVerbs.setBorder(BorderFactory.createTitledBorder("Moves"));
+    }
+
     private void setUpInputField() {
         this.inputField = new JTextField(50);
         inputField.setBorder(BorderFactory.createTitledBorder("Enter your command as a [VERB/NOUN]: \n " +
@@ -224,7 +230,7 @@ public class ViewWindow {
         //In here we should add a getLastAction table element, this will let the user know the last thing they sucessfuly did... this variable should be updated in every command process function
         //Step 1: Create a structure will will pass to method
         HashMap<String, String> move = new HashMap<>();
-        move.put("{{move}}",  caterpillar.getLastAction());
+        move.put("{{move}}", caterpillar.getLastAction());
         //Step 2: Set the last move body label that calls our helper method
         lastMove.setText(readHTML("lastMoveBody.html", move));
     }
@@ -250,7 +256,7 @@ public class ViewWindow {
                             contentBuilder.append(line.replace(entry.getKey(), entry.getValue()));
                         }
                     }
-                }else{
+                } else {
                     contentBuilder.append(line);
                 }
             }

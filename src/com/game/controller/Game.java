@@ -52,23 +52,17 @@ public class Game {
         int counter = 0;
         viewWindow.welcomeMessage();
         playAudio("src/resources/music/forest.wav");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                int counter = 0;
+                viewWindow.welcomeMessage();
+                playAudio("src/resources/music/forest.wav");
+                viewWindow.updateCaterpillarStatus();
+                viewWindow.updateLastMove();
+                caterpillar.healthRegenerator(counter++);
 
-        while(true) {
-        caterpillar.healthRegenerator(counter++);
-        viewWindow.updateCaterpillarStatus();
-
-        }
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                int counter = 0;
-//                viewWindow.welcomeMessage();
-//                playAudio("src/resources/music/forest.wav");
-//                viewWindow.updateCaterpillarStatus();
-//                viewWindow.updateLastMove();
-//                caterpillar.healthRegenerator(counter++);
-//
-//            }
-//        });
+            }
+        });
     }
 
     /**

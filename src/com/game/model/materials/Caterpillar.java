@@ -9,6 +9,16 @@ public class Caterpillar {
     private int experience;
     private int strength ;
     private boolean shield = false;
+
+    public boolean isInCombat() {
+        return inCombat;
+    }
+
+    public void setInCombat(boolean inCombat) {
+        this.inCombat = inCombat;
+    }
+
+    private boolean inCombat = false;
     private int level = 1;
     private final int maxLevel = 7;
     private final int maxExperience = 12;
