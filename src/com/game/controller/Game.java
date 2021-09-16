@@ -57,7 +57,7 @@ public class Game {
                 viewWindow.welcomeMessage();
                 playAudio("GENESIS");
                 viewWindow.updateCaterpillarStatus();
-                caterpillar.healthRegenerator(counter++);
+                caterpillar.healthRegenerator();
             }
         });
     }

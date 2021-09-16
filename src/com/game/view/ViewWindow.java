@@ -54,6 +54,7 @@ public class ViewWindow {
         setUpComponents();
         updateMapPanel();
         updateDescriptionPanel();
+        updateCaterpillarStatus();
     }
 
     public void welcomeMessage(){
@@ -270,6 +271,7 @@ public class ViewWindow {
             //START -- PIERRE TESTING
             updateMapPanel();
             //END -- PIERRE TESTING
+            updateCaterpillarStatus();
         });
     }
 
