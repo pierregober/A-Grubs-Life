@@ -37,14 +37,12 @@ public class ViewWindow {
     private LogicEngine processor;
     private JLabel labelVerbs;
     private JLabel labelNouns;
-    private JLabel lastMove;
     private PanelListener listener;
     private TitledBorder tb;
     private TitledBorder eb;
-    //START PIERRE TESTING
     private JPanel mapPanel;
     private JEditorPane mapArea;
-    //END PIERRE TESTING
+    private JEditorPane lastMove;
     private JPanel soundImage;
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
@@ -57,7 +55,7 @@ public class ViewWindow {
         updateCaterpillarStatus();
     }
 
-    public void welcomeMessage(){
+    public void welcomeMessage() {
         this.instructions = new JPanel();
         this.instDesc = new JLabel();
         this.soundImage = new JPanel();
@@ -91,9 +89,7 @@ public class ViewWindow {
     public void updateCaterpillarStatus() {
         updateLastMove();
         updateStatPanel();
-        //START -- PIERRE TESTING
         updateMapPanel();
-        //END -- PIERRE TESTING
         this.window.repaint();
     }
 
@@ -113,13 +109,10 @@ public class ViewWindow {
         setUpInputPanel();
         setUpStatPanel();
         setUpDescriptionPanel();
-        //START  -- PIERRE TESTING
         setUpMapPanel();
-        //END -- PIERRE TESTING
         setUpWindow();
     }
 
-    //START -- PIERRE TESTING
     private void setUpMapPanel() {
         this.mapPanel = new JPanel();
         mapPanel.setLayout(new BorderLayout());
@@ -127,20 +120,17 @@ public class ViewWindow {
         mapArea.setContentType("text/html");
         mapArea.setEditable(false);
         mapPanel.setPreferredSize(new Dimension(200, 200));
-        mapPanel.setBackground(new Color(255, 255, 255));
-        mapPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
+        mapPanel.setBackground(new Color(0, 0, 0));
+        mapPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
         mapPanel.add(mapArea);
     }
-    //END -- PIERRE TESTING
 
     private void setUpWindow() {
         this.window = new JFrame("A Grub's Life.");
         this.window.setLayout(new BorderLayout());
         this.window.add(statPanel, BorderLayout.EAST);
         this.window.add(descriptionPanel, BorderLayout.NORTH);
-        //START -- PIERRE TESTING
         this.window.add(mapPanel, BorderLayout.CENTER);
-        //END -- PIERRE TESTING
         this.window.add(inputPanel, BorderLayout.SOUTH);
         this.window.add(instructions, BorderLayout.WEST);
         this.window.setPreferredSize(new Dimension(850, 650));
@@ -218,15 +208,11 @@ public class ViewWindow {
         }
     }
 
-    //START -- PIERRE TESTING
     private void updateMapPanel() {
         HashMap<String, String> myLoc = new HashMap<>();
         myLoc.put("[[" + caterpillar.getCurrentLocation().getName() + "]]",  "<b class=\"target\">[[" + caterpillar.getCurrentLocation().getName() + "]]</b>");
-//        System.out.println(myLoc);
         mapArea.setText(readMap("map.html", myLoc));
     }
-    //END -- PIERRE TESTING
-
 
     private void setUpInputPanel() {
         this.inputPanel = new JPanel();
@@ -239,6 +225,7 @@ public class ViewWindow {
         setUpLabelVerbs();
         setUpInputField();
         setUpLastMove();
+        lastMove.setContentType("text/html");
         inputPanel.add(inputField, BorderLayout.NORTH);
         inputPanel.add(labelVerbs, BorderLayout.WEST);
         inputPanel.add(labelNouns, BorderLayout.EAST);
@@ -267,16 +254,16 @@ public class ViewWindow {
             processor.processCommand(getInput());
             inputField.setText("");
             updateDescriptionPanel();
-
-            //START -- PIERRE TESTING
             updateMapPanel();
-            //END -- PIERRE TESTING
+            updateLastMove();
             updateCaterpillarStatus();
         });
     }
 
     private void setUpLastMove() {
-        this.lastMove = new JLabel();
+        this.lastMove = new JEditorPane();
+        lastMove.setContentType("text/html");
+        lastMove.setEditable(false);
         lastMove.setBorder(BorderFactory.createTitledBorder("Your Last Move"));
         lastMove.setText(readHTML("lastMoveTitle.html", null));
     }
@@ -287,9 +274,7 @@ public class ViewWindow {
         HashMap<String, String> move = new HashMap<>();
         move.put("[[move]]",  caterpillar.getLastAction());
         //Step 2: Set the last move body label that calls our helper method
-        System.out.println(move);
-        lastMove.setText("Placeholder");
-//        lastMove.setText(readHTML("lastMoveBody.html", move));
+        lastMove.setText(readHTML("lastMoveBody.html", move));
     }
 
     private String readHTML(String path, HashMap<String, String> data) {
@@ -309,7 +294,6 @@ public class ViewWindow {
                     //Step 2b: loop over the hashmap
                     for (Map.Entry<String, String> entry : data.entrySet()) {
                         if (line.contains(entry.getKey())) {
-                            //System.out.println("hit" + entry.getKey());
                             //Need to the get the position of a string values and replace to the entry value
                             contentBuilder.append(line.replace(entry.getKey(), entry.getValue()));
                         }
@@ -345,7 +329,6 @@ public class ViewWindow {
                     //Step 2b: loop over the hashmap
                     for (Map.Entry<String, String> entry : data.entrySet()) {
                         if (line.contains(entry.getKey())) {
-//                            System.out.println("hit" + entry.getKey());
                             //Need to the get the position of a string values and replace to the entry value
                             contentBuilder.append(line.replace(entry.getKey(), entry.getValue()));
                         }else{
@@ -366,10 +349,7 @@ public class ViewWindow {
         return contentBuilder.toString();
     }
 
-
-
     private class PanelListener implements MouseListener {
-
         @Override
         public void mouseClicked(MouseEvent e) {
             try {
