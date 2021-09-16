@@ -36,6 +36,19 @@ public class KeyWordIdentifier {
         keyWords.add("CATERPILLAR");
         keyWords.add("HIDE");
         keyWords.add("EXIT");
+        keyWords.add("SHIELD");
+        keyWords.add("SELF");
+        keyWords.add("USE");
+        keyWords.add("CRYPSIS");
+        keyWords.add("STINGING");
+        keyWords.add("HAIRS");
+        keyWords.add("STINK");
+        keyWords.add("NOXIOUS");
+        keyWords.add("SPIT");
+        keyWords.add("CLICK");
+        keyWords.add("DEFENSE");
+        keyWords.add("ALLIANCE");
+        keyWords.add("ACID");
         keyWords.add("VOLUME");
         keyWords.add("UP");
         keyWords.add("DOWN");
@@ -44,6 +57,7 @@ public class KeyWordIdentifier {
 
     public ArrayList<String> identifyKewWords(ArrayList<String> parsedInput) {
         ArrayList<String> result = new ArrayList();
+        parsedInput.size();
         if (parsedInput != null) {
             for (int i = 0; i < parsedInput.size(); i++) {
                 if (!keyWords.contains(parsedInput.get(i))) {
