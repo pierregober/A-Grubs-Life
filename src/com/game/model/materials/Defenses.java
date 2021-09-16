@@ -11,8 +11,13 @@ import java.util.*;
  * Defense level defined in Caterpillar class
  */
 class Defenses {
+    private final int maxLevel = 7;
     private List<Details> defenses;
 
+
+    /**
+     * Inner class holding defense details
+     */
     private class Details {
         String name;
         String description;
@@ -22,7 +27,6 @@ class Defenses {
             this.description = description;
         }
 
-        // inner class method accessible only to Defenses class
         public String getName() {
             return name;
         }
@@ -36,22 +40,30 @@ class Defenses {
         }
 
     }
+
+
     Defenses() {
         defenses = initialize();
     }
 
     public String getName(int level) {
-        return defenses.get(level).getName();
+        if (level < 1 || level > maxLevel) {
+            return "";
+        }
+        return defenses.get(level - 1).getName();
     }
 
     public String getDescription(int level) {
-        return defenses.get(level).getDescription();
+        if (level < 1 || level > maxLevel) {
+            return "";
+        }
+        return defenses.get(level - 1).getDescription();
     }
 
     private List<Details> initialize() {
         List<Details> defenseData = new ArrayList<>();
         String[] info;
-        try{
+        try {
             InputStream inputStream = getClass().getResourceAsStream("defenses.txt");
             InputStreamReader myReader = new InputStreamReader(inputStream);
             BufferedReader br = new BufferedReader(myReader);
@@ -71,6 +83,10 @@ class Defenses {
     }
 
     public Map<String, String> getDefenses(int level) {
+        if (level < 1) {
+            return null;
+        }
+
         Map<String, String> retVal = new HashMap<>();
         for (int i = 0; i < level; i++) {
             if (i >= defenses.size()) {

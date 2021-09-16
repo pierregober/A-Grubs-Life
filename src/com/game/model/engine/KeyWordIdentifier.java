@@ -49,6 +49,9 @@ public class KeyWordIdentifier {
         keyWords.add("DEFENSE");
         keyWords.add("ALLIANCE");
         keyWords.add("ACID");
+        keyWords.add("VOLUME");
+        keyWords.add("UP");
+        keyWords.add("DOWN");
     }
 
 

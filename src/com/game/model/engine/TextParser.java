@@ -32,6 +32,8 @@ public class TextParser {
         nouns.add("BIRD");
         nouns.add("RAT");
         nouns.add("CATERPILLAR");
+        nouns.add("UP");
+        nouns.add("DOWN");
         nouns.add("SELF");
         nouns.add("GODMODE");
     }
@@ -47,6 +49,7 @@ public class TextParser {
         verbs.add("LOOK");
         verbs.add("START");
         verbs.add("RUN");
+        verbs.add("GODMODE");
         verbs.add("EXIT");
         verbs.add("SHIELD");
         verbs.add("USE");
@@ -60,6 +63,7 @@ public class TextParser {
         verbs.add("DEFENSE");
         verbs.add("ALLIANCE");
         verbs.add("ACID");
+        verbs.add("VOLUME");
     }
 
 

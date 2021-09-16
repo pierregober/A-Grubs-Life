@@ -19,15 +19,16 @@ public class Game {
     private Caterpillar caterpillar;
     private LogicEngine processor;
     private ViewWindow viewWindow;
+    public static Audio currentAudio;
 
     public Game() {
 
     }
 
     /**
-     * Called by the client to start a new game.
+     *   Called by the client to start a new game.
      */
-    public void start() {
+    public void start(){
         setUpComponents();
         run();
     }
@@ -35,53 +36,48 @@ public class Game {
     /**
      * Instantiates the necessary fields of a Game object.
      */
-    private void setUpComponents() {
+    private void setUpComponents(){
         this.enemies = populateEnemies();
         this.locations = populateLocations();
-        this.caterpillar = new Caterpillar(100, 0, 0);
-        this.processor = new LogicEngine(caterpillar, locations, enemies);
+        this.caterpillar = new Caterpillar(100,0,0);
+        this.processor = new LogicEngine(caterpillar,locations, enemies);
         this.caterpillar.setCurrentLocation(locations.get("GENESIS"));
         this.viewWindow = new ViewWindow(caterpillar, processor);
     }
 
     /**
-     * Controls the game loop.
-     * View updates with user input.
+     *  Controls the game loop.
+     *  View updates with user input.
+     *
      */
-    private void run() {
-        int counter = 0;
-        viewWindow.welcomeMessage();
-        playAudio("src/resources/music/forest.wav");
+    private void run(){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 int counter = 0;
                 viewWindow.welcomeMessage();
-                playAudio("src/resources/music/forest.wav");
+                playAudio("GENESIS");
                 viewWindow.updateCaterpillarStatus();
-                viewWindow.updateLastMove();
-                caterpillar.healthRegenerator(counter++);
-
+                caterpillar.healthRegenerator();
             }
         });
     }
 
     /**
      * Generates location objects from text file data
-     *
      * @return hashmap of location objects (String, Location)
      */
-    private HashMap<String, Location> populateLocations() {
-        HashMap<String, Location> locations = new HashMap<>();
+    private HashMap<String,Location> populateLocations(){
+        HashMap<String,Location> locations = new HashMap<>();
         String[] locationFields;
-        try {
+        try{
             InputStream inputStream = getClass().getResourceAsStream("locations.txt");
             InputStreamReader myReader = new InputStreamReader(inputStream);
             BufferedReader br = new BufferedReader(myReader);
             String line = null;
-            while ((line = br.readLine()) != null) {
+            while((line = br.readLine() )!= null){
                 locationFields = line.split(":");
 
-                Location loc = new Location(locationFields[0].trim(), locationFields[1].trim(), locationFields[2].trim(), locationFields[3].trim(), locationFields[4].trim(), locationFields[5].trim());
+                Location loc = new Location(locationFields[0].trim(),locationFields[1].trim(), locationFields[2].trim(), locationFields[3].trim(), locationFields[4].trim(),locationFields[5].trim() );
                 loc.setEnemy(enemies.get(locationFields[0].trim().toLowerCase(Locale.ROOT)));
                 locations.put(locationFields[0].trim(), loc);
             }
@@ -97,10 +93,9 @@ public class Game {
 
     /**
      * Populates Enemy objects from an external text file.
-     *
      * @return Hashmap of Enemy objects (String, Enemy)
      */
-    private HashMap<String, Enemy> populateEnemies() {
+    private HashMap<String,Enemy> populateEnemies() {
         HashMap<String, Enemy> enemies = new HashMap<>();
         String[] enemyFields;
         try {
@@ -108,10 +103,10 @@ public class Game {
             InputStreamReader myReader = new InputStreamReader(inputStream);
             BufferedReader br = new BufferedReader(myReader);
             String line = null;
-            while ((line = br.readLine()) != null) {
+            while((line = br.readLine() )!= null){
                 enemyFields = line.split(",");
 
-                Enemy enemy = new Enemy(enemyFields[0].trim(), Integer.parseInt(enemyFields[1].trim()), Integer.parseInt(enemyFields[2].trim()), Integer.parseInt(enemyFields[3].trim()), Boolean.parseBoolean(enemyFields[4].trim()), Boolean.parseBoolean(enemyFields[5].trim()), enemyFields[6].trim(), Boolean.parseBoolean(enemyFields[7].trim()));
+                Enemy enemy = new Enemy(enemyFields[0].trim(),Integer.parseInt(enemyFields[ 1].trim()), Integer.parseInt(enemyFields[ 2].trim()), Integer.parseInt(enemyFields[ 3].trim()), Boolean.parseBoolean(enemyFields[4].trim()), Boolean.parseBoolean(enemyFields[5].trim()), enemyFields[6].trim(), Boolean.parseBoolean(enemyFields[7].trim()));
                 enemies.put(enemyFields[6].trim(), enemy);
 
             }
@@ -127,16 +122,17 @@ public class Game {
 
     /**
      * Get a hashmap of enemies in the game
-     *
      * @return Hashmap of Enemy objects (String, Enemy)
      */
     public HashMap<String, Enemy> getEnemies() {
         return enemies;
     }
 
-    public static void playAudio(String musicFilePath) {
-        Thread musicThread = new Thread(new Audio(musicFilePath), "backgroundMusicThread");
-        musicThread.run();
+    public static void playAudio(String musicFilePath){
+        if(currentAudio != null) currentAudio.stop();
+        currentAudio = new Audio(musicFilePath);
+        Thread musicThread = new Thread(currentAudio, "backgroundMusicThread");
+        musicThread.start();
     }
 
 }

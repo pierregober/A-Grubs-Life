@@ -3,6 +3,8 @@ package com.game.model.materials;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.game.controller.Game;
+
 public class Caterpillar {
     public boolean winner;
     private int health;
@@ -20,6 +22,7 @@ public class Caterpillar {
 
     private boolean inCombat = false;
     private int level = 1;
+    private long lastStartTime = System.currentTimeMillis();
     private final int maxLevel = 7;
     private final int maxExperience = 12;
 
@@ -29,7 +32,7 @@ public class Caterpillar {
 
     private final Defenses defenses;
 
-    public Caterpillar(int health, int experience, int strength){
+    public  Caterpillar(int health, int experience, int strength){
         this.health = health;
         this.experience = experience;
         this.strength = strength;
@@ -40,7 +43,8 @@ public class Caterpillar {
     }
 
     public void setCurrentLocation(Location location){ //we should move this to the bottom
-        System.out.println("Moving from " + currentLocation + " to " + location);
+        System.out.println("Moving from " + currentLocation + " to " + location.getName());
+        Game.playAudio(location.getName());
         this.currentLocation = location;
     }
 
@@ -68,7 +72,7 @@ public class Caterpillar {
         setLevel(level + 1);
         Map<String, String> abilities = getDefenses();
 
-        if (getLevel()== maxLevel) {
+        if (getLevel() == maxLevel) {
             action = "You have reached level " + maxLevel + "! You are now a butterfly.";
         }
 
@@ -82,10 +86,9 @@ public class Caterpillar {
         setLastAction(action);
     }
 
-    public void healthRegenerator(int counter){
-        if(counter % 2934342 == 0){
-            setHealth(getHealth() + 1);
-        }
+    public void healthRegenerator(){
+        int timeDiff = (int)(System.currentTimeMillis() - lastStartTime) / 1000;
+        setHealth(getHealth() + timeDiff);
     }
 
     public int getHealth() {
@@ -102,6 +105,7 @@ public class Caterpillar {
 
     public void setHealth(int health) {
         this.health = health;
+        this.lastStartTime = System.currentTimeMillis();
     }
 
     public int getExperience() {

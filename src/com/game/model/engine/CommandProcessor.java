@@ -1,6 +1,7 @@
 package com.game.model.engine;
 
 
+import com.game.controller.Game;
 import com.game.model.materials.Caterpillar;
 import com.game.model.materials.Enemy;
 import com.game.model.materials.Location;
@@ -17,7 +18,7 @@ public class CommandProcessor {
     private Enemy enemy;  // shortcut for finding your enemy
     private boolean misfire;
 
-    public CommandProcessor(Caterpillar caterpillar, HashMap<String, Location> locations, HashMap<String, Enemy> enemies) {
+    public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations, HashMap<String, Enemy> enemies){
         this.caterpillar = caterpillar;
         this.locations = locations;
         this.enemies = enemies;
@@ -25,11 +26,9 @@ public class CommandProcessor {
 
     /**
      * Formats input and sends to command processing
-     *
      * @param strings
      */
     public void executeCommand(ArrayList<String> strings) {
-        System.out.println("executing " + strings);
         if (strings.size() == 2 && strings.get(0) != null && strings.get(1) != null) {
             this.enemy = enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase());
             String action = strings.get(0).toUpperCase(Locale.ROOT);
@@ -48,7 +47,6 @@ public class CommandProcessor {
 
     /**
      * Sets health and strength to enable god mode on GODMODE command
-     *
      * @param focus
      */
     private void processGodMode(String focus) {
@@ -62,10 +60,11 @@ public class CommandProcessor {
     }
 
     /**
+     *
      * @param action
      * @param focus
      */
-    private void processCommand(String action, String focus) {
+    private void processCommand(String action, String focus){
         if (enemies.containsKey(enemies.get(caterpillar.getCurrentLocation().getName()))
                 && enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase()).isInCombat()) {
             runCombatCheck(action, focus);
@@ -92,8 +91,8 @@ public class CommandProcessor {
     }
 
     //This method is where to put any new commands.. each of the cases links out to the corresponding logic method... this is essentially a directory for incoming eligible commands.
-    private void runProcessMenu(String action, String focus) {
-        switch (action.toUpperCase(Locale.ROOT)) {
+    private void runProcessMenu(String action, String focus){
+        switch(action.toUpperCase(Locale.ROOT)){
             case "GO":
                 processNavigation(focus.toLowerCase());
                 processGodMode(focus);
@@ -119,6 +118,8 @@ public class CommandProcessor {
             case "EXIT":
                 processExit(focus);
                 break;
+            case "VOLUME":
+                Game.currentAudio.changeVolume(focus);
             case "SHIELD":
                 processShield(focus);
                 break;
@@ -127,7 +128,6 @@ public class CommandProcessor {
                 break;
         }
     }
-
     private void processTypo() {
         caterpillar.setLastAction("I can't process that, try again with a verb/noun combo of relevant game objects.");
     }
@@ -257,7 +257,6 @@ public class CommandProcessor {
 
         }
     }
-
     private void processLeave(String focus) {
     }
 
