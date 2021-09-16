@@ -109,7 +109,7 @@ public class CommandProcessor {
                 processExit(focus);
                 break;
             case "VOLUME":
-                Game.backgroundSound.changeVolume(focus);
+                Game.currentAudio.changeVolume(focus);
         }
     }
     private void processTypo() {

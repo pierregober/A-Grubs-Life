@@ -14,12 +14,12 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class Game {
-    public static Audio backgroundSound;
     private HashMap<String, Location> locations;
     private HashMap<String, Enemy> enemies;
     private Caterpillar caterpillar;
     private LogicEngine processor;
     private ViewWindow viewWindow;
+    public static Audio currentAudio;
 
     public Game() {
 
@@ -55,10 +55,9 @@ public class Game {
             public void run() {
                 int counter = 0;
                 viewWindow.welcomeMessage();
-                Audio backgroundSound = new Audio("src/resources/music/forest.wav");
-                playAudio("src/resources/music/forest.wav");
+                playAudio("GENESIS");
                 viewWindow.updateCaterpillarStatus();
-                caterpillar.healthRegenerator(counter++);
+                caterpillar.healthRegenerator();
             }
         });
     }
@@ -130,9 +129,10 @@ public class Game {
     }
 
     public static void playAudio(String musicFilePath){
-        backgroundSound = new Audio(musicFilePath);
-        Thread musicThread = new Thread(backgroundSound, "backgroundMusicThread");
-        musicThread.run();
+        if(currentAudio != null) currentAudio.stop();
+        currentAudio = new Audio(musicFilePath);
+        Thread musicThread = new Thread(currentAudio, "backgroundMusicThread");
+        musicThread.start();
     }
 
 }

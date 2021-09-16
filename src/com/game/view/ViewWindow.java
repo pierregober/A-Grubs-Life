@@ -3,11 +3,15 @@ package com.game.view;
 import com.game.model.engine.LogicEngine;
 import com.game.model.materials.Caterpillar;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -39,6 +43,7 @@ public class ViewWindow {
     private JPanel mapPanel;
     private JEditorPane mapArea;
     private JEditorPane lastMove;
+    private JPanel soundImage;
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
@@ -47,17 +52,38 @@ public class ViewWindow {
         setUpComponents();
         updateMapPanel();
         updateDescriptionPanel();
+        updateCaterpillarStatus();
     }
 
     public void welcomeMessage() {
         this.instructions = new JPanel();
         this.instDesc = new JLabel();
+        this.soundImage = new JPanel();
         instDesc.setText(readHTML("instructions.html", null));
         instructions.add(instDesc);
+        String startGameAudio = "src/resources/images/audio.jpg";
+        BufferedImage myPicture = getAudioFile(startGameAudio);
+        Image imageIcon = new ImageIcon(myPicture).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        JLabel picLabel = new JLabel(new ImageIcon(imageIcon));
+        soundImage.add(picLabel);
+        instructions.add(soundImage);
     }
 
     public String getInput() {
         return this.input;
+    }
+
+    /*
+     * static method to retrieve audio files
+     */
+    //METHOD IS PUBLIC ONLY FOR TESTING WILL CHANGE TO PRIVATE BEFORE RELEASE AND DELETE THIS COMMENT
+    public static BufferedImage getAudioFile(String audioPath){
+        try {
+            return ImageIO.read(new File(audioPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void updateCaterpillarStatus() {
@@ -185,7 +211,6 @@ public class ViewWindow {
     private void updateMapPanel() {
         HashMap<String, String> myLoc = new HashMap<>();
         myLoc.put("[[" + caterpillar.getCurrentLocation().getName() + "]]",  "<b class=\"target\">[[" + caterpillar.getCurrentLocation().getName() + "]]</b>");
-
         mapArea.setText(readMap("map.html", myLoc));
     }
 
@@ -236,6 +261,8 @@ public class ViewWindow {
 
     private void setUpLastMove() {
         this.lastMove = new JEditorPane();
+        lastMove.setContentType("text/html");
+        lastMove.setEditable(false);
         lastMove.setBorder(BorderFactory.createTitledBorder("Your Last Move"));
         lastMove.setText(readHTML("lastMoveTitle.html", null));
     }
