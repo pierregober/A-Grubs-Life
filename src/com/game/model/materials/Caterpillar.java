@@ -10,6 +10,17 @@ public class Caterpillar {
     private int health;
     private int experience;
     private int strength ;
+    private boolean shield = false;
+
+    public boolean isInCombat() {
+        return inCombat;
+    }
+
+    public void setInCombat(boolean inCombat) {
+        this.inCombat = inCombat;
+    }
+
+    private boolean inCombat = false;
     private int level = 1;
     private long lastStartTime = System.currentTimeMillis();
     private final int maxLevel = 7;
@@ -132,9 +143,16 @@ public class Caterpillar {
         return this.lastAction;
     }
 
-
     public boolean isHidden() {
         return hidden;
+    }
+
+    public boolean setShield(boolean bool) {
+        return this.shield = bool;
+    }
+
+    public boolean getShield() {
+        return this.shield;
     }
 
     public void setHidden(boolean hidden) {
