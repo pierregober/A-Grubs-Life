@@ -163,18 +163,18 @@ public class CommandProcessor {
                 enemy.setInCombat(false);
                 caterpillar.setInCombat(false);
                 caterpillar.setExperience(caterpillar.getExperience() + 10);
-                boolean check = caterpillar.getLevel() == 2;
+//                boolean check = caterpillar.getLevel() == 2;
                 if (enemy.getName().equalsIgnoreCase("squirrel")) {
                     caterpillar.setWinner(true);
                 }
 //                    caterpillar.levelUp();
-                if (check) {
+//                if (check) {
                     if (caterpillar.isWinner()) {
                         battleMsg += "You have defeated the mighty " + enemy.getName() + " \n" + "After beating the boss you find your mate! Together you can find the tree and live happily ever after \n ending the game";
                     } else {
                         battleMsg += "You have defeated the mighty " + enemy.getName();
                     }
-                }
+//                }
             }
             enemyAttack();
             caterpillar.setLastAction(battleMsg);
