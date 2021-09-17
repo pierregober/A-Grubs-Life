@@ -61,7 +61,7 @@ public class ViewWindow {
         this.soundImage = new JPanel();
         instDesc.setText(readHTML("instructions.html", null));
         instructions.add(instDesc);
-        String startGameAudio = "src/resources/images/audio.jpg";
+        String startGameAudio = "/resources/images/audio.jpg";
         BufferedImage myPicture = getAudioFile(startGameAudio);
         Image imageIcon = new ImageIcon(myPicture).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         JLabel picLabel = new JLabel(new ImageIcon(imageIcon));
@@ -79,7 +79,7 @@ public class ViewWindow {
     //METHOD IS PUBLIC ONLY FOR TESTING WILL CHANGE TO PRIVATE BEFORE RELEASE AND DELETE THIS COMMENT
     public static BufferedImage getAudioFile(String audioPath){
         try {
-            return ImageIO.read(new File(audioPath));
+            return ImageIO.read(ViewWindow.class.getResourceAsStream(audioPath));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
