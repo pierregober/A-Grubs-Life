@@ -10,6 +10,7 @@ import com.game.model.materials.Location;
 import com.game.view.ViewWindow;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -19,6 +20,7 @@ public class Game {
     private Caterpillar caterpillar;
     private LogicEngine processor;
     private ViewWindow viewWindow;
+    public static Audio currentAudio;
 
     public Game() {
 
@@ -27,7 +29,7 @@ public class Game {
     /**
      *   Called by the client to start a new game.
      */
-    public void start(){
+    public void start() throws URISyntaxException {
         setUpComponents();
         run();
     }
@@ -35,7 +37,7 @@ public class Game {
     /**
      * Instantiates the necessary fields of a Game object.
      */
-    private void setUpComponents(){
+    private void setUpComponents() throws URISyntaxException {
         this.enemies = populateEnemies();
         this.locations = populateLocations();
         this.caterpillar = new Caterpillar(100,0,0);
@@ -54,9 +56,9 @@ public class Game {
             public void run() {
                 int counter = 0;
                 viewWindow.welcomeMessage();
-                playAudio("src/resources/music/forest.wav");
+                playAudio("GENESIS");
                 viewWindow.updateCaterpillarStatus();
-                caterpillar.healthRegenerator(counter++);
+                caterpillar.healthRegenerator();
             }
         });
     }
@@ -128,8 +130,10 @@ public class Game {
     }
 
     public static void playAudio(String musicFilePath){
-        Thread musicThread = new Thread(new Audio(musicFilePath), "backgroundMusicThread");
-        musicThread.run();
+        if(currentAudio != null) currentAudio.stop();
+        currentAudio = new Audio(musicFilePath);
+        Thread musicThread = new Thread(currentAudio, "backgroundMusicThread");
+        musicThread.start();
     }
 
 }

@@ -24,7 +24,7 @@ public class LogicEngine {
 
     public void processCommand(String userInput) {//
         ArrayList parsedInput = textParser.parseInput(userInput);
-        ArrayList command = keyWordIdentifier.identifyKewWords(parsedInput);
+        ArrayList command = keyWordIdentifier.identifyKeywords(parsedInput);
         commandProcessor.executeCommand(command);
     }
 }
