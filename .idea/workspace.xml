@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c890587c-deaa-45b6-b0d8-23b7905bae1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test/com/game/model/engine/KeyWordIdentifierTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/com/game/model/engine/TextParserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/view/actions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/actions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/LogicEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/LogicEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/game/model/materials/DefensesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/game/model/materials/DefensesTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -45,7 +50,10 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/hamcrest-core-1.3.jar" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="configurable.group.other" />
   </component>
@@ -54,7 +62,7 @@
       <recent name="C:\Users\chris\IdeaProjects\MiniProject\A-Grubs-Life\src\resources\music" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
       <module name="A-Grubs-Life" />
@@ -68,10 +76,75 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="KeyWordIdentifierTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.KeyWordIdentifierTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KeyWordIdentifierTest.parseCommand_shouldBeEmpty_whenPassingNonKeywords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.KeyWordIdentifierTest" />
+      <option name="METHOD_NAME" value="parseCommand_shouldBeEmpty_whenPassingNonKeywords" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KeyWordIdentifierTest.parseCommand_shouldContainKeywords_whenPassingValidKeywords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.KeyWordIdentifierTest" />
+      <option name="METHOD_NAME" value="parseCommand_shouldContainKeywords_whenPassingValidKeywords" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.TextParserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
-        <item itemvalue="Application.Client" />
+        <item itemvalue="JUnit.KeyWordIdentifierTest.parseCommand_shouldContainKeywords_whenPassingValidKeywords" />
+        <item itemvalue="JUnit.KeyWordIdentifierTest" />
+        <item itemvalue="JUnit.KeyWordIdentifierTest.parseCommand_shouldBeEmpty_whenPassingNonKeywords" />
+        <item itemvalue="JUnit.TextParserTest" />
       </list>
     </recent_temporary>
   </component>
