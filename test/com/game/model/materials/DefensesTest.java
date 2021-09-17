@@ -15,19 +15,19 @@ public class DefensesTest {
     @Before
     public void setup() {
         testValues = new HashMap<>();
-        testValues.put("Crypsis", "Your coloring offers you natural camouflage from predators.");
-        testValues.put("Stinging Hairs", "You have grown tiny hairs with irritating poison to injure and discourage predators.");
-        testValues.put("Stink Attack", "You can now eject a violently bad smell that scares away predators.");
-        testValues.put("Noxious Spit","You have evolved the ability to eject noxious poison from your face. The loud clicking noise it makes is a further deterrent.");
-        testValues.put("Click Defense", "Your organs can make clicking sounds that scare off predators and block bat sonar.");
-        testValues.put("Ant Alliance", "You secrete a sweet liquid that ants find irresistible. They will fight to the death to protect you and your sweet, sweet nectar.");
-        testValues.put("Acid Attack", "Spit acid on any target, you totally metal butterfly!");
+        testValues.put("CRYPSIS", "Your coloring offers you natural camouflage from predators.");
+        testValues.put("STINGING HAIRS", "You have grown tiny hairs with irritating poison to injure and discourage predators.");
+        testValues.put("STINK ATTACK", "You can now eject a violently bad smell that scares away predators.");
+        testValues.put("NOXIOUS SPIT","You have evolved the ability to eject noxious poison from your face. The loud clicking noise it makes is a further deterrent.");
+        testValues.put("CLICK DEFENSE", "Your organs can make clicking sounds that scare off predators and block bat sonar.");
+        testValues.put("ANT ALLIANCE", "You secrete a sweet liquid that ants find irresistible. They will fight to the death to protect you and your sweet, sweet nectar.");
+        testValues.put("ACID ATTACK", "Spit acid on any target, you totally metal butterfly!");
     }
 
     @Test
     public void getNameIsCorrectForValidLevel() {
-        assertEquals("Crypsis", defenses.getName(1));
-        assertEquals("Acid Attack", defenses.getName(7));
+        assertEquals("CRYPSIS", defenses.getName(1));
+        assertEquals("ACID ATTACK", defenses.getName(7));
     }
 
     @Test
@@ -55,19 +55,19 @@ public class DefensesTest {
     public void getDefensesIsValidForLevel1() {
         Map<String, String> defenseMap = defenses.getDefenses(1);
         assertEquals(1, defenseMap.size());
-        assertTrue(defenseMap.containsKey("Crypsis"));
-        assertEquals("Your coloring offers you natural camouflage from predators.", defenseMap.get("Crypsis"));
-        assertFalse(defenseMap.containsKey("Stinging Hairs"));
+        assertTrue(defenseMap.containsKey("CRYPSIS"));
+        assertEquals("Your coloring offers you natural camouflage from predators.", defenseMap.get("CRYPSIS"));
+        assertFalse(defenseMap.containsKey("STINGING HAIRS"));
     }
 
     @Test
     public void getDefensesIsValidForMultipleLevels() {
         Map<String, String> defenseMap = defenses.getDefenses(3);
         assertEquals(3, defenseMap.size());
-        assertTrue(defenseMap.containsKey("Crypsis"));
-        assertTrue(defenseMap.containsKey("Stinging Hairs"));
-        assertTrue(defenseMap.containsKey("Stink Attack"));
-        assertFalse(defenseMap.containsKey("Ant Alliance"));
+        assertTrue(defenseMap.containsKey("CRYPSIS"));
+        assertTrue(defenseMap.containsKey("STINGING HAIRS"));
+        assertTrue(defenseMap.containsKey("STINK ATTACK"));
+        assertFalse(defenseMap.containsKey("ANT ALLIANCE"));
     }
 
     @Test
