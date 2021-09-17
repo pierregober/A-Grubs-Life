@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c890587c-deaa-45b6-b0d8-23b7905bae1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/com/game/model/engine/KeyWordIdentifierTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/com/game/model/engine/TextParserTest.java" afterDir="false" />
+    <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="Refactor 3 AB#367">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/LogicEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/LogicEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/game/model/materials/DefensesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/game/model/materials/DefensesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/view/description.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/description.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/game/view/PanelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/game/view/ViewWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/game/view/ViewWindowTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -50,10 +50,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/hamcrest-core-1.3.jar" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="configurable.group.other" />
   </component>
@@ -76,64 +73,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="KeyWordIdentifierTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ViewWindowTest.readHTML_returnsString_successfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="PATTERN" value="com.game.view.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.game.model.engine" />
-      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.KeyWordIdentifierTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KeyWordIdentifierTest.parseCommand_shouldBeEmpty_whenPassingNonKeywords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="A-Grubs-Life" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.model.engine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.model.engine" />
-      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.KeyWordIdentifierTest" />
-      <option name="METHOD_NAME" value="parseCommand_shouldBeEmpty_whenPassingNonKeywords" />
+      <option name="PACKAGE_NAME" value="com.game.view" />
+      <option name="MAIN_CLASS_NAME" value="com.game.view.ViewWindowTest" />
+      <option name="METHOD_NAME" value="readHTML_returnsString_successfully" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KeyWordIdentifierTest.parseCommand_shouldContainKeywords_whenPassingValidKeywords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="A-Grubs-Life" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.model.engine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.model.engine" />
-      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.KeyWordIdentifierTest" />
-      <option name="METHOD_NAME" value="parseCommand_shouldContainKeywords_whenPassingValidKeywords" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TextParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="A-Grubs-Life" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.model.engine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.model.engine" />
-      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.TextParserTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -141,10 +92,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
-        <item itemvalue="JUnit.KeyWordIdentifierTest.parseCommand_shouldContainKeywords_whenPassingValidKeywords" />
-        <item itemvalue="JUnit.KeyWordIdentifierTest" />
-        <item itemvalue="JUnit.KeyWordIdentifierTest.parseCommand_shouldBeEmpty_whenPassingNonKeywords" />
-        <item itemvalue="JUnit.TextParserTest" />
+        <item itemvalue="JUnit.ViewWindowTest.readHTML_returnsString_successfully" />
+        <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
   </component>
@@ -170,10 +119,16 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="canvas-map" />
+                        <option value="dev" />
                       </list>
                     </value>
                   </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="78" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="78" />
                 </map>
               </option>
             </State>
