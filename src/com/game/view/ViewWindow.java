@@ -2,23 +2,21 @@ package com.game.view;
 
 import com.game.model.engine.LogicEngine;
 import com.game.model.materials.Caterpillar;
-import com.game.model.materials.Location;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Locale;
 
 
 public class ViewWindow {
@@ -39,41 +37,67 @@ public class ViewWindow {
     private LogicEngine processor;
     private JLabel labelVerbs;
     private JLabel labelNouns;
-    private JLabel lastMove;
     private PanelListener listener;
     private TitledBorder tb;
     private TitledBorder eb;
+    private JPanel mapPanel;
+    private JEditorPane mapArea;
+    private JEditorPane lastMove;
+    private JPanel soundImage;
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
         this.processor = processor;
 
         setUpComponents();
+        updateMapPanel();
         updateDescriptionPanel();
+        updateCaterpillarStatus();
     }
 
     public void welcomeMessage() {
         this.instructions = new JPanel();
         this.instDesc = new JLabel();
+        this.soundImage = new JPanel();
         instDesc.setText(readHTML("instructions.html", null));
         instructions.add(instDesc);
+        String startGameAudio = "src/resources/images/audio.jpg";
+        BufferedImage myPicture = getAudioFile(startGameAudio);
+        Image imageIcon = new ImageIcon(myPicture).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        JLabel picLabel = new JLabel(new ImageIcon(imageIcon));
+        soundImage.add(picLabel);
+        instructions.add(soundImage);
     }
 
     public String getInput() {
         return this.input;
     }
 
+    /*
+     * static method to retrieve audio files
+     */
+    //METHOD IS PUBLIC ONLY FOR TESTING WILL CHANGE TO PRIVATE BEFORE RELEASE AND DELETE THIS COMMENT
+    public static BufferedImage getAudioFile(String audioPath){
+        try {
+            return ImageIO.read(new File(audioPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void updateCaterpillarStatus() {
         updateLastMove();
         updateStatPanel();
+        updateMapPanel();
         this.window.repaint();
     }
 
     private void updateDescriptionPanel() {
         //Step 1: Create a structure will will pass to method
         HashMap<String, String> data = new HashMap<>();
-        data.put("{{location}}", caterpillar.getCurrentLocation().getName().toLowerCase());
-        data.put("{{desc}}", caterpillar.getCurrentLocation().getDescription().toLowerCase());
+        data.put("[[location]]", caterpillar.getCurrentLocation().getName().toLowerCase());
+        data.put("[[desc]]", caterpillar.getCurrentLocation().getDescription().toLowerCase());
 
         //Step 2: Set the desc label that calls our helper method
         descriptionArea.setText(readHTML("description.html", data));
@@ -85,14 +109,28 @@ public class ViewWindow {
         setUpInputPanel();
         setUpStatPanel();
         setUpDescriptionPanel();
+        setUpMapPanel();
         setUpWindow();
+    }
+
+    private void setUpMapPanel() {
+        this.mapPanel = new JPanel();
+        mapPanel.setLayout(new BorderLayout());
+        this.mapArea = new JEditorPane();
+        mapArea.setContentType("text/html");
+        mapArea.setEditable(false);
+        mapPanel.setPreferredSize(new Dimension(200, 200));
+        mapPanel.setBackground(new Color(0, 0, 0));
+        mapPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
+        mapPanel.add(mapArea);
     }
 
     private void setUpWindow() {
         this.window = new JFrame("A Grub's Life.");
         this.window.setLayout(new BorderLayout());
         this.window.add(statPanel, BorderLayout.EAST);
-        this.window.add(descriptionPanel, BorderLayout.CENTER);
+        this.window.add(descriptionPanel, BorderLayout.NORTH);
+        this.window.add(mapPanel, BorderLayout.CENTER);
         this.window.add(inputPanel, BorderLayout.SOUTH);
         this.window.add(instructions, BorderLayout.WEST);
         this.window.setPreferredSize(new Dimension(850, 650));
@@ -110,7 +148,7 @@ public class ViewWindow {
         descriptionArea.setContentType("text/html");
         descriptionArea.addMouseListener(listener);
         descriptionArea.setEditable(false);
-        descriptionPanel.setPreferredSize(new Dimension(700,600));
+        descriptionPanel.setPreferredSize(new Dimension(700,150));
         descriptionPanel.setBackground(new Color(255, 255, 255));
         descriptionPanel.setBorder(BorderFactory.createLineBorder(new Color(110, 16, 5)));
         descriptionPanel.add(descriptionArea);
@@ -149,10 +187,10 @@ public class ViewWindow {
     private void updateStatPanel() {
         //Step 1: Create a structure will will pass to method
         HashMap<String, String> myStats = new HashMap<>();
-        myStats.put("{{strength}}",  String.valueOf(caterpillar.getStrength()));
-        myStats.put("{{health}}",  String.valueOf(caterpillar.getHealth()));
-        myStats.put("{{level}}",  String.valueOf(caterpillar.getLevel()));
-        myStats.put("{{exp}}",  String.valueOf(caterpillar.getExperience()/caterpillar.getMaxExperience()));
+        myStats.put("[[strength]]",  String.valueOf(caterpillar.getStrength()));
+        myStats.put("[[health]]",  String.valueOf(caterpillar.getHealth()));
+        myStats.put("[[level]]",  String.valueOf(caterpillar.getLevel()));
+        myStats.put("[[exp]]",  String.valueOf(caterpillar.getExperience()/caterpillar.getMaxExperience()));
 
         //Step 2: Set the stat label that calls our helper method
         caterpillarStatLabel.setText(readHTML("statPanel.html", myStats));
@@ -161,8 +199,8 @@ public class ViewWindow {
         if (caterpillar.getCurrentLocation().getEnemy() != null) {
             //Step 3a: Create a structure will will pass to method
             HashMap<String, String> enemyStats = new HashMap<>();
-            enemyStats.put("{{strength}}",  String.valueOf(caterpillar.getCurrentLocation().getEnemy().getStrength()));
-            enemyStats.put("{{health}}",  String.valueOf(caterpillar.getCurrentLocation().getEnemy().getHealth()));
+            enemyStats.put("[[strength]]",  String.valueOf(caterpillar.getCurrentLocation().getEnemy().getStrength()));
+            enemyStats.put("[[health]]",  String.valueOf(caterpillar.getCurrentLocation().getEnemy().getHealth()));
 
             //Step 3b: Set the desc label that calls our helper method
             enemyStatLabel.setText(readHTML("statPanelEnemy.html", enemyStats));
@@ -170,6 +208,11 @@ public class ViewWindow {
         }
     }
 
+    private void updateMapPanel() {
+        HashMap<String, String> myLoc = new HashMap<>();
+        myLoc.put("[[" + caterpillar.getCurrentLocation().getName() + "]]",  "<b class=\"target\">[[" + caterpillar.getCurrentLocation().getName() + "]]</b>");
+        mapArea.setText(readMap("map.html", myLoc));
+    }
 
     private void setUpInputPanel() {
         this.inputPanel = new JPanel();
@@ -182,6 +225,7 @@ public class ViewWindow {
         setUpLabelVerbs();
         setUpInputField();
         setUpLastMove();
+        lastMove.setContentType("text/html");
         inputPanel.add(inputField, BorderLayout.NORTH);
         inputPanel.add(labelVerbs, BorderLayout.WEST);
         inputPanel.add(labelNouns, BorderLayout.EAST);
@@ -210,11 +254,16 @@ public class ViewWindow {
             processor.processCommand(getInput());
             inputField.setText("");
             updateDescriptionPanel();
+            updateMapPanel();
+            updateLastMove();
+            updateCaterpillarStatus();
         });
     }
 
     private void setUpLastMove() {
-        this.lastMove = new JLabel();
+        this.lastMove = new JEditorPane();
+        lastMove.setContentType("text/html");
+        lastMove.setEditable(false);
         lastMove.setBorder(BorderFactory.createTitledBorder("Your Last Move"));
         lastMove.setText(readHTML("lastMoveTitle.html", null));
     }
@@ -223,7 +272,7 @@ public class ViewWindow {
         //In here we should add a getLastAction table element, this will let the user know the last thing they sucessfuly did... this variable should be updated in every command process function
         //Step 1: Create a structure will will pass to method
         HashMap<String, String> move = new HashMap<>();
-        move.put("{{move}}",  caterpillar.getLastAction());
+        move.put("[[move]]",  caterpillar.getLastAction());
         //Step 2: Set the last move body label that calls our helper method
         lastMove.setText(readHTML("lastMoveBody.html", move));
     }
@@ -241,7 +290,7 @@ public class ViewWindow {
             while ((line = br.readLine()) != null) {
                 //Step 2a: to check if I need to replace with a value -- would be faster to just check if it even has the symbol to replace
                 //It would be faster this way -- less iterators because of unknown number of values that would need to be replaced
-                if (line.contains("{{")) {
+                if (line.contains("[[")) {
                     //Step 2b: loop over the hashmap
                     for (Map.Entry<String, String> entry : data.entrySet()) {
                         if (line.contains(entry.getKey())) {
@@ -263,8 +312,44 @@ public class ViewWindow {
         return contentBuilder.toString();
     }
 
-    private class PanelListener implements MouseListener {
+    private String readMap(String path, HashMap<String, String> data) {
+        StringBuilder contentBuilder = new StringBuilder();
+        try {
+            //Step 1: Get the data from file
+            InputStream inputStream = getClass().getResourceAsStream(path);
+            InputStreamReader myReader = new InputStreamReader(inputStream);
+            BufferedReader br = new BufferedReader(myReader);
+            String line = null;
 
+            //Step 2: Read line by line if any value exists lets append it
+            while ((line = br.readLine()) != null) {
+                //Step 2a: to check if I need to replace with a value -- would be faster to just check if it even has the symbol to replace
+                //It would be faster this way -- less iterators because of unknown number of values that would need to be replaced
+                if (line.contains("[[")) {
+                    //Step 2b: loop over the hashmap
+                    for (Map.Entry<String, String> entry : data.entrySet()) {
+                        if (line.contains(entry.getKey())) {
+                            //Need to the get the position of a string values and replace to the entry value
+                            contentBuilder.append(line.replace(entry.getKey(), entry.getValue()));
+                        }else{
+                            contentBuilder.append(line);
+                        }
+                    }
+                }else{
+                    contentBuilder.append(line);
+                }
+            }
+            //Step 3: Make sure to close the connections if done!
+            br.close();
+            myReader.close();
+            inputStream.close();
+        } catch (IOException e) {
+            System.out.println("Error reading the HTML file: " + e);
+        }
+        return contentBuilder.toString();
+    }
+
+    private class PanelListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent e) {
             try {
