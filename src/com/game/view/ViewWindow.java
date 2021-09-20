@@ -328,11 +328,11 @@ public class ViewWindow {
         return catLevelPic.get(caterpillar.getLevel() - 1);
     }
 
-    private String readMap(String path, List<String> data) {
+    public static String readMap(String path, List<String> data) {
         StringBuilder contentBuilder = new StringBuilder();
         try {
             //Step 1: Get the data from file
-            InputStream inputStream = getClass().getResourceAsStream(path);
+            InputStream inputStream = ViewWindow.class.getResourceAsStream(path);
             InputStreamReader myReader = new InputStreamReader(inputStream);
             BufferedReader br = new BufferedReader(myReader);
             String line = null;

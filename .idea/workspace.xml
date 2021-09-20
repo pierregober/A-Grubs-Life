@@ -9,7 +9,7 @@
     <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="Refactor 3 AB#367">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/view/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/game/view/ViewWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/game/view/ViewWindowTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
       <recent name="C:\Users\chris\IdeaProjects\MiniProject\A-Grubs-Life\src\resources\music" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="JUnit.ViewWindowTest.readMap_returnsString_successfully">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
       <module name="A-Grubs-Life" />
@@ -95,12 +95,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ViewWindowTest.readMap_returnsString_successfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.view" />
+      <option name="MAIN_CLASS_NAME" value="com.game.view.ViewWindowTest" />
+      <option name="METHOD_NAME" value="readMap_returnsString_successfully" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="A-Grubs-Life.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/A-Grubs-Life.jar" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ViewWindowTest.readMap_returnsString_successfully" />
         <item itemvalue="Application.Client" />
         <item itemvalue="JAR Application.A-Grubs-Life.jar" />
         <item itemvalue="JUnit.ViewWindowTest.readHTML_returnsString_successfully" />
