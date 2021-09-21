@@ -4,6 +4,7 @@ package com.game.model.engine;
 import com.game.controller.Game;
 import com.game.model.materials.Caterpillar;
 import com.game.model.materials.Enemy;
+import com.game.model.materials.Help;
 import com.game.model.materials.Location;
 
 import java.util.*;
@@ -17,6 +18,7 @@ public class CommandProcessor {
     private HashMap<String, Enemy> enemies;
     private Enemy enemy;  // shortcut for finding your enemy
     private boolean misfire;
+    private Help help = new Help();
 
     public CommandProcessor(Caterpillar caterpillar, HashMap<String,Location> locations, HashMap<String, Enemy> enemies){
         this.caterpillar = caterpillar;
@@ -29,7 +31,10 @@ public class CommandProcessor {
      * @param strings
      */
     public void executeCommand(ArrayList<String> strings) {
-        if (strings.size() == 2 && strings.get(0) != null && strings.get(1) != null) {
+        if (strings.get(0).equalsIgnoreCase("help")) {
+            String focus = (strings.size() < 2) ? "" : strings.get(1).toUpperCase();
+            processCommand("help", focus);
+        } else if (strings.size() == 2 && strings.get(0) != null && strings.get(1) != null) {
             this.enemy = enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase());
             String action = strings.get(0).toUpperCase(Locale.ROOT);
             String focus = strings.get(1).toUpperCase(Locale.ROOT);
@@ -41,8 +46,9 @@ public class CommandProcessor {
             String focus = strings.get(1).toUpperCase(Locale.ROOT) + " " + strings.get(2).toUpperCase(Locale.ROOT);
             this.misfire = true;
             processCommand(action, focus);
-        } else
+        } else {
             processTypo();
+        }
     }
 
     /**
@@ -109,6 +115,9 @@ public class CommandProcessor {
                 processHide(focus);
                 break;
             case "HELP":
+                processHelp(focus);
+                break;
+            case "ANT":
                 processAntAssistance(focus);
                 break;
             case "LEAVE":
@@ -134,6 +143,18 @@ public class CommandProcessor {
                 break;
         }
     }
+
+    private void processHelp(String focus) {
+        String advice = "";
+        if (focus.equalsIgnoreCase("all")) {
+            advice = help.getHelp("ALL");
+        } else {
+            advice = help.getHelp(caterpillar.getCurrentLocation().getName()) + "<br>Choose a command from the list to the left or type <b>help all</b> to get details on how to use those commands.";
+        }
+
+        caterpillar.setLastAction(advice);
+    }
+
 
     private void runGameEndMenu(String action, String focus) {
         if (!action.equalsIgnoreCase("EXIT")) {
