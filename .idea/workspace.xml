@@ -12,14 +12,6 @@
     <list default="true" id="3d1e53c0-3f86-4558-8350-fbef2a3e6f0f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/TextParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/TextParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Help.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/help.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/help.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/view/instructions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/instructions.html" afterDir="false" />
-
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +58,7 @@
       <recent name="com.game.model.materials" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DefensesTest">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
       <module name="A-Grubs-Life" />
@@ -142,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Client" />
         <item itemvalue="JUnit.DefensesTest" />
         <item itemvalue="JUnit.CaterpillarTest" />
         <item itemvalue="JUnit.AntTest" />
         <item itemvalue="JUnit.CommandProcessorTest" />
-        <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
   </component>
