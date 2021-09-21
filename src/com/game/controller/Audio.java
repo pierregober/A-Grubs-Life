@@ -74,6 +74,26 @@ public class Audio implements Runnable {
         clip.stop();
     }
 
+    public static float getMaxVolume(){
+        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        return volumeControl.getMaximum();
+    }
+
+    public static float getMinVolume(){
+        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        return volumeControl.getMinimum();
+    }
+
+    public static void setClipVolume(Float volume){
+        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        volumeControl.setValue(volume);
+    }
+
+    public static float getCurrentClipVolume(){
+        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        return volumeControl.getValue();
+    }
+
     /**
      * This method will be used to play a sound or music
      * /**
@@ -143,6 +163,9 @@ public class Audio implements Runnable {
 
             //Open and start playing the audio stream
             clip.open(ais);
+            setVolume(getCurrentClipVolume());
+            System.out.println(getCurrentClipVolume());
+            System.out.println(volume);
 
             //Clip will loop the audio until Clip is stop/closed
             clip.loop(Clip.LOOP_CONTINUOUSLY);

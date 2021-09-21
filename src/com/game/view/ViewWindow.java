@@ -1,5 +1,7 @@
 package com.game.view;
 
+import com.game.controller.Audio;
+import com.game.controller.Game;
 import com.game.model.engine.LogicEngine;
 import com.game.model.materials.Caterpillar;
 
@@ -49,6 +51,7 @@ public class ViewWindow {
                                                                         "https://imgur.com/kClMFUP.png",
                                                                         "https://imgur.com/6hRqk1G.png",
                                                                         "https://img.pokemondb.net/sprites/black-white/anim/normal/butterfree-f.gif"));
+    private JButton imageButton;
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
@@ -63,15 +66,26 @@ public class ViewWindow {
     public void welcomeMessage() {
         this.instructions = new JPanel();
         this.instDesc = new JLabel();
-        this.soundImage = new JPanel();
+        this.imageButton = new JButton();
         instDesc.setText(readHTML("instructions.html", null));
         instructions.add(instDesc);
         String startGameAudio = "/resources/images/audio.jpg";
         BufferedImage myPicture = getAudioFile(startGameAudio);
         Image imageIcon = new ImageIcon(myPicture).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-        JLabel picLabel = new JLabel(new ImageIcon(imageIcon));
-        soundImage.add(picLabel);
-        instructions.add(soundImage);
+        Icon ic = new ImageIcon(myPicture.getScaledInstance(20,25,Image.SCALE_DEFAULT));
+        imageButton.setIcon(ic);
+        imageButton.setSize(new Dimension(1,1));
+        imageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Game.currentAudio.getVolume() != Audio.getCurrentClipVolume()){
+                    Audio.setClipVolume((float)Game.currentAudio.getVolume());
+                }else{
+                    Audio.setClipVolume( (float) 0);
+                }
+            }
+        });
+        instructions.add(imageButton);
     }
 
     public String getInput() {
@@ -141,7 +155,7 @@ public class ViewWindow {
         this.window.setPreferredSize(new Dimension(850, 650));
         this.window.setVisible(true);
         this.window.setResizable(true);
-        this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         window.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
