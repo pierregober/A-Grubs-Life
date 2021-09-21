@@ -1,5 +1,5 @@
 NAME:DESC:NORTH:SOUTH:EAST:WEST
-GENESIS:Welcome to the world, tiny caterpillar! You have just emerged from an egg on a leaf. There are yummy leaves on the ground around you, and nearby, you can see a bird's nest. You are very hungry, so be sure to eat some leaves. You'll want plenty of strength when birds, squirrels, and other predators are nearby. Be sure to befriend the ants when you can -- otherwise, you'd better run!:WOODS:LAKE:WEB:HOLE
+GENESIS:Welcome to the world, tiny caterpillar! You have just emerged from an egg on a leaf. There are yummy leaves on the ground around you, and nearby, you can see a bird's nest. You are very hungry, so be sure to eat some leaves to get stronger. You'll need it when birds, squirrels, and other predators are nearby.:WOODS:LAKE:WEB:HOLE
 WOODS:You've crawled into the dark woods, and it's hard to see. Baby birds chirp nearby, and the ominous sound of flapping wings tells you a bird is flying overhead. Watch out!:DEAD_END:GENESIS:DEAD_END:DEAD_END
 HOLE:You crawl into a hole and rest for a minute.:DEAD_END:DEAD_END:GENESIS:DEAD_END
 LAKE:The chirping of baby birds tells you there's a hungry momma bird nearby. But more worrying, the sound of water is coming closer -- the lake is rising, and you have 10 seconds to evacuate.:GENESIS:DEAD_END:DEAD_END:DEAD_END

@@ -62,15 +62,8 @@ public class ViewWindow {
     public void welcomeMessage() {
         this.instructions = new JPanel();
         this.instDesc = new JLabel();
-        this.soundImage = new JPanel();
         instDesc.setText(readHTML("instructions.html", null));
         instructions.add(instDesc);
-        String startGameAudio = "/resources/images/audio.jpg";
-        BufferedImage myPicture = getAudioFile(startGameAudio);
-        Image imageIcon = new ImageIcon(myPicture).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-        JLabel picLabel = new JLabel(new ImageIcon(imageIcon));
-        soundImage.add(picLabel);
-        instructions.add(soundImage);
     }
 
     public String getInput() {
