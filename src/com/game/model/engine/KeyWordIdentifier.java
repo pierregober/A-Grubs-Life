@@ -51,6 +51,8 @@ public class KeyWordIdentifier {
         keywords.add("VOLUME");
         keywords.add("UP");
         keywords.add("DOWN");
+        keywords.add("ALL");
+        keywords.add("DEFENSES");
     }
 
 

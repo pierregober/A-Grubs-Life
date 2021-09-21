@@ -10,7 +10,7 @@ import java.util.*;
  * Creates a class tracking available defenses as defined in defenses.txt.
  * Defense level defined in Caterpillar class
  */
-class Defenses {
+public class Defenses {
     private final int maxLevel = 7;
     private List<Details> defenses;
 
@@ -42,7 +42,7 @@ class Defenses {
     }
 
 
-    Defenses() {
+    public Defenses() {
         defenses = initialize();
     }
 
