@@ -31,7 +31,9 @@ public class CommandProcessor {
      * @param strings
      */
     public void executeCommand(ArrayList<String> strings) {
-        if (strings.get(0).equalsIgnoreCase("help")) {
+        if (strings.isEmpty()) {
+            processTypo();
+        } else if (strings.get(0).equalsIgnoreCase("help")) {
             String focus = "";
             if (strings.size() == 3) {
                 focus = strings.get(1).toUpperCase() + " " + strings.get(2).toUpperCase();
