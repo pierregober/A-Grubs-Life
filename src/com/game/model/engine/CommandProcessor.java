@@ -119,7 +119,8 @@ public class CommandProcessor {
                 processExit(focus);
                 break;
             case "VOLUME":
-                Game.currentAudio.changeVolume(focus);
+                processVolume(focus);
+                break;
             case "SHIELD":
                 processShield(focus);
                 break;
@@ -337,6 +338,7 @@ public class CommandProcessor {
         }
     }
 
+    // Shields the user and halves the damage taken after next combat action
     private void processShield(String focus) {
         String player = focus.toLowerCase();
         if (player.equals("self") || player.equals("caterpillar")) {
@@ -344,5 +346,12 @@ public class CommandProcessor {
             caterpillar.setShield(true);
             caterpillar.setLastAction("A layer of silk shields your body. The next damage dealt to you will be reduced by half!");
         }
+    }
+
+    // Displays integer number volume to user
+    private void processVolume(String focus) {
+        double volume = Game.currentAudio.changeVolume(focus) * 100;
+        misfire = false;
+        caterpillar.setLastAction("Volume is at " + (int) (volume + 1));
     }
 }

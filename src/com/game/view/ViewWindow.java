@@ -12,8 +12,8 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 
 public class ViewWindow {
@@ -40,6 +40,13 @@ public class ViewWindow {
     private JEditorPane mapArea;
     private JEditorPane lastMove;
     private JPanel soundImage;
+    private List<String> catLevelPic = new ArrayList<>(Arrays.asList("https://imgur.com/boJ2Qlk.png",
+                                                                        "https://imgur.com/4XKK732.png",
+                                                                        "https://imgur.com/7eGdpH2.png",
+                                                                        "https://imgur.com/IExa9EK.png",
+                                                                        "https://imgur.com/kClMFUP.png",
+                                                                        "https://imgur.com/6hRqk1G.png",
+                                                                        "https://img.pokemondb.net/sprites/black-white/anim/normal/butterfree-f.gif"));
 
     public ViewWindow(Caterpillar caterpillar, LogicEngine processor) {
         this.caterpillar = caterpillar;
@@ -111,11 +118,11 @@ public class ViewWindow {
 
     private void setUpMapPanel() {
         this.mapPanel = new JPanel();
-        mapPanel.setLayout(new BorderLayout());
         this.mapArea = new JEditorPane();
+        mapPanel.setLayout(new BorderLayout());
+        mapPanel.setPreferredSize(new Dimension(200, 200));
         mapArea.setContentType("text/html");
         mapArea.setEditable(false);
-        mapPanel.setPreferredSize(new Dimension(200, 200));
         mapPanel.setBackground(new Color(0, 0, 0));
         mapPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255)));
         mapPanel.add(mapArea);
@@ -214,9 +221,8 @@ public class ViewWindow {
     }
 
     private void updateMapPanel() {
-        HashMap<String, String> myLoc = new HashMap<>();
-        myLoc.put("[[" + caterpillar.getCurrentLocation().getName() + "]]", "<b class=\"target\">[[" + caterpillar.getCurrentLocation().getName() + "]]</b>");
-        mapArea.setText(readMap("map.html", myLoc));
+        List<String> data = new ArrayList<>(Arrays.asList(getPicture(), "[[" + caterpillar.getCurrentLocation().getName() + "]]", "<b class=\"target\">[[" + caterpillar.getCurrentLocation().getName() + "]]</b>"));
+        mapArea.setText(readMap("map.html", data));
     }
 
     private void setUpInputPanel() {
@@ -303,7 +309,8 @@ public class ViewWindow {
                             contentBuilder.append(line.replace(entry.getKey(), entry.getValue()));
                         }
                     }
-                } else {
+                }
+                else {
                     contentBuilder.append(line);
                 }
             }
@@ -317,11 +324,15 @@ public class ViewWindow {
         return contentBuilder.toString();
     }
 
-    private String readMap(String path, HashMap<String, String> data) {
+    private String getPicture(){
+        return catLevelPic.get(caterpillar.getLevel() - 1);
+    }
+
+    public static String readMap(String path, List<String> data) {
         StringBuilder contentBuilder = new StringBuilder();
         try {
             //Step 1: Get the data from file
-            InputStream inputStream = getClass().getResourceAsStream(path);
+            InputStream inputStream = ViewWindow.class.getResourceAsStream(path);
             InputStreamReader myReader = new InputStreamReader(inputStream);
             BufferedReader br = new BufferedReader(myReader);
             String line = null;
@@ -330,17 +341,18 @@ public class ViewWindow {
             while ((line = br.readLine()) != null) {
                 //Step 2a: to check if I need to replace with a value -- would be faster to just check if it even has the symbol to replace
                 //It would be faster this way -- less iterators because of unknown number of values that would need to be replaced
+                boolean next = false;
                 if (line.contains("[[")) {
-                    //Step 2b: loop over the hashmap
-                    for (Map.Entry<String, String> entry : data.entrySet()) {
-                        if (line.contains(entry.getKey())) {
-                            //Need to the get the position of a string values and replace to the entry value
-                            contentBuilder.append(line.replace(entry.getKey(), entry.getValue()));
-                        } else {
-                            contentBuilder.append(line);
-                        }
+                    if(line.contains("[[PICTURE]]")){
+                        next = true;
+                        contentBuilder.append(line.replace("[[PICTURE]]", data.get(0)));
                     }
-                } else {
+                    if(line.contains(data.get(1))){
+                        next = true;
+                        contentBuilder.append(line.replace(data.get(1), data.get(2)));
+                    }
+                }
+                if(!next){
                     contentBuilder.append(line);
                 }
             }
