@@ -71,7 +71,8 @@ public class Audio implements Runnable {
     }
 
     public void stop() {
-        clip.stop();
+        if (clip != null)
+            clip.stop();
     }
 
     /**
