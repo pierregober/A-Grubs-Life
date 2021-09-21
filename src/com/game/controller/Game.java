@@ -10,6 +10,7 @@ import com.game.model.materials.Location;
 import com.game.view.ViewWindow;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -28,7 +29,7 @@ public class Game {
     /**
      *   Called by the client to start a new game.
      */
-    public void start(){
+    public void start() throws URISyntaxException {
         setUpComponents();
         run();
     }
@@ -36,7 +37,7 @@ public class Game {
     /**
      * Instantiates the necessary fields of a Game object.
      */
-    private void setUpComponents(){
+    private void setUpComponents() throws URISyntaxException {
         this.enemies = populateEnemies();
         this.locations = populateLocations();
         this.caterpillar = new Caterpillar(100,0,0);
