@@ -7,10 +7,19 @@ import com.game.controller.Game;
 
 public class Caterpillar {
     public boolean winner;
+    public boolean inTree = false;
     private int health;
     private int experience;
     private int strength ;
     private boolean shield = false;
+
+    public boolean isInTree() {
+        return inTree;
+    }
+
+    public void setInTree(boolean inTree) {
+        this.inTree = inTree;
+    }
 
     public boolean isInCombat() {
         return inCombat;
@@ -46,6 +55,11 @@ public class Caterpillar {
         System.out.println("Moving from " + currentLocation + " to " + location.getName());
         Game.playAudio(location.getName());
         this.currentLocation = location;
+        if (location.getName().equalsIgnoreCase("tree")) {
+            setInTree(true);
+        } else {
+            setInTree(false);
+        }
     }
 
     public Location getCurrentLocation(){
@@ -118,6 +132,10 @@ public class Caterpillar {
 
     public Map<String, String> getDefenses() {
         return defenses.getDefenses(getLevel());
+    }
+
+    public Map<String, String> getAllDefenses() {
+        return defenses.getDefenses(maxLevel);
     }
 
     public int getStrength() {

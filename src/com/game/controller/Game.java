@@ -10,6 +10,7 @@ import com.game.model.materials.Location;
 import com.game.view.ViewWindow;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -28,7 +29,7 @@ public class Game {
     /**
      *   Called by the client to start a new game.
      */
-    public void start(){
+    public void start() throws URISyntaxException {
         setUpComponents();
         run();
     }
@@ -36,7 +37,7 @@ public class Game {
     /**
      * Instantiates the necessary fields of a Game object.
      */
-    private void setUpComponents(){
+    public void setUpComponents() throws URISyntaxException {
         this.enemies = populateEnemies();
         this.locations = populateLocations();
         this.caterpillar = new Caterpillar(100,0,0);
@@ -66,7 +67,7 @@ public class Game {
      * Generates location objects from text file data
      * @return hashmap of location objects (String, Location)
      */
-    private HashMap<String,Location> populateLocations(){
+    public HashMap<String,Location> populateLocations(){
         HashMap<String,Location> locations = new HashMap<>();
         String[] locationFields;
         try{
@@ -81,7 +82,7 @@ public class Game {
                 loc.setEnemy(enemies.get(locationFields[0].trim().toLowerCase(Locale.ROOT)));
                 locations.put(locationFields[0].trim(), loc);
             }
-            System.out.println(locations.toString());
+//            System.out.println(locations.toString());
             br.close();
             myReader.close();
             inputStream.close();
@@ -95,7 +96,7 @@ public class Game {
      * Populates Enemy objects from an external text file.
      * @return Hashmap of Enemy objects (String, Enemy)
      */
-    private HashMap<String,Enemy> populateEnemies() {
+    public HashMap<String,Enemy> populateEnemies() {
         HashMap<String, Enemy> enemies = new HashMap<>();
         String[] enemyFields;
         try {
@@ -110,7 +111,7 @@ public class Game {
                 enemies.put(enemyFields[6].trim(), enemy);
 
             }
-            System.out.println(enemies.toString());
+//            System.out.println(enemies.toString());
             br.close();
             myReader.close();
             inputStream.close();

@@ -1,8 +1,10 @@
 package com.game.controller;
 
 import javax.sound.sampled.*;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
@@ -16,16 +18,16 @@ public class Audio implements Runnable {
      */
     private enum AudioPaths {
 
-        GENESIS("GENESIS", "src/resources/music/forest.wav"),
-        START("START", "src/resources/music/forest.wav"),
-        WOODS("WOODS", "src/resources/music/woods_owl.wav"),
-        HOLE("HOLE", "src/resources/music/hole.wav"),
-        LAKE("LAKE", "src/resources/music/lake.wav"),
-        HILL("HILL", "src/resources/music/anthill.wav"),
-        FLOWERS("FLOWERS", "src/resources/music/flowers.wav"),
-        BOSS("BOSS", "src/resources/music/boss.wav"),
-        TREE("TREE", "src/resources/music/tree.wav"),
-        WEB("WEB", "src/resources/music/spider.wav");
+        GENESIS("GENESIS", "/resources/music/forest.wav"),
+        START("START", "/resources/music/forest.wav"),
+        WOODS("WOODS", "/resources/music/woods_owl.wav"),
+        HOLE("HOLE", "/resources/music/hole.wav"),
+        LAKE("LAKE", "/resources/music/lake.wav"),
+        HILL("HILL", "/resources/music/anthill.wav"),
+        FLOWERS("FLOWERS", "/resources/music/flowers.wav"),
+        BOSS("BOSS", "/resources/music/boss.wav"),
+        TREE("TREE", "/resources/music/tree.wav"),
+        WEB("WEB", "/resources/music/spider.wav");
 
         private String location;
         private String path;    //file sound file path for location
@@ -69,7 +71,8 @@ public class Audio implements Runnable {
     }
 
     public void stop() {
-        clip.stop();
+        if (clip != null)
+            clip.stop();
     }
 
     /**
@@ -82,17 +85,23 @@ public class Audio implements Runnable {
      *                  Changes volume of background sound, the static clip object in class Audio
      * @param direction UP or DOWN
      */
-    public void changeVolume(String direction) {
-        double delta = direction.equalsIgnoreCase("UP") ? 0.1 : -0.1;
-        double newVol = getVolume() + delta;
-        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        float newVal = (float) ((volumeControl.getMinimum() + newVol * (volumeControl.getMaximum() - volumeControl.getMinimum())));
-        if (newVal > volumeControl.getMaximum()) {
-            newVal = volumeControl.getMaximum();
-            newVol -= delta;
+    public double changeVolume(String direction) {
+        try {
+            double delta = direction.equalsIgnoreCase("UP") ? 0.1 : -0.1;
+            double newVol = getVolume() + delta;
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float newVal = (float) ((volumeControl.getMinimum() + newVol * (volumeControl.getMaximum() - volumeControl.getMinimum())));
+            if (newVal > volumeControl.getMaximum()) {
+                newVal = volumeControl.getMaximum();
+                newVol -= delta;
+            }
+            volumeControl.setValue(newVal);
+            setVolume(newVol);
+            return newVol;
+        } catch(IllegalArgumentException e) {
+            e.getMessage();
         }
-        volumeControl.setValue(newVal);
-        setVolume(newVol);
+        return 0.09;
     }
 
     /*
@@ -113,13 +122,13 @@ public class Audio implements Runnable {
 
         try {
             //Get Audio file
-            File file = new File(musicPath);
-
+//            File file = new File(musicPath);
+            InputStream file = getClass().getResourceAsStream(musicPath);
             //Get Clip that will be use to open and play the sound/music
             clip = AudioSystem.getClip();
 
             //Get the file as an AudioInputStream
-            AudioInputStream in = AudioSystem.getAudioInputStream(file);
+            AudioInputStream in = AudioSystem.getAudioInputStream(new BufferedInputStream(file));
 
             //Get the current format of the AudioInputStream
             AudioFormat baseFormat = in.getFormat();
@@ -147,6 +156,8 @@ public class Audio implements Runnable {
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }

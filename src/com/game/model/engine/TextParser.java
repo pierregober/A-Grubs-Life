@@ -1,14 +1,14 @@
 package com.game.model.engine;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
 
 public class TextParser {
     private HashSet<String> verbs;
     private HashSet<String> nouns;
-    public TextParser(){
+
+    public TextParser() {
          super();
          populateVerbs();
          populateNouns();
@@ -36,6 +36,9 @@ public class TextParser {
         nouns.add("DOWN");
         nouns.add("SELF");
         nouns.add("GODMODE");
+        nouns.add("ALL");
+        nouns.add("DEFENSES");
+        nouns.add("STINGING");
     }
 
     private void populateVerbs() {
@@ -54,7 +57,7 @@ public class TextParser {
         verbs.add("SHIELD");
         verbs.add("USE");
         verbs.add("CRYPSIS");
-        verbs.add("STINGING");
+        verbs.add("STINGING HAIRS");
         verbs.add("HAIRS");
         verbs.add("STINK");
         verbs.add("NOXIOUS");
@@ -64,10 +67,11 @@ public class TextParser {
         verbs.add("ALLIANCE");
         verbs.add("ACID");
         verbs.add("VOLUME");
+        verbs.add("DEFENSES");
     }
 
 
-    //If we dont get a viable verb and noun then we will pass null.
+    //If we don't get a viable verb and noun then we will pass null.
     public ArrayList<String> parseInput(String unParsedCommand) {
         String[] result;
         if(unParsedCommand != null) {
