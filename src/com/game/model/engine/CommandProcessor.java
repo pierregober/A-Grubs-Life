@@ -32,7 +32,12 @@ public class CommandProcessor {
      */
     public void executeCommand(ArrayList<String> strings) {
         if (strings.get(0).equalsIgnoreCase("help")) {
-            String focus = (strings.size() < 2) ? "" : strings.get(1).toUpperCase();
+            String focus = "";
+            if (strings.size() == 3) {
+                focus = strings.get(1).toUpperCase() + " " + strings.get(2).toUpperCase();
+            } else if (strings.size() > 1) {
+                focus = strings.get(1).toUpperCase();
+            }
             processCommand("help", focus);
         } else if (strings.size() == 2 && strings.get(0) != null && strings.get(1) != null) {
             this.enemy = enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase());
@@ -95,7 +100,7 @@ public class CommandProcessor {
     }
 
     private void processCantDoThatHere() {
-        caterpillar.setLastAction("You can't do that here.. We don't have that ");
+        caterpillar.setLastAction("You can't do that here.. We don't have that");
     }
 
     /**
@@ -117,7 +122,7 @@ public class CommandProcessor {
             case "HELP":
                 processHelp(focus);
                 break;
-            case "ANT":
+            case "ASSIST":
                 processAntAssistance(focus);
                 break;
             case "LEAVE":
@@ -148,8 +153,14 @@ public class CommandProcessor {
         String advice = "";
         if (focus.equalsIgnoreCase("all")) {
             advice = help.getHelp("ALL");
-        } else {
+        } else if (focus.isEmpty()) {
             advice = help.getHelp(caterpillar.getCurrentLocation().getName()) + "<br>Choose a command from the list to the left or type <b>help all</b> to get details on how to use those commands.";
+        } else {
+            advice = help.getHelp(caterpillar, focus);
+        }
+
+        if (caterpillar.getDefenses().containsKey(focus.toUpperCase())) {
+            help.getHelp(caterpillar, focus.toUpperCase());
         }
 
         caterpillar.setLastAction(advice);
@@ -263,7 +274,7 @@ public class CommandProcessor {
     }
 
     private void processAntAssistance(String focus) {
-        if (focus.equalsIgnoreCase("ANT") && caterpillar.getLevel() == 2) {
+        if (focus.equalsIgnoreCase("ANT") && caterpillar.getLevel() >= 2) {
             //DONE : Implement "Ant can be used in combat" logic here.
             caterpillar.setStrength(caterpillar.getStrength() + 60);
             caterpillar.setLastAction("You have received assistance from a friendly ant.");

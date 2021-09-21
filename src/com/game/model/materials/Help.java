@@ -30,12 +30,20 @@ public class Help {
     }
 
     public static String getHelp(String location) {
-        if (location.equals("ALL")) {
+        if (location.equalsIgnoreCase("ALL")) {
             return helpDirectory.get("ALL");
         } else if (helpDirectory.containsKey(location)) {
             return helpDirectory.get(location);
         }
-
         return "Sorry, I seem to be lost. Where are we?";
+    }
+
+    public static String getHelp(Caterpillar caterpillar, String defense) {
+        if (caterpillar.getAllDefenses().containsKey(defense.toUpperCase())) {
+            return caterpillar.getAllDefenses().get(defense);
+        } else if (defense.equalsIgnoreCase("defenses")) {
+            return helpDirectory.get("DEFENSES");
+        }
+        return "I'm not sure what that is: " + defense;
     }
 }
