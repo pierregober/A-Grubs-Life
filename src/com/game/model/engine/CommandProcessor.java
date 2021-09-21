@@ -117,7 +117,7 @@ public class CommandProcessor {
             case "HELP":
                 processHelp(focus);
                 break;
-            case "ANT":
+            case "ASSIST":
                 processAntAssistance(focus);
                 break;
             case "LEAVE":

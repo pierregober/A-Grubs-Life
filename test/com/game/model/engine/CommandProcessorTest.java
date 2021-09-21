@@ -92,16 +92,16 @@ public class CommandProcessorTest {
         ArrayList<String> command = new ArrayList<>(Arrays.asList("go", "godmode"));
         processor.executeCommand(command);
 
-        ArrayList<String> command2 = new ArrayList<>(Arrays.asList("help", "ant"));
+        ArrayList<String> command2 = new ArrayList<>(Arrays.asList("assist", "ant"));
         processor.executeCommand(command2);
 
-        assertEquals("You have received assistance from a friendly ant", caterpillar.getLastAction());
+        assertEquals("You have received assistance from a friendly ant.", caterpillar.getLastAction());
         assertTrue(caterpillar.getStrength() >= 60);
     }
 
     @Test
     public void testHelpAntInvalidLevel() {
-        ArrayList<String> command = new ArrayList<>(Arrays.asList("help", "ant"));
+        ArrayList<String> command = new ArrayList<>(Arrays.asList("assist", "ant"));
         processor.executeCommand(command);
 
         assertEquals("You can't do that here.. We don't have that", caterpillar.getLastAction());

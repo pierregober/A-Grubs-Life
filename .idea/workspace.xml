@@ -10,10 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d1e53c0-3f86-4558-8350-fbef2a3e6f0f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/game/model/materials/Help.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/game/model/materials/help.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/game/model/engine/CommandProcessorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/game/model/engine/CommandProcessorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +30,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="1y6CC41QrDZj9vm8WUlg4kirE2L" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
@@ -54,7 +59,7 @@
       <recent name="com.game.model.materials" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="JUnit.DefensesTest">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
       <module name="A-Grubs-Life" />
@@ -68,53 +73,73 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CaterpillarTest.getCurrentLocationReturnsCorrectLocation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AntTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
-      <option name="METHOD_NAME" value="getCurrentLocationReturnsCorrectLocation" />
-      <option name="TEST_OBJECT" value="method" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.materials.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.materials" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.materials.AntTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CaterpillarTest.getCurrentLocationReturnsNullAfterInstantiation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CaterpillarTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
-      <option name="METHOD_NAME" value="getCurrentLocationReturnsNullAfterInstantiation" />
-      <option name="TEST_OBJECT" value="method" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.materials.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.materials" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.materials.CaterpillarTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CaterpillarTest.getExperienceReturnsCorrectXPLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CommandProcessorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
-      <option name="METHOD_NAME" value="getExperienceReturnsCorrectXPLevel" />
-      <option name="TEST_OBJECT" value="method" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.CommandProcessorTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CaterpillarTest.getStrengthReturnsCorrectStrengthLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DefensesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
-      <option name="METHOD_NAME" value="getStrengthReturnsCorrectStrengthLevel" />
-      <option name="TEST_OBJECT" value="method" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.materials.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.materials" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.materials.DefensesTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DefensesTest" />
+        <item itemvalue="JUnit.CaterpillarTest" />
+        <item itemvalue="JUnit.AntTest" />
+        <item itemvalue="JUnit.CommandProcessorTest" />
         <item itemvalue="Application.Client" />
-        <item itemvalue="JUnit.CaterpillarTest.getCurrentLocationReturnsCorrectLocation" />
-        <item itemvalue="JUnit.CaterpillarTest.getCurrentLocationReturnsNullAfterInstantiation" />
-        <item itemvalue="JUnit.CaterpillarTest.getStrengthReturnsCorrectStrengthLevel" />
-        <item itemvalue="JUnit.CaterpillarTest.getExperienceReturnsCorrectXPLevel" />
       </list>
     </recent_temporary>
   </component>
