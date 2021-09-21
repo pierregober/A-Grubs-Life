@@ -10,15 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d1e53c0-3f86-4558-8350-fbef2a3e6f0f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/com/game/model/materials/EnemyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/com/game/model/materials/HelpTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/com/game/model/materials/LeafTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/com/game/model/materials/LocationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/game/view/ViewWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/game/view/ViewWindowTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/controller/enemies.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/enemies.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

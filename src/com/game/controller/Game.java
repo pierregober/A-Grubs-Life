@@ -38,7 +38,6 @@ public class Game {
      * Instantiates the necessary fields of a Game object.
      */
     public void setUpComponents() throws URISyntaxException {
-        System.out.println("Setting up components");
         this.enemies = populateEnemies();
         this.locations = populateLocations();
         this.caterpillar = new Caterpillar(100,0,0);
@@ -112,7 +111,6 @@ public class Game {
                 enemies.put(enemyFields[6].trim(), enemy);
 
             }
-            System.out.println(enemies.toString());
             br.close();
             myReader.close();
             inputStream.close();
