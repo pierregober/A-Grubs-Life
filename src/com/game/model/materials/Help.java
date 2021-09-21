@@ -40,7 +40,7 @@ public class Help {
 
     public static String getHelp(Caterpillar caterpillar, String defense) {
         if (caterpillar.getAllDefenses().containsKey(defense.toUpperCase())) {
-            return caterpillar.getAllDefenses().get(defense);
+            return "With " + defense + " you acquire this ability: " + caterpillar.getAllDefenses().get(defense);
         } else if (defense.equalsIgnoreCase("defenses")) {
             return helpDirectory.get("DEFENSES");
         }

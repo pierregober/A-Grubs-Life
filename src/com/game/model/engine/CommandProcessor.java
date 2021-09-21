@@ -31,7 +31,9 @@ public class CommandProcessor {
      * @param strings
      */
     public void executeCommand(ArrayList<String> strings) {
-        if (strings.get(0).equalsIgnoreCase("help")) {
+        if (strings.isEmpty()) {
+            processTypo();
+        } else if (strings.get(0).equalsIgnoreCase("help")) {
             String focus = "";
             if (strings.size() == 3) {
                 focus = strings.get(1).toUpperCase() + " " + strings.get(2).toUpperCase();
@@ -239,10 +241,7 @@ public class CommandProcessor {
     // Changes the state of the caterpillar to attacking. This will enable the caterpillar to
     // use its defenses
     private void processAttack(String focus) {
-        System.out.println(caterpillar.getCurrentLocation().getName());
-        Enemy enem = enemies.get(locations.get(caterpillar.getCurrentLocation().getName()));
-        System.out.println(enem);
-        if (focus.equalsIgnoreCase(enem.getName())) {
+        if (focus.equalsIgnoreCase(enemy.getName())) {
             if (!caterpillar.isInCombat()) {
                 caterpillar.setInCombat(true);
                 misfire = false;
