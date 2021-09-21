@@ -52,6 +52,7 @@ public class KeyWordIdentifier {
         keywords.add("UP");
         keywords.add("DOWN");
         keywords.add("ALL");
+        keywords.add("DEFENSES");
     }
 
 
