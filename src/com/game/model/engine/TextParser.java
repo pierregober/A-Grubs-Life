@@ -36,6 +36,7 @@ public class TextParser {
         nouns.add("DOWN");
         nouns.add("SELF");
         nouns.add("GODMODE");
+        nouns.add("ALL");
     }
 
     private void populateVerbs() {

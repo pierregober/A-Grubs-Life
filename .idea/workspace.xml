@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="A-Grubs-Life:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c890587c-deaa-45b6-b0d8-23b7905bae1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/com/game/model/engine/CommandProcessorTest.java" afterDir="false" />
+    <list default="true" id="3d1e53c0-3f86-4558-8350-fbef2a3e6f0f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/game/model/materials/Help.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/game/model/materials/help.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Defenses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Defenses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Location.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,51 +23,38 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
+        <option value="JUnit3 Test Class" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="volume-AB#610" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProjectId" id="1xpTp3ePeVy2mscaMaQW1RapfVV" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1y6CC41QrDZj9vm8WUlg4kirE2L" />
   <component name="ProjectViewState">
-    <option name="flattenModules" value="true" />
-    <option name="flattenPackages" value="true" />
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
-    <option name="showVisibilityIcons" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/com/game/model/engine" />
-    <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.other" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resources" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.11764705" />
+    <property name="project.structure.side.proportion" value="0.13351136" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\StudentWork\Sprint\A-Grubs-Life\test\com\game\model\engine" />
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="junit.framework.TestCase" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\chris\IdeaProjects\MiniProject\A-Grubs-Life\src\resources\music" />
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.game.model.materials" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DefensesTest">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
       <module name="A-Grubs-Life" />
@@ -76,86 +68,64 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandProcessorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CaterpillarTest.getCurrentLocationReturnsCorrectLocation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.model.engine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.model.engine" />
-      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.CommandProcessorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommandProcessorTest.testHelpAnt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="A-Grubs-Life" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.model.engine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.model.engine" />
-      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.CommandProcessorTest" />
-      <option name="METHOD_NAME" value="testHelpAnt" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
+      <option name="METHOD_NAME" value="getCurrentLocationReturnsCorrectLocation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandProcessorTest.testShieldAfterBattle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CaterpillarTest.getCurrentLocationReturnsNullAfterInstantiation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.model.engine.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.model.engine" />
-      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.CommandProcessorTest" />
-      <option name="METHOD_NAME" value="testShieldAfterBattle" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
+      <option name="METHOD_NAME" value="getCurrentLocationReturnsNullAfterInstantiation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DefensesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CaterpillarTest.getExperienceReturnsCorrectXPLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.model.materials.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.model.materials" />
-      <option name="MAIN_CLASS_NAME" value="com.game.model.materials.DefensesTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
+      <option name="METHOD_NAME" value="getExperienceReturnsCorrectXPLevel" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CaterpillarTest.getStrengthReturnsCorrectStrengthLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
+      <option name="METHOD_NAME" value="getStrengthReturnsCorrectStrengthLevel" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DefensesTest" />
-        <item itemvalue="JUnit.CommandProcessorTest" />
-        <item itemvalue="JUnit.CommandProcessorTest.testHelpAnt" />
         <item itemvalue="Application.Client" />
-        <item itemvalue="JUnit.CommandProcessorTest.testShieldAfterBattle" />
+        <item itemvalue="JUnit.CaterpillarTest.getCurrentLocationReturnsCorrectLocation" />
+        <item itemvalue="JUnit.CaterpillarTest.getCurrentLocationReturnsNullAfterInstantiation" />
+        <item itemvalue="JUnit.CaterpillarTest.getStrengthReturnsCorrectStrengthLevel" />
+        <item itemvalue="JUnit.CaterpillarTest.getExperienceReturnsCorrectXPLevel" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c890587c-deaa-45b6-b0d8-23b7905bae1e" name="Default Changelist" comment="" />
-      <created>1631051214589</created>
+      <changelist id="3d1e53c0-3f86-4558-8350-fbef2a3e6f0f" name="Changes" comment="" />
+      <created>1631562522879</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1631051214589</updated>
+      <updated>1631562522879</updated>
     </task>
     <servers />
   </component>
@@ -164,39 +134,11 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="dev" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-              <option name="COLUMN_ID_WIDTH">
-                <map>
-                  <entry key="Table.Default.Author.ColumnIdWidth" value="78" />
-                  <entry key="Table.Default.Date.ColumnIdWidth" value="78" />
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="14" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

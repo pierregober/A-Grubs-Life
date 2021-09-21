@@ -85,17 +85,23 @@ public class Audio implements Runnable {
      *                  Changes volume of background sound, the static clip object in class Audio
      * @param direction UP or DOWN
      */
-    public void changeVolume(String direction) {
-        double delta = direction.equalsIgnoreCase("UP") ? 0.1 : -0.1;
-        double newVol = getVolume() + delta;
-        FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        float newVal = (float) ((volumeControl.getMinimum() + newVol * (volumeControl.getMaximum() - volumeControl.getMinimum())));
-        if (newVal > volumeControl.getMaximum()) {
-            newVal = volumeControl.getMaximum();
-            newVol -= delta;
+    public double changeVolume(String direction) {
+        try {
+            double delta = direction.equalsIgnoreCase("UP") ? 0.1 : -0.1;
+            double newVol = getVolume() + delta;
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float newVal = (float) ((volumeControl.getMinimum() + newVol * (volumeControl.getMaximum() - volumeControl.getMinimum())));
+            if (newVal > volumeControl.getMaximum()) {
+                newVal = volumeControl.getMaximum();
+                newVol -= delta;
+            }
+            volumeControl.setValue(newVal);
+            setVolume(newVol);
+            return newVol;
+        } catch(IllegalArgumentException e) {
+            e.getMessage();
         }
-        volumeControl.setValue(newVal);
-        setVolume(newVol);
+        return 0.09;
     }
 
     /*
