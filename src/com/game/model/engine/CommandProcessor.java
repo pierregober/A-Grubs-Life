@@ -32,7 +32,12 @@ public class CommandProcessor {
      */
     public void executeCommand(ArrayList<String> strings) {
         if (strings.get(0).equalsIgnoreCase("help")) {
-            String focus = (strings.size() < 2) ? "" : strings.get(1).toUpperCase();
+            String focus = "";
+            if (strings.size() == 3) {
+                focus = strings.get(1).toUpperCase() + " " + strings.get(2).toUpperCase();
+            } else if (strings.size() > 1) {
+                focus = strings.get(1).toUpperCase();
+            }
             processCommand("help", focus);
         } else if (strings.size() == 2 && strings.get(0) != null && strings.get(1) != null) {
             this.enemy = enemies.get(caterpillar.getCurrentLocation().getName().toLowerCase());
@@ -148,8 +153,14 @@ public class CommandProcessor {
         String advice = "";
         if (focus.equalsIgnoreCase("all")) {
             advice = help.getHelp("ALL");
-        } else {
+        } else if (focus.isEmpty()) {
             advice = help.getHelp(caterpillar.getCurrentLocation().getName()) + "<br>Choose a command from the list to the left or type <b>help all</b> to get details on how to use those commands.";
+        } else {
+            advice = help.getHelp(caterpillar, focus);
+        }
+
+        if (caterpillar.getDefenses().containsKey(focus.toUpperCase())) {
+            help.getHelp(caterpillar, focus.toUpperCase());
         }
 
         caterpillar.setLastAction(advice);

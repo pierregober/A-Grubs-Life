@@ -12,7 +12,14 @@
     <list default="true" id="3d1e53c0-3f86-4558-8350-fbef2a3e6f0f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/game/model/engine/CommandProcessorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/game/model/engine/CommandProcessorTest.java" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/KeyWordIdentifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/TextParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/TextParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Caterpillar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Help.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/help.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/help.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/view/instructions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/instructions.html" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

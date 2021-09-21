@@ -8,3 +8,4 @@ FLOWERS:There are flowers everywhere, my dude. You can <b>eat</b> alllll day her
 BOSS:This is your BOSS BATTLE, my friend. Hope you've got some acid attacks in you.
 TREE:When you've beaten the boss and rescued your mate, you can return here to officially win the game!
 ALL:Actions to the left can apply to [self, bee, ant, spider, bird, flies, rat, squirrel, self, crypsis, stinging hairs, stink, noxious spit, click defense, acid attack].
+DEFENSES:You can defend yourself with crypsis (level 1), stinging hairs (2), stink attack (3), noxious spit (4), click defense (5), ant alliance (6), and acid attack (7).
