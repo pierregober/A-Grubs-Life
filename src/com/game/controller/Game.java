@@ -111,7 +111,6 @@ public class Game {
                 enemies.put(enemyFields[6].trim(), enemy);
 
             }
-//            System.out.println(enemies.toString());
             br.close();
             myReader.close();
             inputStream.close();
