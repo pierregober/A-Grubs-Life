@@ -239,10 +239,7 @@ public class CommandProcessor {
     // Changes the state of the caterpillar to attacking. This will enable the caterpillar to
     // use its defenses
     private void processAttack(String focus) {
-        System.out.println(caterpillar.getCurrentLocation().getName());
-        Enemy enem = enemies.get(locations.get(caterpillar.getCurrentLocation().getName()));
-        System.out.println(enem);
-        if (focus.equalsIgnoreCase(enem.getName())) {
+        if (focus.equalsIgnoreCase(enemy.getName())) {
             if (!caterpillar.isInCombat()) {
                 caterpillar.setInCombat(true);
                 misfire = false;
