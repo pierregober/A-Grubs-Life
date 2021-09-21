@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="Refactor 3 AB#367">
+    <list default="true" id="c890587c-deaa-45b6-b0d8-23b7905bae1e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test/com/game/model/engine/CommandProcessorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Audio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/game/view/description.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/description.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/game/view/PanelTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/game/view/ViewWindowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/game/view/ViewWindowTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/engine/CommandProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Defenses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Defenses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/model/materials/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/model/materials/Location.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,15 +18,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="volume-AB#610" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,16 +50,19 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/com/game/model/engine" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="configurable.group.other" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\StudentWork\Sprint\A-Grubs-Life\test\com\game\model\engine" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\chris\IdeaProjects\MiniProject\A-Grubs-Life\src\resources\music" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="JUnit.DefensesTest">
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
       <module name="A-Grubs-Life" />
@@ -73,34 +76,82 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ViewWindowTest.readHTML_returnsString_successfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CommandProcessorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.game.view.*" />
+          <option name="PATTERN" value="com.game.model.engine.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.game.view" />
-      <option name="MAIN_CLASS_NAME" value="com.game.view.ViewWindowTest" />
-      <option name="METHOD_NAME" value="readHTML_returnsString_successfully" />
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.CommandProcessorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommandProcessorTest.testHelpAnt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.CommandProcessorTest" />
+      <option name="METHOD_NAME" value="testHelpAnt" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommandProcessorTest.testShieldAfterBattle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.engine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.engine" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.engine.CommandProcessorTest" />
+      <option name="METHOD_NAME" value="testShieldAfterBattle" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DefensesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.materials.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.materials" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.materials.DefensesTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DefensesTest" />
+        <item itemvalue="JUnit.CommandProcessorTest" />
+        <item itemvalue="JUnit.CommandProcessorTest.testHelpAnt" />
         <item itemvalue="Application.Client" />
-        <item itemvalue="JUnit.ViewWindowTest.readHTML_returnsString_successfully" />
-        <item itemvalue="Application.Client" />
+        <item itemvalue="JUnit.CommandProcessorTest.testShieldAfterBattle" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="" />
+      <changelist id="c890587c-deaa-45b6-b0d8-23b7905bae1e" name="Default Changelist" comment="" />
       <created>1631051214589</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -137,5 +188,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="14" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

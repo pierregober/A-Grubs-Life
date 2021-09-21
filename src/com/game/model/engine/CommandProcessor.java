@@ -87,7 +87,7 @@ public class CommandProcessor {
     }
 
     private void processCantDoThatHere() {
-        caterpillar.setLastAction("You can't do that here.. We don't have that ");
+        caterpillar.setLastAction("You can't do that here.. We don't have that");
     }
 
     //This method is where to put any new commands.. each of the cases links out to the corresponding logic method... this is essentially a directory for incoming eligible commands.
@@ -192,7 +192,10 @@ public class CommandProcessor {
     // Changes the state of the caterpillar to attacking. This will enable the caterpillar to
     // use its defenses
     private void processAttack(String focus) {
-        if (focus.equalsIgnoreCase(enemy.getName())) {
+        System.out.println(caterpillar.getCurrentLocation().getName());
+        Enemy enem = enemies.get(locations.get(caterpillar.getCurrentLocation().getName()));
+        System.out.println(enem);
+        if (focus.equalsIgnoreCase(enem.getName())) {
             if (!caterpillar.isInCombat()) {
                 caterpillar.setInCombat(true);
                 misfire = false;
@@ -227,7 +230,7 @@ public class CommandProcessor {
     }
 
     private void processAntAssistance(String focus) {
-        if (focus.equalsIgnoreCase("ANT") && caterpillar.getLevel() == 2) {
+        if (focus.equalsIgnoreCase("ANT") && caterpillar.getLevel() >= 2) {
             //DONE : Implement "Ant can be used in combat" logic here.
             caterpillar.setStrength(caterpillar.getStrength() + 60);
             caterpillar.setLastAction("You have received assistance from a friendly ant");
