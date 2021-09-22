@@ -9,9 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="3d1e53c0-3f86-4558-8350-fbef2a3e6f0f" name="Changes" comment="">
     <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/test/com/game/controller/AudioTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/controller/enemies.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/enemies.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/controller/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Audio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
@@ -21,11 +24,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExportTestResults" outputFolder="$PROJECT_DIR$" openResultsInEditor="true" userTempatePath="" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit3 Test Class" />
         <option value="Class" />
+        <option value="JUnit3 Test Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -50,8 +55,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit3" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3" value="junit.framework.TestCase" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resources" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.11764705" />
@@ -59,28 +65,49 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.game.model.materials" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.game.client.Client" />
+  <component name="RunManager" selected="JUnit.All in A-Grubs-Life">
+    <configuration name="All in A-Grubs-Life" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LocationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.model.materials.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.model.materials" />
+      <option name="MAIN_CLASS_NAME" value="com.game.model.materials.LocationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewWindowTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
     <configuration name="AudioTest.parseCommand_shouldBeEmpty_whenPassingNonKeywords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.view" />
+      <option name="MAIN_CLASS_NAME" value="com.game.view.ViewWindowTest" />
+      <option name="TEST_OBJECT" value="class" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.game.controller.*" />
@@ -111,8 +138,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ViewWindowTest.readMap_returnsString_successfully" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
     <configuration name="CaterpillarTest.getStrengthReturnsCorrectStrengthLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.view" />
+      <option name="MAIN_CLASS_NAME" value="com.game.view.ViewWindowTest" />
+      <option name="METHOD_NAME" value="readMap_returnsString_successfully" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
       <option name="METHOD_NAME" value="getStrengthReturnsCorrectStrengthLevel" />
@@ -139,6 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in A-Grubs-Life" />
+        <item itemvalue="JUnit.ViewWindowTest.readMap_returnsString_successfully" />
+        <item itemvalue="JUnit.ViewWindowTest" />
+        <item itemvalue="JUnit.ViewWindowTest.testAudioFilesAreFoundAndDoesNotReturnNull" />
+        <item itemvalue="JUnit.LocationTest" />
         <item itemvalue="Application.Client" />
         <item itemvalue="JUnit.AudioTest.testAudioResourcesStreamsAreNotNullForEachAudioFile" />
         <item itemvalue="JUnit.AudioTest.parseCommand_shouldBeEmpty_whenPassingNonKeywords" />

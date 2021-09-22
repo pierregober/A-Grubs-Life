@@ -134,6 +134,10 @@ public class Caterpillar {
         return defenses.getDefenses(getLevel());
     }
 
+    public Map<String, String> getAllDefenses() {
+        return defenses.getDefenses(maxLevel);
+    }
+
     public int getStrength() {
         return strength;
     }
