@@ -78,10 +78,10 @@ public class ViewWindow {
         imageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Game.currentAudio.getVolume() != Audio.getCurrentClipVolume()){
-                    Audio.setClipVolume((float)Game.currentAudio.getVolume());
+                if(Audio.isIsPlaying()){
+                    Game.currentAudio.stop(); //Stop current music if there is Audio
                 }else{
-                    Audio.setClipVolume( (float) 0);
+                    Game.playAudio(caterpillar.getCurrentLocation().getName()); //Play music if it is stopped
                 }
             }
         });
@@ -156,6 +156,7 @@ public class ViewWindow {
         this.window.setVisible(true);
         this.window.setResizable(true);
         this.window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        //prompt user if he/she would like to continue playing if player click X on the frame
         window.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {

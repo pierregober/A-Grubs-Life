@@ -10,8 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fe4a518-9eab-4aee-9cba-dea2d4a7f882" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test/com/game/controller/AudioTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/controller/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Audio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/game/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/controller/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/game/view/ViewWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,31 +79,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CaterpillarTest.getCurrentLocationReturnsCorrectLocation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AudioTest.parseCommand_shouldBeEmpty_whenPassingNonKeywords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
-      <option name="METHOD_NAME" value="getCurrentLocationReturnsCorrectLocation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.game.controller.AudioTest" />
+      <option name="METHOD_NAME" value="parseCommand_shouldBeEmpty_whenPassingNonKeywords" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CaterpillarTest.getCurrentLocationReturnsNullAfterInstantiation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AudioTest.testAudioResourcesStreamsAreNotNullForEachAudioFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="A-Grubs-Life" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
-      <option name="METHOD_NAME" value="getCurrentLocationReturnsNullAfterInstantiation" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CaterpillarTest.getExperienceReturnsCorrectXPLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="A-Grubs-Life" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CaterpillarTest" />
-      <option name="METHOD_NAME" value="getExperienceReturnsCorrectXPLevel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.game.controller.AudioTest" />
+      <option name="METHOD_NAME" value="testAudioResourcesStreamsAreNotNullForEachAudioFile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -136,10 +140,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
+        <item itemvalue="JUnit.AudioTest.testAudioResourcesStreamsAreNotNullForEachAudioFile" />
+        <item itemvalue="JUnit.AudioTest.parseCommand_shouldBeEmpty_whenPassingNonKeywords" />
         <item itemvalue="JUnit.ViewWindowTest.testAudioFilesAreFoundAndDoesNotReturnNull" />
         <item itemvalue="Application.Client" />
-        <item itemvalue="JUnit.CaterpillarTest.getCurrentLocationReturnsCorrectLocation" />
-        <item itemvalue="JUnit.CaterpillarTest.getCurrentLocationReturnsNullAfterInstantiation" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631819172554</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Game continues when player click no to exiting the game AB#628">
+      <created>1632213024507</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1632213024507</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -239,17 +250,7 @@
     <MESSAGE value="Refactor 3 AB#367" />
     <MESSAGE value="Refactor 4 FINALLY EVERYTHING WORKS WITH MOST RECENT DEV AB#367" />
     <MESSAGE value="Added JoptionPane window to ask user if he would like to stop playing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added JoptionPane window to ask user if he would like to stop playing" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/game/view/ViewWindow.java</url>
-          <line>72</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Game continues when player click no to exiting the game AB#628" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game continues when player click no to exiting the game AB#628" />
   </component>
 </project>

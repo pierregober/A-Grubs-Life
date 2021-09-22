@@ -56,7 +56,6 @@ public class Game {
             public void run() {
                 int counter = 0;
                 viewWindow.welcomeMessage();
-                playAudio("GENESIS");
                 viewWindow.updateCaterpillarStatus();
                 caterpillar.healthRegenerator();
             }

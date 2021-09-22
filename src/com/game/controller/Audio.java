@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Audio implements Runnable {
 
-    /*
+    /**
      * Enum class for the different room containing location and audio file path
      */
     private enum AudioPaths {
@@ -50,6 +50,7 @@ public class Audio implements Runnable {
 
     private String musicFilePath; //music file path from resource folder
     private static Clip clip;     //Clip is the player that plays the audio
+    private static boolean isPlaying;
     private double volume = 0.99;
 
     public void setVolume(double volume) {
@@ -72,6 +73,15 @@ public class Audio implements Runnable {
 
     public void stop() {
         clip.stop();
+        isPlaying = false;
+    }
+
+    public static boolean isIsPlaying() {
+        return isPlaying;
+    }
+
+    public static void setIsPlaying(boolean isPlaying) {
+        Audio.isPlaying = isPlaying;
     }
 
     public static float getMaxVolume(){
@@ -103,29 +113,28 @@ public class Audio implements Runnable {
      *                  /**
      *                  Changes volume of background sound, the static clip object in class Audio
      * @param direction UP or DOWN
+     *
      */
     public double changeVolume(String direction) {
         try {
             double delta = direction.equalsIgnoreCase("UP") ? 0.1 : -0.1;
             double newVol = getVolume() + delta;
+            float max = getMaxVolume();
+            float min = getMinVolume();
             FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            float newVal = (float) ((volumeControl.getMinimum() + newVol * (volumeControl.getMaximum() - volumeControl.getMinimum())));
-            if (newVal > volumeControl.getMaximum()) {
-                newVal = volumeControl.getMaximum();
-                newVol -= delta;
+            float newVal = (float) ((min + newVol * (max - min)));
+            if (newVal > max) {
+                  newVal = max;
+                  newVol -= delta;
             }
             volumeControl.setValue(newVal);
             setVolume(newVol);
             return newVol;
-        } catch(IllegalArgumentException e) {
+        }catch(IllegalArgumentException e) {
             e.getMessage();
         }
         return 0.09;
     }
-
-    /*
-     *This method will be used to play a sound or music
-     */
 
     /*
      *This method will be used to play a sound or music
@@ -147,10 +156,10 @@ public class Audio implements Runnable {
             clip = AudioSystem.getClip();
 
             //Get the file as an AudioInputStream
-            AudioInputStream in = AudioSystem.getAudioInputStream(new BufferedInputStream(file));
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(file));
 
             //Get the current format of the AudioInputStream
-            AudioFormat baseFormat = in.getFormat();
+            AudioFormat baseFormat = inputStream.getFormat();
 
             //Create a new AudioFormat to convert the to from the old format
             AudioFormat decodedFormat = new AudioFormat(
@@ -159,20 +168,19 @@ public class Audio implements Runnable {
                     baseFormat.getChannels() * 2, baseFormat.getSampleRate(), false);
 
             //Get a new AudioInputStream from the old format to the new format
-            AudioInputStream ais = AudioSystem.getAudioInputStream(decodedFormat, in);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(decodedFormat, inputStream);
 
             //Open and start playing the audio stream
-            clip.open(ais);
+            clip.open(audioInputStream);
+            setIsPlaying(true);
             setVolume(getCurrentClipVolume());
-            System.out.println(getCurrentClipVolume());
-            System.out.println(volume);
 
             //Clip will loop the audio until Clip is stop/closed
             clip.loop(Clip.LOOP_CONTINUOUSLY);
 
-            //Close Audio Streams
-            in.close();
-            ais.close();
+            //Close streams
+            inputStream.close();
+            audioInputStream.close();
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         } catch (UnsupportedAudioFileException e) {
